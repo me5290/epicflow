@@ -12,17 +12,17 @@
    <children>
       <ImageView fitHeight="534.0" fitWidth="800.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../epicflow/src/main/resources/img/5989.jpg_wh1200.jpg" />
+            <Image url="@../../../img/5989.jpg_wh1200.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="469.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../epicflow/src/main/resources/img/pngtree-blue-cute-slime-png-image_7472075.png" />
+            <Image url="@../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
          </image>
       </ImageView>
       <ImageView fx:id="player" fitHeight="235.0" fitWidth="182.0" layoutX="180.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../epicflow/src/main/resources/img/gktzltzlt_3.jpg" />
+            <Image url="@../../../img/gktzltzlt_3.jpg" />
          </image>
       </ImageView>
       <HBox layoutY="461.0" prefHeight="139.0" prefWidth="800.0" spacing="100.0" AnchorPane.rightAnchor="0.0">
@@ -40,9 +40,9 @@
             <Insets left="130.0" top="50.0" />
          </padding>
       </HBox>
-      <ProgressBar fx:id="mpBar" layoutX="188.0" layoutY="175.0" prefHeight="12.0" prefWidth="160.0" progress="0.0" />
-      <ProgressBar fx:id="hpBar" layoutX="188.0" layoutY="158.0" prefHeight="12.0" prefWidth="160.0" progress="0.0" />
-      <ProgressBar layoutY="451.0" prefHeight="20.0" prefWidth="800.0" progress="0.0" />
-      <ProgressBar layoutX="475.0" layoutY="110.0" prefHeight="12.0" prefWidth="160.0" progress="0.0" />
+      <ProgressBar fx:id="playerMpBar" layoutX="188.0" layoutY="175.0" prefHeight="12.0" prefWidth="160.0" progress="0.87" />
+      <ProgressBar fx:id="playerHpBar" layoutX="188.0" layoutY="158.0" prefHeight="12.0" prefWidth="160.0" progress="0.51" />
+      <ProgressBar fx:id="playerExp" layoutY="451.0" prefHeight="20.0" prefWidth="800.0" progress="0.4" />
+      <ProgressBar fx:id="monsterHp" layoutX="475.0" layoutY="110.0" prefHeight="12.0" prefWidth="160.0" progress="0.6" />
    </children>
 </AnchorPane>
