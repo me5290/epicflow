@@ -8,5 +8,5 @@ public class BattleDao extends Dao{
         return battleDao;
     }
 
-
+asd
 }
