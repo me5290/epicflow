@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
@@ -23,4 +24,10 @@ public class BattleController {
         return battleController;
     }
 
+    // 플레이어 프로그레스 바
+    @FXML private ProgressBar playerHpBar;
+
+    public void playerHp(){
+
+    }
 }
