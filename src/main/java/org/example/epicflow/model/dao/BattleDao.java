@@ -7,6 +7,5 @@ public class BattleDao extends Dao{
     public static BattleDao getInstance(){
         return battleDao;
     }
-dd
 
 }
