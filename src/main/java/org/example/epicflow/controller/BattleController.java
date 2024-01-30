@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
@@ -22,6 +23,4 @@ public class BattleController {
     public static BattleController getInstance(){
         return battleController;
     }
-
-
 }
