@@ -23,11 +23,4 @@ public class BattleController {
     public static BattleController getInstance(){
         return battleController;
     }
-
-    // 플레이어 프로그레스 바
-    @FXML private ProgressBar playerHpBar;
-
-    public void playerHp(){
-
-    }
 }
