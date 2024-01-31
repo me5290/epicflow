@@ -2,6 +2,7 @@ package org.example.epicflow.controller;
 
 
 import javafx.application.Platform;
+import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import org.example.epicflow.model.dao.MemberDao;
@@ -13,6 +14,7 @@ public class LoginContrller {
 
     public TextField inputId = null;
     public TextField inputPw = null;
+
 
     public void Onlogin(){
         int memberNum;
@@ -48,6 +50,8 @@ public class LoginContrller {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("존재하지 않는 회원 입니다.");
             alert.show();
+            inputId.setText("");
+            inputPw.setText("");
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText(memberDto.getMid() + "회원님 환영 합니다.");
