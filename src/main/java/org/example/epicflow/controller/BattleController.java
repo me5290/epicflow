@@ -36,12 +36,12 @@ public class BattleController implements Initializable {
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
 
-    private int persent = 0;    // 프로그레스 바 게이지 초기값
-
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
-    //MonsterDto monsterDtos = new MonsterDto();
-
+    MonsterDto monsterDtos = new MonsterDto();
     Random random = new Random();
+
+    // 배틀 진행 상황 변수
+    boolean start = true;
 
     // 초기값 세팅
     @Override
@@ -60,6 +60,14 @@ public class BattleController implements Initializable {
 
         // 캐릭터 출력
         if(playerInfor.get(1).getJob() == 0){
+
+        }
+    }
+
+    // 배틀 시작 메소드
+
+    public void battleStart(){
+        while (start){
 
         }
     }
@@ -93,9 +101,19 @@ public class BattleController implements Initializable {
     }
 
     // 플레이어 데미지 계산
-    public void playerDamage(){
-        int damage = random.nextInt(8,12);
+    public int playerDamage(){
+        double minDamage = playerInfor.get(0).getPower()-(playerInfor.get(0).getPower()*0.1);
+        double maxDamage = playerInfor.get(0).getPower()+(playerInfor.get(0).getPower()*0.1);
+
+        int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
+
+        int lastDamage = damage - monsterDtos.getMonsterDefence();
+
+        int monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
         System.out.println(damage);
-        //playerInfor.get(0).getPower();
+        System.out.println(lastDamage);
+        System.out.println(monsterDecrease);
+
+        return monsterDecrease;
     }
 }
