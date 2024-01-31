@@ -9,7 +9,7 @@ public class PlayerDto {
     private int mp;
     private int job;
     private int level;
-    private int exp;
+    private int exp = 30;
     private int power;
     private int defence;
     private int str;
