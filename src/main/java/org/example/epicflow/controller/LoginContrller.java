@@ -10,7 +10,7 @@ import org.example.epicflow.model.dto.MemberDto;
 
 public class LoginContrller {
 
-    static int memberNum = 0; // 회원번호 저장
+    static int memberNum = 0; // 회원번호 저장ㅇㅇ
 
     public TextField inputId = null;
     public TextField inputPw = null;
