@@ -94,8 +94,9 @@ public class BattleController implements Initializable {
 
     // 플레이어 데미지 계산
     public void playerDamage(){
-        int damage = random.nextInt(8,12);
+        int damage = random.nextInt((Integer)minDamage,12+1);
         System.out.println(damage);
-        //playerInfor.get(0).getPower();
+        double minDamage = playerInfor.get(0).getPower()-(playerInfor.get(0).getPower()*0.1);
+        double maxDamage = playerInfor.get(0).getPower()+(playerInfor.get(0).getPower()*0.1);
     }
 }
