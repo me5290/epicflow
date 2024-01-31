@@ -3,6 +3,7 @@ package org.example.epicflow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class MainApplication extends Application {
         stage.setTitle("EpicFlow");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
