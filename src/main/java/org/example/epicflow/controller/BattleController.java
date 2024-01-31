@@ -9,6 +9,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,12 +32,34 @@ public class BattleController implements Initializable {
     @FXML private ProgressBar playerexp;
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
+    @FXML private Pane exitalert;
 
     private int persent = 0;    // 프로그레스 바 게이지 초기값
 
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
 
-    //File chobo = new File();
+    String[] monsters = {""};
+
+    // 초기값 세팅
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // 플레이어 경험치
+        playerexp.setProgress(50*0.01);
+        playerexp.setStyle("-fx-accent: yellow;");
+
+        // 플레이어 hp
+        playerHpBar.setProgress(playerInfor.get(0).getHp()*0.01);
+        playerHpBar.setStyle("-fx-accent: red;");
+
+        // 플레이어 mp
+        playerMpBar.setProgress(playerInfor.get(0).getMp()*2*0.01);
+        playerMpBar.setStyle("-fx-accent: blue;");
+
+        // 캐릭터 출력
+        if(playerInfor.get(1).getJob() == 0){
+
+        }
+    }
 
     // 공격 버튼 클릭 이벤트
     public void attackBtnList(){
@@ -52,26 +75,17 @@ public class BattleController implements Initializable {
 
     // 기본공격 버튼 클릭 이벤트
     public void nomalAttack(){
-        System.out.println(playerInfor.get(1).getPower());
+        System.out.println(playerInfor.get(0).getPower());
         for(int i = 0; i < playerInfor.size(); i++){
             System.out.println(playerInfor.get(i).toString());
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // 플레이어 경험치
-        playerexp.setProgress(playerInfor.get(1).getExp()*0.01);
-
-        // 플레이어 hp
-        playerHpBar.setProgress(80*0.01);
-
-        // 플레이어 mp
-        playerMpBar.setProgress(50*0.01);
-
-        // 캐릭터 출력
-        if(playerInfor.get(1).getJob() == 0){
-
-        }
+    // 도망 버튼 클릭 이벤트
+    public void exit(){
+        exitalert.setVisible(true);
+    }
+    public void exitBack(){
+        exitalert.setVisible(false);
     }
 }
