@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.MonsterController">
    <children>
       <ImageView fitHeight="534.0" fitWidth="800.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -27,7 +27,7 @@
       </ImageView>
       <HBox layoutY="461.0" prefHeight="139.0" prefWidth="800.0" spacing="100.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="attackBtn" mnemonicParsing="false" text="공격">
+            <Button fx:id="Attackbtn" mnemonicParsing="false" text="공격">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

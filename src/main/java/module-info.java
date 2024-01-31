@@ -6,4 +6,6 @@ module org.example.epicflow {
 
     opens org.example.epicflow to javafx.fxml;
     exports org.example.epicflow;
+    opens org.example.epicflow.controller to javafx.fxml;
+    exports org.example.epicflow.controller;
 }
