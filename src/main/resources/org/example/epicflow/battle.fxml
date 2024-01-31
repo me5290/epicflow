@@ -12,17 +12,17 @@
    <children>
       <ImageView fitHeight="534.0" fitWidth="800.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../epicflow/src/main/resources/img/5989.jpg_wh1200.jpg" />
+            <Image url="@../../../img/5989.jpg_wh1200.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="469.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../epicflow/src/main/resources/img/pngtree-blue-cute-slime-png-image_7472075.png" />
+            <Image url="@../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
          </image>
       </ImageView>
       <ImageView fx:id="player" fitHeight="235.0" fitWidth="182.0" layoutX="180.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../epicflow/src/main/resources/img/gktzltzlt_3.jpg" />
+            <Image url="@../../../img/gktzltzlt_3.jpg" />
          </image>
       </ImageView>
       <HBox layoutY="461.0" prefHeight="139.0" prefWidth="800.0" spacing="100.0" AnchorPane.rightAnchor="0.0">
