@@ -2,19 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.BattleController">
    <children>
-      <ImageView fitHeight="534.0" fitWidth="800.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="611.0" fitWidth="800.0" layoutY="-58.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../img/5989.jpg_wh1200.jpg" />
+            <Image url="@../../../img/battlebackground.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="469.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -22,44 +22,28 @@
             <Image url="@../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="character" fitHeight="235.0" fitWidth="182.0" layoutX="180.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="character" fitHeight="235.0" fitWidth="182.0" layoutX="180.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/gktzltzlt_3.jpg" />
          </image>
       </ImageView>
       <ProgressBar fx:id="playerMpBar" layoutX="180.0" layoutY="176.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" />
       <ProgressBar fx:id="playerHpBar" layoutX="180.0" layoutY="151.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" style="-fx-border-style: none;" />
-      <ProgressBar fx:id="playerexp" layoutY="451.0" prefHeight="20.0" prefWidth="800.0" progress="0.0" />
-      <ProgressBar fx:id="monsterHp" layoutX="475.0" layoutY="110.0" prefHeight="12.0" prefWidth="160.0" progress="0.0" />
-      <AnchorPane fx:id="attacklist" layoutX="-1.0" layoutY="460.0" prefHeight="141.0" prefWidth="800.0" style="visibility: false;">
-         <children>
-            <Button fx:id="backbtn" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#backBtn" text="뒤로가기" />
-            <Button fx:id="attackBtn1" layoutX="93.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#nomalAttack" text="기본공격" />
-            <Button fx:id="defenceBtn1" layoutX="275.0" layoutY="41.0" mnemonicParsing="false" text="스킬1" />
-            <Button fx:id="invenBtn1" layoutX="483.0" layoutY="41.0" mnemonicParsing="false" text="스킬2" />
-            <Button fx:id="runBtn1" layoutX="644.0" layoutY="41.0" mnemonicParsing="false" text="스킬3" />
-         </children>
-      </AnchorPane>
-      <Pane fx:id="exitalert" layoutX="183.0" layoutY="160.0" prefHeight="225.0" prefWidth="346.0" style="-fx-background-color: #B18904;" visible="false">
-         <children>
-            <Button layoutX="79.0" layoutY="165.0" mnemonicParsing="false" onMouseClicked="#exitBack" text="예" />
-            <Button layoutX="214.0" layoutY="165.0" mnemonicParsing="false" onMouseClicked="#exitBack" text="아니오" />
-            <TextArea layoutX="13.0" layoutY="30.0" prefHeight="112.0" prefWidth="320.0" style="-fx-background-color: #fff; -fx-border-style: none;" text="정말로 도망가시겠습니까?&#10;&#10;도망가면 경험치와 돈은 획득 하지 못하고&#10;&#10;상태는 그대로 저장됩니다." />
-         </children>
-      </Pane>
-      <HBox fx:id="btnlist" layoutX="-1.0" layoutY="469.0" prefHeight="133.0" prefWidth="789.0">
+      <ProgressBar fx:id="playerexp" layoutY="450.0" prefHeight="20.0" prefWidth="800.0" progress="0.51" />
+      <ProgressBar fx:id="monsterHp" layoutX="476.0" layoutY="101.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" />
+      <HBox fx:id="btnlist" layoutY="464.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;">
          <children>
             <Button fx:id="attackBtn" mnemonicParsing="false" onMouseClicked="#attackBtnList" text="공격">
                <HBox.margin>
                   <Insets right="130.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="defenceBtn" mnemonicParsing="false"  text="방어">
+            <Button fx:id="defenceBtn" mnemonicParsing="false" text="방어">
                <HBox.margin>
                   <Insets right="130.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="invenBtn" mnemonicParsing="false" text="인벤토리">
+            <Button fx:id="invenBtn" mnemonicParsing="false" onMouseClicked="#invenbtnList" text="인벤토리">
                <HBox.margin>
                   <Insets right="130.0" />
                </HBox.margin>
@@ -77,5 +61,33 @@
             <Insets left="80.0" right="80.0" top="40.0" />
          </padding>
       </HBox>
+      <AnchorPane fx:id="attacklist" layoutY="464.0" prefHeight="135.0" prefWidth="800.0" style="visibility: false; -fx-background-color: #fff;">
+         <children>
+            <Button fx:id="backbtn" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#backBtn" text="뒤로가기" />
+            <Button fx:id="attackBtn1" layoutX="93.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#nomalAttack" text="기본공격" />
+            <Button fx:id="defenceBtn1" layoutX="275.0" layoutY="41.0" mnemonicParsing="false" text="스킬1" />
+            <Button fx:id="invenBtn1" layoutX="483.0" layoutY="41.0" mnemonicParsing="false" text="스킬2" />
+            <Button fx:id="runBtn1" layoutX="644.0" layoutY="41.0" mnemonicParsing="false" text="스킬3" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="183.0" layoutY="153.0" text="100/100" textFill="#c33a3a" />
+      <Text layoutX="182.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="플레이어 아이디" />
+      <Text layoutX="477.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="몬스터" />
+      <Label layoutX="477.0" layoutY="103.0" text="30/30" textFill="#eb4c4c" />
+      <Label layoutX="184.0" layoutY="178.0" text="50/50" textFill="#29409a" />
+      <AnchorPane layoutX="469.0" layoutY="242.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <Button layoutX="7.0" layoutY="33.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="52.0" />
+            <ImageView fitHeight="51.0" fitWidth="70.0" layoutX="7.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Desktop/565656.jpg" />
+               </image>
+            </ImageView>
+            <Text layoutX="69.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="인벤토리" />
+            <Button layoutX="172.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#exitinvenbtn" prefHeight="17.0" prefWidth="28.0" text="X" />
+            <Text layoutX="32.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="74.8125" />
+            <Label layoutX="8.0" layoutY="178.0" text="돈" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

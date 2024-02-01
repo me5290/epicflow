@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -32,16 +33,25 @@ public class BattleController implements Initializable {
     @FXML private ProgressBar playerHpBar;
     @FXML private ProgressBar playerMpBar;
     @FXML private ProgressBar playerexp;
+    @FXML private ProgressBar monsterHp;
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
-
-    private int persent = 0;    // 프로그레스 바 게이지 초기값
-
+    @FXML private Button invenBtn;
+        
+    // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
-    //MonsterDto monsterDtos = new MonsterDto();
 
+    // 몬스터 정보 객체 생성
+    MonsterDto monsterDtos = new MonsterDto();
+
+    // 랜덤 함수 호출
     Random random = new Random();
+
+    // 배틀 진행 상황 변수
+    boolean start = true;
+
+    // ============================== 메소드 ============================== //
 
     // 초기값 세팅
     @Override
@@ -62,13 +72,46 @@ public class BattleController implements Initializable {
         if(playerInfor.get(1).getJob() == 0){
 
         }
+
+
+
+        // 몬스터 hp
+//        monsterHp.setProgress();
+//        monsterHp.setStyle("-fx-accent: purple;");
+
+        // 몬스터 mp
+//       monseterMp.setProgress(playerInfor.get(0).getHp()*50*0.01);
+//        playerMpBar.setStyle("-fx-accent: blue;");
+
+
+        battleStart();
+    }
+
+
+    // 배틀 시작 메소드
+
+    public void battleStart(){
+        while (start){
+            nomalAttack();
+
+            int monsterNowHp = nomalAttack();
+            int monsterRenewal = 100;
+
+            // 몬스터 hp
+            monsterHp.setProgress(monsterRenewal*0.01);
+            monsterHp.setStyle("-fx-accent: purple;");
+
+            break;
+        }
     }
 
     // 공격 버튼 클릭 이벤트
     public void attackBtnList(){
-        attacklist.setVisible(true);
+        attacklist.setVisible(true);//true 보이는거
         btnlist.setVisible(false);
     }
+
+   
 
     // 뒤로가기 버튼 클릭 이벤트
     public void backBtn(){
@@ -77,12 +120,22 @@ public class BattleController implements Initializable {
     }
 
     // 기본공격 버튼 클릭 이벤트
-    public void nomalAttack(){
-        System.out.println(playerInfor.get(0).getPower());
-        for(int i = 0; i < playerInfor.size(); i++){
-            System.out.println(playerInfor.get(i).toString());
-        }
+    public int nomalAttack(){
+        double minDamage = playerInfor.get(0).getPower()-(playerInfor.get(0).getPower()*0.1);//11
+        double maxDamage = playerInfor.get(0).getPower()+(playerInfor.get(0).getPower()*0.1);//9
+
+        int damage = random.nextInt((int)minDamage ,(int)maxDamage+1); //11~9
+
+        int lastDamage = damage - monsterDtos.getMonsterDefence(); //몬스터 방어 뺸 함수
+
+        int monsterDecrease = monsterDtos.getMonsterHp()-lastDamage; //현재 체력/몬스터에 현재체력
+        System.out.println(damage);
+        System.out.println(lastDamage);
+        System.out.println(monsterDecrease);
+
+        return monsterDecrease;
     }
+
 
     // 도망 버튼 클릭 이벤트
     public void exit(){
@@ -92,22 +145,14 @@ public class BattleController implements Initializable {
         exitalert.setVisible(false);
     }
 
-    // 플레이어 데미지 계산
-//    public void playerDamage(){
-//        int damage = random.nextInt((Integer)minDamage,12+1);
-//        System.out.println(damage);
-//        double minDamage = playerInfor.get(0).getPower()-(playerInfor.get(0).getPower()*0.1);
-//        double maxDamage = playerInfor.get(0).getPower()+(playerInfor.get(0).getPower()*0.1);
-//    }
+    //인벤 버튼 클릭 이벤트
+    public void invenbtnList() {
+        invenBtn.setVisible(true);
 
+    }
+    //인벤 버튼 종료 버튼 이벤트
+    public void exitinvenbtn() {
 
-
-
-
-
-
-
-
-
-
+        invenBtn.setVisible(false);
+    }
 }
