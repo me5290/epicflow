@@ -76,6 +76,6 @@
             <Image url="@../../../../img/Game_Login_Icon.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="419.0" layoutY="239.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="회원가입 취소" />
+      <Button fx:id="close" layoutX="419.0" layoutY="239.0" mnemonicParsing="false" onAction="#closeda" prefHeight="30.0" prefWidth="100.0" text="회원가입 취소" />
    </children>
 </Pane>

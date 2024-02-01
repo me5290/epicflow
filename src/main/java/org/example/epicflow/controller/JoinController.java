@@ -1,16 +1,34 @@
 package org.example.epicflow.controller;    // 패키지명
 
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class JoinController {   // Class Start
 
-// ================================ 싱글톤 s ================================ //
-//    // ===== 생성자
-//    private JoinController(){}
-//    // ===== 필드
-//    private static JoinController joinController = new JoinController();
-//    // ===== 메소드
-//    public static JoinController getInstance(){
-//        return joinController;
-//    }
-// ================================ 싱글톤 e ================================ //
-// ================================ 회원가입 s ================================ //
+@FXML Button close;
+
+    public void closeda(){
+        try {
+        Parent Join = FXMLLoader.load(getClass().getResource("login.fxml"));
+
+        Scene scene = new Scene(Join , 800 , 600);
+        Stage primaryStage = (Stage)close.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        System.out.println("primaryStage = " + primaryStage);
+        System.out.println("scene = " + scene);
+
+
+    }catch (Exception e){
+        System.out.println(e);
+    }
+
+    }
 } //  Class End
