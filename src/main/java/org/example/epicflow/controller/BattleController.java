@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.example.epicflow.MainController;
 import org.example.epicflow.model.dao.PlayerDao;
+import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
 import org.example.epicflow.model.dao.BattleDao;
 
@@ -23,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class BattleController implements Initializable {
@@ -37,8 +39,9 @@ public class BattleController implements Initializable {
     private int persent = 0;    // 프로그레스 바 게이지 초기값
 
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
+    //MonsterDto monsterDtos = new MonsterDto();
 
-    String[] monsters = {""};
+    Random random = new Random();
 
     // 초기값 세팅
     @Override
@@ -87,5 +90,13 @@ public class BattleController implements Initializable {
     }
     public void exitBack(){
         exitalert.setVisible(false);
+    }
+
+    // 플레이어 데미지 계산
+    public void playerDamage(){
+        int damage = random.nextInt((Integer)minDamage,12+1);
+        System.out.println(damage);
+        double minDamage = playerInfor.get(0).getPower()-(playerInfor.get(0).getPower()*0.1);
+        double maxDamage = playerInfor.get(0).getPower()+(playerInfor.get(0).getPower()*0.1);
     }
 }
