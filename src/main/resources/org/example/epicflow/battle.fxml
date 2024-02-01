@@ -31,14 +31,15 @@
       <ProgressBar fx:id="playerHpBar" layoutX="180.0" layoutY="151.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" style="-fx-border-style: none;" />
       <ProgressBar fx:id="playerexp" layoutY="450.0" prefHeight="20.0" prefWidth="800.0" progress="0.0" />
       <ProgressBar fx:id="monsterHp" layoutX="476.0" layoutY="101.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" />
-      <HBox fx:id="btnlist" layoutY="464.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;">
+      <Pane layoutY="465.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" />
+      <HBox fx:id="btnlist" layoutY="464.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" visible="false">
          <children>
             <Button fx:id="attackBtn" mnemonicParsing="false" onMouseClicked="#attackBtnList" text="공격">
                <HBox.margin>
                   <Insets right="130.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="defenceBtn" mnemonicParsing="false" onMouseClicked="#playerDamage" text="방어">
+            <Button fx:id="defenceBtn" mnemonicParsing="false" text="방어">
                <HBox.margin>
                   <Insets right="130.0" />
                </HBox.margin>
