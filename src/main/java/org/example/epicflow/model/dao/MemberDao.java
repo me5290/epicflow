@@ -11,19 +11,37 @@ public class MemberDao extends Dao{
     }
 
 
+    // ===== 회원가입 메소드
+    public int signUp(MemberDto memberDto){
+        System.out.println(memberDto.toString());
+        try {
+        // ===== SQL 작성
+        String sql = "insert into member(mid,mpw)values( ?, ? )";
 
+        // ===== SQL 기재
+        ps = con.prepareStatement(sql);
+                                                            System.out.println(memberDto.getMid());
+                                                            System.out.println(memberDto.getMpw());
+        // ===== ? 매개변수 대입
+        ps.setString(1,memberDto.getMid());
+        ps.setString(2,memberDto.getMpw());
 
+        // ===== SQL 실행
+        int count = ps.executeUpdate();
+                                                            System.out.println(count);
+            // ===== 만약에 INSERT 처리된 레코드가 1개이면 회원가입 성공 0이면 성공
+            if(count==1){
+                return 0;
+            }
+            System.out.println("성공");
+        }catch (Exception e){
+            System.out.println("오류 : " + e);
+        }
 
-    
-    
-    // 회원가입
-    
-    
-    
-    
-    
-    
-    
+        // ===== 함수 종료 1이면 실패
+        return 1;
+    }
+
     
     // 로그인
     public int Onlogin(MemberDto memberDto){
