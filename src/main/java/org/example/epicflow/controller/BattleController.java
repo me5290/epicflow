@@ -131,5 +131,4 @@ public class BattleController implements Initializable {
     public void exitBack(){
         exitalert.setVisible(false);
     }
-
 }
