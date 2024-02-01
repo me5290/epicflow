@@ -43,7 +43,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aaa">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.JoinController">
    <children>
       <Text layoutX="111.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epic flow" textAlignment="CENTER" wrappingWidth="357.9830722808838">
          <fill>
@@ -73,7 +73,7 @@
       <Button layoutX="290.0" layoutY="239.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="회원가입 완료" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Downloads/hhhh.jpg" />
+            <Image url="@../../../../img/Game_Login_Icon.jpg" />
          </image>
       </ImageView>
       <Button layoutX="419.0" layoutY="239.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="회원가입 취소" />

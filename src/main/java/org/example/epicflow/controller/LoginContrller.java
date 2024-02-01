@@ -2,25 +2,32 @@ package org.example.epicflow.controller;
 
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.scene.Cursor;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import org.example.epicflow.MainApplication;
 import org.example.epicflow.model.dao.MemberDao;
 import org.example.epicflow.model.dto.MemberDto;
 
-public class LoginContrller {
+
+
+public class LoginContrller extends MainApplication {
 
     static int memberNum; // 회원번호 저장ㅇㅇ
-
+    public Pane mainVuew;
     public TextField inputId = null;
     public TextField inputPw = null;
     public Label loginLabel = null;
     public Button loginSbtn;
+    public Button membership;
     public Pane memberView;
+
 
 
     public void Onlogin(){
@@ -70,9 +77,40 @@ public class LoginContrller {
             }
 
         } // w e
-        System.out.println("함수종료");
-    }
+        // 로그인 성공! 배틀신으로 이동
+        try {
+            Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
+            Scene scene = new Scene(battle , 800 , 600);
+            Stage primaryStage = (Stage)membership.getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            System.out.println("primaryStage = " + primaryStage);
+            System.out.println("scene = " + scene);
 
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+    
+    // 회원가입 클릭시 회원가입 페이지로 이동
+    public void joinMembership(){
+        try {
+            Parent Join = FXMLLoader.load(getClass().getResource("EpicflowJoin.fxml"));
+
+            Scene scene = new Scene(Join , 800 , 600);
+            Stage primaryStage = (Stage)membership.getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            System.out.println("primaryStage = " + primaryStage);
+            System.out.println("scene = " + scene);
+
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
     public void OnExit(){
         System.out.println("종료합니다.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -82,11 +120,9 @@ public class LoginContrller {
         Platform.exit();
     }
 
-    public void asdasd(){
+    public void viewHide(){
         System.out.println("안보이기");
         memberView.setVisible(false);
     }
-
-
 
 }
