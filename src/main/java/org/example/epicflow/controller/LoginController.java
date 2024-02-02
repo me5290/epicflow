@@ -19,7 +19,7 @@ import org.example.epicflow.model.dto.MemberDto;
 
 public class LoginController extends MainApplication {
 
-    static int memberNum; // 회원번호 저장ㅇㅇ
+    public static int memberNum = 1; // 회원번호 저장ㅇㅇ   // 배틀에서 회원번호 비교 후 해당 인덱스만 불러오려고 1 넣음 로그인할때 저장되면 지워도 됨
     public Pane mainVuew;
     public TextField inputId = null;
     public TextField inputPw = null;

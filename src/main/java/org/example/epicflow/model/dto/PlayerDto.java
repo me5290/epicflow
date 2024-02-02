@@ -9,7 +9,9 @@ public class PlayerDto {
     private int mp;
     private int job;
     private int level;
-    private int exp = 30;
+    private int exp;
+    private int money;
+    private int statpoint;
     private int power;
     private int defence;
     private int str;
@@ -89,6 +91,22 @@ public class PlayerDto {
 
     public void setExp(int exp) {
         this.exp = exp;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getStatpoint() {
+        return statpoint;
+    }
+
+    public void setStatpoint(int statpoint) {
+        this.statpoint = statpoint;
     }
 
     public int getPower() {
