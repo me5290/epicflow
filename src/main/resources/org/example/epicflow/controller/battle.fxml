@@ -19,7 +19,7 @@
       </ImageView>
       <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="469.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
+            <Image url="@../../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
          </image>
       </ImageView>
       <ImageView fx:id="character" fitHeight="294.0" fitWidth="213.0" layoutX="130.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
