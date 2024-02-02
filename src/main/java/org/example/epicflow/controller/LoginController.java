@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.epicflow.MainApplication;
@@ -19,16 +20,25 @@ import org.example.epicflow.model.dto.MemberDto;
 
 public class LoginController extends MainApplication {
 
-    static int memberNum; // 회원번호 저장ㅇㅇ
-    public Pane mainVuew;
-    public TextField inputId = null;
-    public TextField inputPw = null;
-    public Label loginLabel = null;
-    public Button loginSbtn;
-    public Button membership;
-    public Pane memberView;
+    public static int memberNum; // 회원번호 저장
+    public Pane mainVuew;       // 첫 시작 뷰
+    public TextField inputId = null;    // 로그인시 아이디 입력칸
+    public TextField inputPw = null;    // 로그인시 비밀번호 입력칸
+    public ImageView LoginIcon;         // 로그인 뷰 이미지
+    public Label loginLabel = null;     // 로그인 성공/실패시 텍스트 표시
+    public Button loginSbtn;            // 로그인 성공/실패시 뷰
+    public Button membership;           // 회원가입 클릭 버ㅓ튼
+    public Pane memberView;             // 로그인 시 환영 메세지
+    public Pane cNamePane;              // 로그인 성공시 캐릭터 생성 뷰
+    public TextField cName;             // 로그인 성공시 캐릭터 이름 받기
+    public Button generation;           // 캐릭터 생성 버튼
+    public Button cancel;               // 캐릭터 생성 뷰 에서 취소버튼
 
 
+    // 회원번호 get
+    public static int getMemberNum() {
+        return memberNum;
+    }
 
     public void Onlogin(){
         while (true){
@@ -77,6 +87,11 @@ public class LoginController extends MainApplication {
             }
 
         } // w e
+
+//        if(true){
+//            cNamePane.setVisible(true);
+//        }
+
         // 로그인 성공! 배틀신으로 이동
         try {
             Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
@@ -120,10 +135,28 @@ public class LoginController extends MainApplication {
         Platform.exit();
     }
 
+    // 로그인 성공 후 로그인한 회원표시 가리기
     public void viewHide(){
         System.out.println("안보이기");
         memberView.setVisible(false);
     }
+
+    // 캐릭터 생성 버튼 클릭 시
+    public void characterGeneration(){
+
+
+
+    }
+
+    // 캐릭터 생성 뷰 에서 취소 클릭 시
+    public void characterCancel(){
+        System.out.println("캐릭터생성 뷰 안보이기");
+        cNamePane.setVisible(false);
+
+    }
+
+    
+    
     // 일단 끝
 
 }

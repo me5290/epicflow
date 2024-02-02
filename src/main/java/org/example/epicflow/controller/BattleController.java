@@ -36,7 +36,6 @@ public class BattleController implements Initializable {
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
-
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
 
@@ -49,11 +48,18 @@ public class BattleController implements Initializable {
     // 배틀 진행 상황 변수
     boolean start = true;
 
+    // 회원번호 저장
+
+
+
+
+
     // ============================== 메소드 ============================== //
 
     // 초기값 세팅
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         // 플레이어 경험치
         playerexp.setProgress(50*0.01);
         playerexp.setStyle("-fx-accent: yellow;");

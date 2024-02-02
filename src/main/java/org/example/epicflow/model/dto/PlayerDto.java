@@ -1,8 +1,8 @@
 package org.example.epicflow.model.dto;
 
 public class PlayerDto {
-    private int pno;
-    private String pname;
+    private int pno;        // 캐릭터번호
+    private String pname;   // 캐릭터이름
     private int mhp;
     private int hp;
     private int mmp;
@@ -17,7 +17,7 @@ public class PlayerDto {
     private int wis;
     private int eva;
     private int spd;
-    private int mno;
+    private int mno;    // 회원 번호
 
     public int getPno() {
         return pno;
