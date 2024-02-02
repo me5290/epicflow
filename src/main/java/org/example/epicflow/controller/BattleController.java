@@ -182,6 +182,7 @@ public class BattleController implements Initializable {
 
     // 방어 버튼 클릭 메소드
     public void defence(){
+        System.out.println("방어실행");
         attacklist.setVisible(false);
         btnlist.setVisible(true);
 
