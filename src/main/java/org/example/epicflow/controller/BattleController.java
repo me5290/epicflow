@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -150,7 +149,6 @@ public class BattleController implements Initializable {
             btnlist.setVisible(false);
         }
     }
-
     // 도망 버튼 클릭 이벤트
     public void exit(){
         exitalert.setVisible(true);
@@ -166,7 +164,6 @@ public class BattleController implements Initializable {
     }
     //인벤 버튼 종료 버튼 이벤트
     public void exitinvenbtn() {
-
         inventory.setVisible(false);
     }
 
