@@ -233,6 +233,9 @@ public class BattleController implements Initializable {
 
         System.out.println("몬스터 공격 성공");
 
+        // 플레이어 체력 출력
+        playerHp.setText(Integer.toString(playerDecrease));
+
         // 플레이어 체력 갱신 메소드 호출
         playerHpRenewal();
 
