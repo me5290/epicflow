@@ -16,17 +16,19 @@ import org.example.epicflow.MainApplication;
 import org.example.epicflow.model.dao.MemberDao;
 import org.example.epicflow.model.dto.MemberDto;
 
+import java.io.IOException;
 
 
 public class LoginController extends MainApplication {
 
-    public static int memberNum = 1; // 회원번호 저장
+    public static int memberNum ; // 회원번호 저장
     public Pane mainVuew;       // 첫 시작 뷰
     public TextField inputId = null;    // 로그인시 아이디 입력칸
     public TextField inputPw = null;    // 로그인시 비밀번호 입력칸
     public ImageView LoginIcon;         // 로그인 뷰 이미지
     public Label loginLabel = null;     // 로그인 성공/실패시 텍스트 표시
     public Button loginSbtn;            // 로그인 성공/실패시 뷰
+    public Button ok;
     public Button membership;           // 회원가입 클릭 버ㅓ튼
     public Pane memberView;             // 로그인 시 환영 메세지
     public Pane cNamePane;              // 로그인 성공시 캐릭터 생성 뷰
@@ -84,14 +86,24 @@ public class LoginController extends MainApplication {
                 loginLabel.setText(memberDto.getMid() + "회원님 환영 합니다.");
                 System.out.println(memberNum);
                 bolean = true;
+                System.out.println("OK버튼" + ok);
                 break;
             }
 
         } // w e
 
-        // 배틀 씬 이동
-        if (bolean){
-            battleScen();
+        try {
+            //loader.setLocation(getClass().getResource("/application/testForms.fxml"));
+            Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
+            Scene scene = new Scene(battle , 800 , 600);
+            Stage primaryStage = (Stage)ok.getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            System.out.println("primaryStage = " + primaryStage);
+            System.out.println("scene = " + scene);
+
+        }catch (IOException e){
+            System.out.println(e);
         }
 
     }
@@ -142,23 +154,7 @@ public class LoginController extends MainApplication {
         System.out.println("캐릭터생성 뷰 안보이기");
         cNamePane.setVisible(false);
 
-    }
 
-    // 로그인 및 캐릭터 생성 후 전투 씬 이동
-    public void battleScen(){
-        // 로그인 성공! 배틀신으로 이동
-        try {
-            Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
-            Scene scene = new Scene(battle , 800 , 600);
-            Stage primaryStage = (Stage)membership.getScene().getWindow();
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            System.out.println("primaryStage = " + primaryStage);
-            System.out.println("scene = " + scene);
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
 
     }
 

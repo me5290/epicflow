@@ -97,6 +97,7 @@ public class BattleController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // 플레이어 정보 찾아오기 메소드 실행
         memberNum();
+        System.out.println(memberNum);
 
         // 플레이어 최대체력 저장
         playerDecrease = player.getMhp();
@@ -112,7 +113,7 @@ public class BattleController implements Initializable {
         // 플레이어 mp
         playerMpBar.setProgress(player.getMp()*2*0.01);
         playerMpBar.setStyle("-fx-accent: blue;");
-        System.out.println(monsterDtos.getMonsterHp());
+
 
         // 몬스터 hp
         monsterHp.setProgress(monsterDtos.getMonsterHp()/monsterDtos.getMonsterHp());
