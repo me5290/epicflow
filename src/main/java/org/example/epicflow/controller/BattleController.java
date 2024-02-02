@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -41,6 +42,8 @@ public class BattleController implements Initializable {
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
+    @FXML private Button invenBtn;
+    @FXML private AnchorPane inventory;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -154,6 +157,17 @@ public class BattleController implements Initializable {
     }
     public void exitBack(){
         exitalert.setVisible(false);
+    }
+
+    //인벤 버튼 클릭 이벤트
+    public void invenbtnList() {
+        inventory.setVisible(true);
+
+    }
+    //인벤 버튼 종료 버튼 이벤트
+    public void exitinvenbtn() {
+
+        inventory.setVisible(false);
     }
 
     // 몬스터 공격 메소드
