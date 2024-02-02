@@ -26,6 +26,8 @@ create table player(
     job int default 0,						-- 직업
     level int default 1,					-- 레벨
     exp int default 0,						-- 경험치
+    money int default 0,					-- 돈
+    statpoint int default 0,				-- 포인트
     power int default 10,					-- 공격력
     defence int default 0,					-- 방어력
     str int default 0,						-- 힘
@@ -39,6 +41,9 @@ create table player(
 
 insert into player(pname) values('zl존민형');
 insert into player(pname) values('아기준영');
+
+update player set mno = 1 where pno = 1;
+update player set mno = 2 where pno = 2;
 
 select * from member;
 select * from player;

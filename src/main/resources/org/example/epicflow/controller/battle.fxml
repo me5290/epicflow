@@ -21,16 +21,16 @@
             <Image url="@../../../../img/battlebackground.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="479.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="471.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="character" fitHeight="294.0" fitWidth="213.0" layoutX="130.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-      <ProgressBar fx:id="playerMpBar" layoutX="146.0" layoutY="181.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" />
-      <ProgressBar fx:id="playerHpBar" layoutX="146.0" layoutY="156.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" style="-fx-border-style: none;" />
+      <ImageView fx:id="character" fitHeight="421.0" fitWidth="298.0" layoutX="85.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
+      <ProgressBar fx:id="playerMpBar" layoutX="146.0" layoutY="181.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
+      <ProgressBar fx:id="playerHpBar" layoutX="146.0" layoutY="156.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" style="-fx-border-style: none;" />
       <ProgressBar fx:id="playerexp" layoutY="450.0" prefHeight="20.0" prefWidth="800.0" progress="0.0" />
-      <ProgressBar fx:id="monsterHp" layoutX="476.0" layoutY="101.0" prefHeight="20.0" prefWidth="176.0" progress="0.0" />
+      <ProgressBar fx:id="monsterHp" layoutX="476.0" layoutY="101.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
       <Pane layoutY="465.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" />
       <HBox fx:id="btnlist" layoutY="464.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" visible="false">
          <children>
@@ -71,11 +71,65 @@
             <Button fx:id="runBtn1" layoutX="644.0" layoutY="41.0" mnemonicParsing="false" text="스킬3" />
          </children>
       </AnchorPane>
-      <Label layoutX="153.0" layoutY="156.0" text="100/100" textFill="WHITE" />
-      <Text layoutX="146.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="플레이어 아이디" />
-      <Text layoutX="477.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="몬스터" />
-      <Label layoutX="486.0" layoutY="102.0" text="30/30" textFill="WHITE" />
-      <Label layoutX="154.0" layoutY="181.0" text="50/50" textFill="WHITE" />
+      <HBox alignment="TOP_CENTER" layoutX="153.0" layoutY="157.0" prefHeight="17.0" prefWidth="161.0">
+         <children>
+            <Label fx:id="playerHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="/" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="2.0" right="2.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="playerMaxHp" prefHeight="17.0" prefWidth="70.0" text="0" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="153.0" layoutY="182.0" prefHeight="17.0" prefWidth="161.0">
+         <children>
+            <Label fx:id="playerMp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="/" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="2.0" right="2.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="playerMaxMp" prefHeight="17.0" prefWidth="70.0" text="0" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="484.0" layoutY="102.0" prefHeight="17.0" prefWidth="161.0">
+         <children>
+            <Label fx:id="monsterNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="/" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="2.0" right="2.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="monsterMaxHp" prefHeight="17.0" prefWidth="70.0" text="0" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <Label fx:id="playerName" layoutX="151.0" layoutY="136.0" />
+      <Label fx:id="monsterName" layoutX="482.0" layoutY="82.0" />
       <AnchorPane fx:id="exitalert" layoutX="234.0" layoutY="129.0" prefHeight="200.0" prefWidth="311.0" style="-fx-background-color: #5F4C0B;" visible="false">
          <children>
             <Button layoutX="61.0" layoutY="156.0" mnemonicParsing="false" text="예" />
@@ -123,7 +177,7 @@
          </children>
       </AnchorPane>
       <Button layoutY="269.0" mnemonicParsing="false" onMouseClicked="#stabtnlist" prefHeight="45.0" prefWidth="94.0" text="캐릭터 능력치" />
-      <AnchorPane fx:id="statPaneview" layoutX="111.0" layoutY="49.0" prefHeight="401.0" prefWidth="634.0" style="-fx-background-color: white;">
+      <AnchorPane fx:id="statPaneview" layoutX="111.0" layoutY="49.0" prefHeight="401.0" prefWidth="634.0" style="-fx-background-color: white;" visible="false">
          <children>
             <Button layoutX="607.0" mnemonicParsing="false" onMouseClicked="#exitstatbtn" prefHeight="45.0" prefWidth="40.0" text="x" />
             <Text layoutX="61.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원 아이디 정보" />

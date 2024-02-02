@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +23,7 @@ import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
 import org.example.epicflow.model.dao.BattleDao;
+import org.w3c.dom.Text;
 import org.w3c.dom.events.MouseEvent;
 
 import java.io.File;
@@ -51,6 +53,7 @@ public class BattleController implements Initializable {
     @FXML private Button exitstatbtn;
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
+    @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -97,7 +100,6 @@ public class BattleController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // 플레이어 정보 찾아오기 메소드 실행
         memberNum();
-        System.out.println(memberNum);
 
         // 플레이어 최대체력 저장
         playerDecrease = player.getMhp();
@@ -114,7 +116,6 @@ public class BattleController implements Initializable {
         playerMpBar.setProgress(player.getMp()*2*0.01);
         playerMpBar.setStyle("-fx-accent: blue;");
 
-
         // 몬스터 hp
         monsterHp.setProgress(monsterDtos.getMonsterHp()/monsterDtos.getMonsterHp());
         monsterHp.setStyle("-fx-accent: purple;");
@@ -127,8 +128,30 @@ public class BattleController implements Initializable {
         // 실행 시 기본 버튼 보이기
         btnlist.setVisible(true);
 
-        System.out.println(player);
-        System.out.println(memberNum);
+        // 실행 시 플레이어 닉네임 보이기
+        playerName.setText(player.getPname());
+
+        // 실행 시 몬스터 닉네임 보이기
+        monsterName.setText(monsterDtos.getMonsterName());
+
+        // 플레이어 체력 출력
+        playerHp.setText(Integer.toString(player.getHp()));
+
+        // 플레이어 최대체력 출력
+        playerMaxHp.setText(Integer.toString(player.getMhp()));
+
+        // 플레이어 마나 출력
+        playerMp.setText(Integer.toString(player.getMp()));
+
+        // 플레이어 최대마나 출력
+        playerMaxMp.setText(Integer.toString(player.getMmp()));
+
+        // 몬스터 현재 체력 출력
+        monsterNowHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
+
+        // 몬스터 최대체력 출력
+        monsterMaxHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
+
     }
 
     // 배틀 시작 메소드
@@ -157,18 +180,21 @@ public class BattleController implements Initializable {
             double maxDamage = player.getPower()+(player.getPower()*0.1);
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
-            System.out.println("플레이어 데미지"+damage);
+
             int lastDamage = damage - monsterDtos.getMonsterDefence();
-            System.out.println("최종 데미지"+lastDamage);
+
             if(monsterDtos.getMonsterHp() == monsterDecrease){
                 monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
             }else{
                 monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
             }
-            System.out.println("몬스터 처맞은 후 체력"+monsterDecrease);
+
             turnState = !turnState;
 
             System.out.println("플레이어 공격 성공");
+
+            // 몬스터 현재 체력 출력
+            monsterNowHp.setText(Integer.toString(monsterDecrease));
 
             // 몬스터 체력 갱신 메소드 호출
             monsterHpRenewal();
@@ -249,19 +275,21 @@ public class BattleController implements Initializable {
                 double maxDamage = monsterDtos.getMonsterPower()+(monsterDtos.getMonsterPower()*0.1);
 
                 int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
+
                 int lastDamage = damage - player.getDefence();
-                System.out.println("몬스터 최종 데미지"+lastDamage);
-                System.out.println(playerDecrease);
-                System.out.println(playerRenewal+"*"+player.getMhp()+"-"+lastDamage);
+
                 if(player.getMhp() == playerDecrease){
                     playerDecrease = player.getMhp()-lastDamage;
                 }else{
                     playerDecrease = (int)(playerRenewal*player.getMhp())-lastDamage;
                 }
-                System.out.println("플레이어 처 맞은후 체력"+playerDecrease);
+
                 turnState = !turnState;
 
                 System.out.println("몬스터 공격 성공");
+
+                // 플레이어 체력 출력
+                playerHp.setText(Integer.toString(playerDecrease));
 
                 // 몬스터 체력 갱신 메소드 호출
                 playerHpRenewal();
@@ -282,11 +310,8 @@ public class BattleController implements Initializable {
 
     // 플레이어체력 갱신 메소드
     public void playerHpRenewal(){
-        System.out.println("플레이어 현재체력"+playerDecrease);
-        System.out.println("플레이어 최대체력"+player.getMhp());
         // 백분율 만들기
         playerRenewal = (double) playerDecrease / (double)player.getMhp();
-        System.out.println("백분율 계산"+playerRenewal);
         playerHpBar.setProgress(playerRenewal);
     }
 
