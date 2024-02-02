@@ -20,7 +20,7 @@ import org.example.epicflow.model.dto.MemberDto;
 
 public class LoginController extends MainApplication {
 
-    public static int memberNum = 0; // 회원번호 저장
+    public static int memberNum = 1; // 회원번호 저장
     public Pane mainVuew;       // 첫 시작 뷰
     public TextField inputId = null;    // 로그인시 아이디 입력칸
     public TextField inputPw = null;    // 로그인시 비밀번호 입력칸
@@ -101,7 +101,7 @@ public class LoginController extends MainApplication {
         try {
             Parent Join = FXMLLoader.load(getClass().getResource("EpicflowJoin.fxml"));
 
-            Scene scene = new Scene(Join , 800 , 600);
+            Scene scene = new Scene(Join , 600 , 400);
             Stage primaryStage = (Stage)membership.getScene().getWindow();
             primaryStage.setScene(scene);
             primaryStage.show();

@@ -125,6 +125,9 @@ public class BattleController implements Initializable {
 
         // 실행 시 기본 버튼 보이기
         btnlist.setVisible(true);
+
+        System.out.println(player);
+        System.out.println(memberNum);
     }
 
     // 배틀 시작 메소드
