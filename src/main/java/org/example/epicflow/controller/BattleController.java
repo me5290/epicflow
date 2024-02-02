@@ -122,7 +122,8 @@ public class BattleController implements Initializable {
 
         // 초보 모험가(job = 0)캐릭터 출력
         if(player.getJob() == 0){
-            character.setImage(new Image("C:\\Users\\504\\Desktop\\epicflow\\src\\main\\resources\\img\\character.png"));
+            character.setImage(new Image("C:\\Users\\504\\Desktop\\JavaProject\\epicflow\\src\\main\\resources\\img\\character.png"));
+            // 이거다.. 경로 조심
         }
 
         // 실행 시 기본 버튼 보이기
