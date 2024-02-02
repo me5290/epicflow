@@ -17,7 +17,7 @@ import org.example.epicflow.model.dto.MemberDto;
 
 
 
-public class LoginContrller extends MainApplication {
+public class LoginController extends MainApplication {
 
     static int memberNum; // 회원번호 저장ㅇㅇ
     public Pane mainVuew;
@@ -124,5 +124,6 @@ public class LoginContrller extends MainApplication {
         System.out.println("안보이기");
         memberView.setVisible(false);
     }
+    // 일단 끝
 
 }
