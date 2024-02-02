@@ -23,7 +23,6 @@ public class PlayerDao extends Dao{
             rs = ps.executeQuery();
 
             while (rs.next()){
-
                 PlayerDto playerDto = new PlayerDto();
                 playerDto.setPno( rs.getInt("pno") );
                 playerDto.setPname( rs.getString("pname") );

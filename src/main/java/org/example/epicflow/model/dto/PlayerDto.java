@@ -1,15 +1,17 @@
 package org.example.epicflow.model.dto;
 
 public class PlayerDto {
-    private int pno;
-    private String pname;
+    private int pno;        // 캐릭터번호
+    private String pname;   // 캐릭터이름
     private int mhp;
     private int hp;
     private int mmp;
     private int mp;
     private int job;
     private int level;
-    private int exp = 30;
+    private int exp;
+    private int money;
+    private int statpoint;
     private int power;
     private int defence;
     private int str;
@@ -17,7 +19,7 @@ public class PlayerDto {
     private int wis;
     private int eva;
     private int spd;
-    private int mno;
+    private int mno;    // 회원 번호
 
     public int getPno() {
         return pno;
@@ -89,6 +91,22 @@ public class PlayerDto {
 
     public void setExp(int exp) {
         this.exp = exp;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getStatpoint() {
+        return statpoint;
+    }
+
+    public void setStatpoint(int statpoint) {
+        this.statpoint = statpoint;
     }
 
     public int getPower() {
