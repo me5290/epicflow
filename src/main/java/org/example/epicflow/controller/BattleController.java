@@ -46,6 +46,11 @@ public class BattleController implements Initializable {
     @FXML private Button invenBtn;
     @FXML private AnchorPane inventory;
     @FXML private ImageView character;
+    @FXML private Button statbtn;
+    @FXML private AnchorPane statPane;
+    @FXML private Button exitstatbtn;
+    @FXML private AnchorPane statPaneview;
+    @FXML private Button stabtnlist;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -222,6 +227,16 @@ public class BattleController implements Initializable {
         inventory.setVisible(false);
     }
 
+    //캐릭터 스탯창 버튼
+    public void stabtnlist(){
+        statPaneview.setVisible(true);
+    }
+    public void exitstatbtn(){
+        statPaneview.setVisible(false);
+    }
+
+
+
     // 몬스터 공격 메소드
     public void monsterAttack(){
             if( !turnState ){
@@ -289,5 +304,13 @@ public class BattleController implements Initializable {
             monsterAttack();
         }
     }
+
+    //캐릭터 스텟창 올리기 내리기 메소드ㅜ
+//    public void statupdown(ActionEvent actionEvent){
+//
+//        intCount++;
+//    }
+
+
 
 }
