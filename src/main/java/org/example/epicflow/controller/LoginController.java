@@ -79,7 +79,7 @@ public class LoginController extends MainApplication {
         } // w e
         // 로그인 성공! 배틀신으로 이동
         try {
-            Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
+            Parent battle = FXMLLoader.load(getClass().getResource("village_test.fxml"));
             Scene scene = new Scene(battle , 800 , 600);
             Stage primaryStage = (Stage)membership.getScene().getWindow();
             primaryStage.setScene(scene);

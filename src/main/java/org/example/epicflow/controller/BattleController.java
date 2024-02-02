@@ -43,6 +43,8 @@ public class BattleController implements Initializable {
     @FXML private Pane exitalert;
     @FXML private Button invenBtn;
     @FXML private AnchorPane inventory;
+    @FXML private Button villageBtn;
+    // @FXML private Button runBtn;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -152,6 +154,7 @@ public class BattleController implements Initializable {
     // 도망 버튼 클릭 이벤트
     public void exit(){
         exitalert.setVisible(true);
+
     }
     public void exitBack(){
         exitalert.setVisible(false);
@@ -228,4 +231,15 @@ public class BattleController implements Initializable {
         }
     }
 
+    public void villageBtn(){
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("village_test.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }
