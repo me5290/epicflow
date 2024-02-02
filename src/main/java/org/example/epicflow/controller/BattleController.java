@@ -38,6 +38,7 @@ public class BattleController implements Initializable {
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
     @FXML private Button invenBtn;
+    @FXML private AnchorPane inventory;
         
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -147,12 +148,12 @@ public class BattleController implements Initializable {
 
     //인벤 버튼 클릭 이벤트
     public void invenbtnList() {
-        invenBtn.setVisible(true);
+        inventory.setVisible(true);
 
     }
     //인벤 버튼 종료 버튼 이벤트
     public void exitinvenbtn() {
 
-        invenBtn.setVisible(false);
+        inventory.setVisible(false);
     }
 }
