@@ -1,9 +1,11 @@
 package org.example.epicflow.controller;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -19,6 +21,7 @@ import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
 import org.example.epicflow.model.dao.BattleDao;
+import org.w3c.dom.events.MouseEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +29,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class BattleController implements Initializable {
@@ -103,14 +107,15 @@ public class BattleController implements Initializable {
 
     // 뒤로가기 버튼 클릭 이벤트
     public void backBtn(){
-        attacklist.setVisible(false);
-        btnlist.setVisible(true);
+
     }
 
     // 기본공격 버튼 클릭 이벤트
     public void nomalAttack(){
 
         if( turnState ){
+            attacklist.setVisible(false);
+            btnlist.setVisible(true);
 
             double minDamage = playerInfor.get(0).getPower()-(playerInfor.get(0).getPower()*0.1);
             double maxDamage = playerInfor.get(0).getPower()+(playerInfor.get(0).getPower()*0.1);
@@ -211,4 +216,5 @@ public class BattleController implements Initializable {
             System.out.println("패배");
         }
     }
+
 }
