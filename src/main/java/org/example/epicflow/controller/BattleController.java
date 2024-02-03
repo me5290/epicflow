@@ -40,8 +40,8 @@ public class BattleController implements Initializable {
 
     @FXML private ProgressBar playerHpBar;
     @FXML private ProgressBar playerMpBar;
-    @FXML private ProgressBar playerexp;
     @FXML private ProgressBar monsterHp;
+    @FXML private ProgressBar playerexp;
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
@@ -98,59 +98,63 @@ public class BattleController implements Initializable {
     // 초기값 세팅
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // 플레이어 정보 찾아오기 메소드 실행
-        memberNum();
+        try {
+            // 플레이어 정보 찾아오기 메소드 실행
+            memberNum();
 
-        // 플레이어 최대체력 저장
-        playerDecrease = player.getMhp();
+            // 플레이어 최대체력 저장
+            playerDecrease = player.getMhp();
 
-        // 플레이어 경험치
-        playerexp.setProgress(player.getExp()*0.01);
-        playerexp.setStyle("-fx-accent: yellow;");
+            // 경험치와 레벨과 포인트 갱신
+            levelUp();
 
-        // 플레이어 hp
-        playerHpBar.setProgress(player.getMhp()*0.01);
-        playerHpBar.setStyle("-fx-accent: red;");
+            // 플레이어 hp
+            playerHpBar.setProgress(player.getMhp()*0.01);
+            playerHpBar.setStyle("-fx-accent: red;");
 
-        // 플레이어 mp
-        playerMpBar.setProgress(player.getMp()*2*0.01);
-        playerMpBar.setStyle("-fx-accent: blue;");
+            // 플레이어 mp
+            playerMpBar.setProgress(player.getMp()*2*0.01);
+            playerMpBar.setStyle("-fx-accent: blue;");
 
-        // 몬스터 hp
-        monsterHp.setProgress(monsterDtos.getMonsterHp()/monsterDtos.getMonsterHp());
-        monsterHp.setStyle("-fx-accent: purple;");
+            // 몬스터 hp
+            monsterHp.setProgress(monsterDtos.getMonsterHp()/monsterDtos.getMonsterHp());
+            monsterHp.setStyle("-fx-accent: purple;");
 
-        // 초보 모험가(job = 0)캐릭터 출력
-        if(player.getJob() == 0){
-            character.setImage(new Image("C:\\Users\\504\\Desktop\\epicflow\\src\\main\\resources\\img\\character.png"));
+            // 초보 모험가(job = 0)캐릭터 출력
+//            if(player.getJob() == 0){
+//                character.setImage(new Image("@..\\img\\character.png"));
+//            }
+
+            // 실행 시 기본 버튼 보이기
+            btnlist.setVisible(true);
+
+            // 실행 시 플레이어 닉네임 보이기
+            playerName.setText(player.getPname());
+
+            // 실행 시 몬스터 닉네임 보이기
+            monsterName.setText(monsterDtos.getMonsterName());
+
+            // 플레이어 체력 출력
+            playerHp.setText(Integer.toString(player.getHp()));
+
+            // 플레이어 최대체력 출력
+            playerMaxHp.setText(Integer.toString(player.getMhp()));
+
+            // 플레이어 마나 출력
+            playerMp.setText(Integer.toString(player.getMp()));
+
+            // 플레이어 최대마나 출력
+            playerMaxMp.setText(Integer.toString(player.getMmp()));
+
+            // 몬스터 현재 체력 출력
+            monsterNowHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
+
+            // 몬스터 최대체력 출력
+            monsterMaxHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
+        }catch (Exception e){
+            System.out.println(e);
         }
 
-        // 실행 시 기본 버튼 보이기
-        btnlist.setVisible(true);
-
-        // 실행 시 플레이어 닉네임 보이기
-        playerName.setText(player.getPname());
-
-        // 실행 시 몬스터 닉네임 보이기
-        monsterName.setText(monsterDtos.getMonsterName());
-
-        // 플레이어 체력 출력
-        playerHp.setText(Integer.toString(player.getHp()));
-
-        // 플레이어 최대체력 출력
-        playerMaxHp.setText(Integer.toString(player.getMhp()));
-
-        // 플레이어 마나 출력
-        playerMp.setText(Integer.toString(player.getMp()));
-
-        // 플레이어 최대마나 출력
-        playerMaxMp.setText(Integer.toString(player.getMmp()));
-
-        // 몬스터 현재 체력 출력
-        monsterNowHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
-
-        // 몬스터 최대체력 출력
-        monsterMaxHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
 
     }
 
@@ -344,6 +348,73 @@ public class BattleController implements Initializable {
 //        intCount++;
 //    }
 
+    // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
+    public void levelUp(){
+        playerexp.setProgress(0.5);
+
+        if(player.getExp() >= 51400){
+            playerexp.setProgress(1);
+            if(player.getLevel() != 11){
+                player.setLevel(11);
+                player.setStatpoint(player.getStatpoint()+10);
+            }
+        }else if(player.getExp() >= 25800 && player.getExp() < 51400){
+            playerexp.setProgress(player.getExp()/51400);
+            if(player.getLevel() != 10){
+                player.setLevel(10);
+                player.setStatpoint(player.getStatpoint()+10);
+            }
+        }else if(player.getExp() >= 13000 && player.getExp() < 25800){
+            playerexp.setProgress(player.getExp()/25800);
+            if(player.getLevel() != 9){
+                player.setLevel(9);
+                player.setStatpoint(player.getStatpoint()+5);
+            }
+        }else if(player.getExp() >= 6600 && player.getExp() < 13000){
+            playerexp.setProgress(player.getExp()/13000);
+            if(player.getLevel() != 8){
+                player.setLevel(8);
+                player.setStatpoint(player.getStatpoint()+5);
+            }
+        }else if(player.getExp() >= 3400 && player.getExp() < 6600){
+            playerexp.setProgress(player.getExp()/6600);
+            if(player.getLevel() != 7){
+                player.setLevel(7);
+                player.setStatpoint(player.getStatpoint()+5);
+            }
+        }else if(player.getExp() >= 1800 && player.getExp() < 3400){
+            playerexp.setProgress(player.getExp()/3400);
+            if(player.getLevel() != 6){
+                player.setLevel(6);
+                player.setStatpoint(player.getStatpoint()+5);
+            }
+        }else if(player.getExp() >= 1000 && player.getExp() < 1800){
+            playerexp.setProgress(player.getExp()/1800);
+            if(player.getLevel() != 5){
+                player.setLevel(5);
+                player.setStatpoint(player.getStatpoint()+10);
+            }
+        }else if(player.getExp() >= 600 && player.getExp() < 1000){
+            playerexp.setProgress(player.getExp()/1000);
+            if(player.getLevel() != 4){
+                player.setLevel(4);
+                player.setStatpoint(player.getStatpoint()+5);
+            }
+        }else if(player.getExp() >= 400 && player.getExp() < 600){
+            playerexp.setProgress(player.getExp()/600);
+            if(player.getLevel() != 3){
+                player.setLevel(3);
+                player.setStatpoint(player.getStatpoint()+5);
+            }
+        }else if(player.getExp() >= 100 && player.getExp() < 400){
+            playerexp.setProgress(player.getExp()/400);
+            if(player.getLevel() != 2){
+                player.setLevel(2);
+                player.setStatpoint(player.getStatpoint()+5);
+            }
+        }
+        playerexp.setStyle("-fx-accent: yellow;");
+    }
 
 
 }

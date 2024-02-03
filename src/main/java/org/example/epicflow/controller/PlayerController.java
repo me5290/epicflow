@@ -1,6 +1,7 @@
 package org.example.epicflow.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import org.example.epicflow.model.dto.PlayerDto;
 import org.example.epicflow.model.dao.BattleDao;
@@ -15,9 +16,6 @@ public class PlayerController {
     public static PlayerController getInstance(){
         return playerController;
     }
-
-    @FXML
-    private Image player;
 
     // 플레이어 정보 저장
     public ArrayList<PlayerDto> playerInfor(){

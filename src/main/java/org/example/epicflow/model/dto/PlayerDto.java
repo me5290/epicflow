@@ -3,23 +3,23 @@ package org.example.epicflow.model.dto;
 public class PlayerDto {
     private int pno;        // 캐릭터번호
     private String pname;   // 캐릭터이름
-    private int mhp;
-    private int hp;
-    private int mmp;
-    private int mp;
-    private int job;
-    private int level;
-    private int exp;
-    private int money;
-    private int statpoint;
-    private int power;
-    private int defence;
-    private int str;
-    private int dex;
-    private int wis;
-    private int eva;
-    private int spd;
-    private int mno;    // 회원 번호
+    private int mhp;        // 최대 체력
+    private int hp;         // 체력
+    private int mmp;        // 최대 마나
+    private int mp;         // 마나
+    private int job;        // 직업
+    private int level;      // 레벨
+    private int exp;        // 경험치
+    private int money;      // 돈
+    private int statpoint;  // 스텟 포인트
+    private int power;      // 공격력
+    private int defence;    // 방어력
+    private int str;        // 힘
+    private int dex;        // 민첩
+    private int wis;        // 지능
+    private int eva;        // 회피
+    private int spd;        // 속도
+    private int mno;        // 회원 번호
 
     public int getPno() {
         return pno;
