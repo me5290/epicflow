@@ -55,7 +55,7 @@ public class BattleController implements Initializable {
     @FXML private Button exitstatbtn;
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
-    @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp,playerExp,playerMaxExp;
+    @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp,playerExp,playerMaxExp,playerHeatBox,monsterHeatBox;
     @FXML private Button villageBtn;
     @FXML private Button statdownbtn;
     @FXML private Button statupbtn;
@@ -191,6 +191,8 @@ public class BattleController implements Initializable {
 
             int lastDamage = damage - monsterDtos.getMonsterDefence();
 
+            monsterHeatBox.setText(Integer.toString(lastDamage));
+
             if(monsterDtos.getMonsterHp() == monsterDecrease){
                 monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
             }else{
@@ -200,16 +202,6 @@ public class BattleController implements Initializable {
             turnState = !turnState;
 
             System.out.println("플레이어 공격 성공");
-
-            // 시간차1
-//            try {
-//                TimeUnit.SECONDS.sleep(2);
-//            }catch (Exception e){
-//                System.out.println(e);
-//            }
-
-            // 몬스터 현재 체력 프로그레스 바 출력
-            monsterNowHp.setText(Integer.toString(monsterDecrease));
 
             // 몬스터 체력 갱신 메소드 호출
             monsterHpRenewal();
@@ -237,6 +229,7 @@ public class BattleController implements Initializable {
 
         double defenceDamage = lastDamage*0.2;
 
+        playerHeatBox.setText(Integer.toString((int)defenceDamage));
 
         if(player.getMhp() == playerDecrease){
             playerDecrease = player.getMhp()-(int)defenceDamage;
@@ -248,15 +241,20 @@ public class BattleController implements Initializable {
 
         System.out.println("몬스터 공격 성공");
 
-        // 시간차1
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-
-        // 플레이어 체력 프로그레스 바 출력
-        playerHp.setText(Integer.toString(playerDecrease));
+        // 시간차
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(3000); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded( event -> {
+            playerHeatBox.setVisible(true);
+            playerHp.setText(Integer.toString(playerDecrease));
+        }  );
+        new Thread(sleeper).start();
 
         // 플레이어 체력 갱신 메소드 호출
         playerHpRenewal();
@@ -303,6 +301,8 @@ public class BattleController implements Initializable {
 
                 int lastDamage = damage - player.getDefence();
 
+                playerHeatBox.setText(Integer.toString(lastDamage));
+
                 if(player.getMhp() == playerDecrease){
                     playerDecrease = player.getMhp()-lastDamage;
                 }else{
@@ -313,14 +313,12 @@ public class BattleController implements Initializable {
 
                 System.out.println("몬스터 공격 성공");
 
-                // 플레이어 체력 출력
-                playerHp.setText(Integer.toString(playerDecrease));
-
-                // 몬스터 체력 갱신 메소드 호출
+                // 플레이어 체력 갱신 메소드 호출
                 playerHpRenewal();
 
                 // 플레이어 체력 0일때 종료
                 playerRefresh();
+
             }else{
                 btnlist.setVisible(true);
             }
@@ -330,9 +328,8 @@ public class BattleController implements Initializable {
     public void monsterHpRenewal(){
         // 백분율 만들기
         monsterRenewal = (double) monsterDecrease / (double)monsterDtos.getMonsterHp();
-        monsterHp.setProgress(monsterRenewal);
-        // 시간차2 MatrixTime(2000);
-        // 시간차3
+
+        // 시간차
         Task<Void> sleeper = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -341,36 +338,57 @@ public class BattleController implements Initializable {
                 return null;
             }
         };
-        sleeper.setOnSucceeded(event ->  monsterHp.setProgress(monsterRenewal) );
+        sleeper.setOnSucceeded( event -> {
+            monsterHeatBox.setVisible(true);
+            monsterHp.setProgress(monsterRenewal);
+            monsterNowHp.setText(Integer.toString(monsterDecrease));
+        }  );
         new Thread(sleeper).start();
-
-
 }
 
     // 플레이어체력 갱신 메소드
     public void playerHpRenewal(){
         // 백분율 만들기
         playerRenewal = (double) playerDecrease / (double)player.getMhp();
-        playerHpBar.setProgress(playerRenewal);
-        // 시간차2 MatrixTime(2000);
-        // 시간차3
+
+        // 시간차
         Task<Void> sleeper = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                try { Thread.sleep(2500); }
+                try { Thread.sleep(3000); }
                 catch (InterruptedException e) { }
                 return null;
             }
         };
-        sleeper.setOnSucceeded(event -> playerHpBar.setProgress(playerRenewal) );
-        new Thread(sleeper).start();
+        sleeper.setOnSucceeded( event -> {
+            playerHeatBox.setVisible(true);
+            playerHpBar.setProgress(playerRenewal);
+            playerHp.setText(Integer.toString(playerDecrease));
+            monsterHeatBox.setVisible(false);
+        }  );
 
+        new Thread(sleeper).start();
     }
 
     // 플레이어 체력 0일때 종료 메소드
     public void playerRefresh(){
         if(playerDecrease <= 0){
             System.out.println("패배");
+        }else{
+            // 시간차
+            Task<Void> sleeper = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    try { Thread.sleep(4500); }
+                    catch (InterruptedException e) { }
+                    return null;
+                }
+            };
+            sleeper.setOnSucceeded( event -> {
+                playerHeatBox.setVisible(false);
+            }  );
+
+            new Thread(sleeper).start();
         }
     }
 
@@ -394,7 +412,6 @@ public class BattleController implements Initializable {
         }else if ( actionEvent.getSource()== statdownbtn){
             count--;
         }
-
    }
 
     // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
@@ -484,16 +501,6 @@ public class BattleController implements Initializable {
         }
         playerexp.setStyle("-fx-accent: yellow;");
     }
-
-    // 시간차2 메소드
-//    public void MatrixTime(int delayTime){
-//        long saveTime = System.currentTimeMillis();
-//        long currTime = 0;
-//
-//        while( currTime - saveTime < delayTime){
-//            currTime = System.currentTimeMillis();
-//        }
-//    }
 
     // 마을로 이동 메소드
     public void villageBtn(){
