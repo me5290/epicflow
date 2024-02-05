@@ -53,7 +53,7 @@ public class BattleController implements Initializable {
     @FXML private Button exitstatbtn;
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
-    @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp;
+    @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp,playerExp,playerMaxExp;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -85,6 +85,7 @@ public class BattleController implements Initializable {
     // 몬스터 현재 체력 변수
     double monsterRenewal;
 
+    // 플레이어 정보 player 변수에 저장
     public void memberNum(){
         for (int i = 0; i < playerInfor.size(); i++){
             if(playerInfor.get(i).getMno() == memberNum){
@@ -350,8 +351,6 @@ public class BattleController implements Initializable {
 
     // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
     public void levelUp(){
-        playerexp.setProgress(0.5);
-
         if(player.getExp() >= 51400){
             playerexp.setProgress(1);
             if(player.getLevel() != 11){
@@ -360,58 +359,80 @@ public class BattleController implements Initializable {
             }
         }else if(player.getExp() >= 25800 && player.getExp() < 51400){
             playerexp.setProgress(player.getExp()/51400);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("51400");
             if(player.getLevel() != 10){
                 player.setLevel(10);
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 13000 && player.getExp() < 25800){
             playerexp.setProgress(player.getExp()/25800);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("25800");
             if(player.getLevel() != 9){
                 player.setLevel(9);
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 6600 && player.getExp() < 13000){
             playerexp.setProgress(player.getExp()/13000);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("13000");
             if(player.getLevel() != 8){
                 player.setLevel(8);
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 3400 && player.getExp() < 6600){
             playerexp.setProgress(player.getExp()/6600);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("6600");
             if(player.getLevel() != 7){
                 player.setLevel(7);
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 1800 && player.getExp() < 3400){
             playerexp.setProgress(player.getExp()/3400);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("3400");
             if(player.getLevel() != 6){
                 player.setLevel(6);
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 1000 && player.getExp() < 1800){
             playerexp.setProgress(player.getExp()/1800);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("1800");
             if(player.getLevel() != 5){
                 player.setLevel(5);
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 600 && player.getExp() < 1000){
             playerexp.setProgress(player.getExp()/1000);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("1000");
             if(player.getLevel() != 4){
                 player.setLevel(4);
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 400 && player.getExp() < 600){
             playerexp.setProgress(player.getExp()/600);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("600");
             if(player.getLevel() != 3){
                 player.setLevel(3);
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 100 && player.getExp() < 400){
             playerexp.setProgress(player.getExp()/400);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("400");
             if(player.getLevel() != 2){
                 player.setLevel(2);
                 player.setStatpoint(player.getStatpoint()+5);
             }
+        }else{
+            playerexp.setProgress(player.getExp()/100);
+            playerExp.setText(Integer.toString(player.getExp()));
+            playerMaxExp.setText("100");
         }
         playerexp.setStyle("-fx-accent: yellow;");
     }

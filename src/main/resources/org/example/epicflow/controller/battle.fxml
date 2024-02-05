@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.BattleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.BattleController">
    <children>
       <ImageView fitHeight="611.0" fitWidth="800.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -32,7 +32,7 @@
          </image></ImageView>
       <ProgressBar fx:id="playerMpBar" layoutX="146.0" layoutY="181.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
       <ProgressBar fx:id="playerHpBar" layoutX="146.0" layoutY="156.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" style="-fx-border-style: none;" />
-      <ProgressBar fx:id="playerexp" layoutY="450.0" prefHeight="20.0" prefWidth="800.0" progress="0.0" />
+      <ProgressBar fx:id="playerexp" layoutY="450.0" prefHeight="20.0" prefWidth="800.0" progress="1.0" />
       <ProgressBar fx:id="monsterHp" layoutX="476.0" layoutY="101.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
       <Pane layoutY="465.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" />
       <HBox fx:id="btnlist" layoutY="464.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" visible="false">
@@ -76,17 +76,17 @@
       </AnchorPane>
       <HBox alignment="TOP_CENTER" layoutX="153.0" layoutY="157.0" prefHeight="17.0" prefWidth="161.0">
          <children>
-            <Label fx:id="playerHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="playerHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label text="/" textFill="WHITE">
+            <Label text="/">
                <HBox.margin>
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="playerMaxHp" prefHeight="17.0" prefWidth="70.0" text="0" textFill="WHITE">
+            <Label fx:id="playerMaxHp" prefHeight="17.0" prefWidth="70.0" text="0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -95,17 +95,17 @@
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="153.0" layoutY="182.0" prefHeight="17.0" prefWidth="161.0">
          <children>
-            <Label fx:id="playerMp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="playerMp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" style="-fx-stroke-width: 5;-fx-stroke: black;" text="0" textAlignment="RIGHT">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label text="/" textFill="WHITE">
+            <Label text="/">
                <HBox.margin>
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="playerMaxMp" prefHeight="17.0" prefWidth="70.0" text="0" textFill="WHITE">
+            <Label fx:id="playerMaxMp" prefHeight="17.0" prefWidth="70.0" text="0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -114,17 +114,36 @@
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="484.0" layoutY="102.0" prefHeight="17.0" prefWidth="161.0">
          <children>
-            <Label fx:id="monsterNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="monsterNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label text="/" textFill="WHITE">
+            <Label text="/">
                <HBox.margin>
                   <Insets left="2.0" right="2.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="monsterMaxHp" prefHeight="17.0" prefWidth="70.0" text="0" textFill="WHITE">
+            <Label fx:id="monsterMaxHp" prefHeight="17.0" prefWidth="70.0" text="0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="294.0" layoutY="451.0" prefHeight="17.0" prefWidth="161.0">
+         <children>
+            <Label fx:id="playerExp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="/">
+               <HBox.margin>
+                  <Insets left="2.0" right="2.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="playerMaxExp" prefHeight="17.0" prefWidth="70.0" text="0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
