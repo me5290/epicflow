@@ -105,7 +105,7 @@ public class LoginController extends MainApplication {
         }
         // 배틀 씬 이동
         if (bolean){
-            battleScen();
+            //battleScen();
         }
 
     }
