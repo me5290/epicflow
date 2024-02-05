@@ -53,6 +53,7 @@ public class BattleController implements Initializable {
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
     @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp,playerExp,playerMaxExp;
+    @FXML private Button villageBtn;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -437,4 +438,15 @@ public class BattleController implements Initializable {
     }
 
 
+    public void villageBtn(){
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("village_test.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }

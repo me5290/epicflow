@@ -91,21 +91,21 @@ public class LoginController extends MainApplication {
             }
 
         } // w e
-
+        // 로그인 성공! 배틀신으로 이동
         try {
-            System.out.println("battle = " );
-            //loader.setLocation(getClass().getResource("/application/testForms.fxml"));
-            Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
-            System.out.println("battle = " + battle);
-            Scene scene = new Scene(battle , 800 , 600);
-            Stage primaryStage = (Stage)membership.getScene().getWindow();
+            Parent battle = FXMLLoader.load(getClass().getResource("village_test.fxml"));
+            Scene scene = new Scene(battle, 800, 600);
+            Stage primaryStage = (Stage) membership.getScene().getWindow();
             primaryStage.setScene(scene);
             primaryStage.show();
             System.out.println("primaryStage = " + primaryStage);
             System.out.println("scene = " + scene);
-
-        }catch (IOException e){
-            System.out.println("ddd"+e);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        // 배틀 씬 이동
+        if (bolean){
+            battleScen();
         }
 
     }
