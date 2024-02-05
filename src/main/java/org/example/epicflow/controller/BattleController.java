@@ -7,15 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import org.example.epicflow.MainController;
 import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MonsterDto;
@@ -48,6 +46,9 @@ public class BattleController implements Initializable {
     @FXML private Button exitstatbtn;
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
+    @FXML private Button statdownbtn;
+    @FXML private Button statupbtn;
+    @FXML private TextField statupdown;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -245,10 +246,16 @@ public class BattleController implements Initializable {
     }
 
     //캐릭터 스텟창 올리기 내리기 메소드ㅜ
-//    public void statupdown(ActionEvent actionEvent){
-//
-//        intCount++;
-//    }
+    public void statupdown(ActionEvent actionEvent){
+        int count = 0;
+        if(actionEvent.getSource()== statupbtn){
+            count++;
+
+        }else if ( actionEvent.getSource()== statdownbtn){
+            count--;
+        }
+
+   }
 
 
 

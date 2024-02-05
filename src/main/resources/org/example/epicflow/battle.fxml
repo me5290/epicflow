@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -131,15 +132,12 @@
          <children>
             <Button layoutX="607.0" mnemonicParsing="false" onMouseClicked="#exitstatbtn" prefHeight="45.0" prefWidth="40.0" text="x" />
             <Text layoutX="61.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원 아이디 정보" />
-            <Button layoutX="594.0" layoutY="101.0" mnemonicParsing="false" text="▼" />
-            <Button layoutX="566.0" layoutY="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="▲" />
+            <Button layoutX="594.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#statdownbtn" text="▼" />
+            <Button layoutX="566.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#statupbtn" prefHeight="25.0" prefWidth="28.0" text="▲" />
             <Button layoutX="566.0" layoutY="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="▲" />
             <Button layoutX="594.0" layoutY="149.0" mnemonicParsing="false" text="▼" />
             <Button layoutX="566.0" layoutY="192.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="▲" />
             <Button layoutX="594.0" layoutY="192.0" mnemonicParsing="false" text="▼" />
-            <Text layoutX="531.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
-            <Text layoutX="531.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" wrappingWidth="15.189453125" />
-            <Text layoutX="531.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
             <ImageView fitHeight="200.0" fitWidth="146.0" layoutX="39.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/character.png" />
@@ -152,7 +150,15 @@
             <Text layoutX="492.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="민첩" wrappingWidth="35.0" />
             <Text layoutX="492.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="지능" wrappingWidth="35.0" />
             <Text layoutX="489.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="남은 스킬 포인트" wrappingWidth="114.189453125" />
-            <Text layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
+            <Text layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" wrappingWidth="15.189453125" />
+            <Text layoutX="85.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="스킬 설명" wrappingWidth="61.0" />
+            <Text layoutX="259.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="체력" wrappingWidth="36.0" />
+            <Text layoutX="259.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mp" wrappingWidth="36.0" />
+            <Text layoutX="258.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="방어" wrappingWidth="36.0" />
+            <Text layoutX="257.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="공격" wrappingWidth="36.0" />
+            <TextField fx:id="statupdown" layoutX="524.0" layoutY="101.0" prefHeight="10.0" prefWidth="22.0" text="0" />
+            <TextField fx:id="statupdown1" layoutX="524.0" layoutY="149.0" prefHeight="10.0" prefWidth="22.0" text="0" />
+            <TextField fx:id="statupdown2" layoutX="524.0" layoutY="190.0" prefHeight="10.0" prefWidth="22.0" text="0" />
          </children>
       </AnchorPane>
    </children>
