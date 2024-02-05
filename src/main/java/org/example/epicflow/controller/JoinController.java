@@ -26,22 +26,40 @@ public class JoinController {   // Class Start
     // ===== 회원가입 메소드
     public void signUp(){
 
+        // 회원가입 성공 버튼
+        boolean btn = false;
+        
         String mid = this.mid.getText();
         String mpw = this.mpw.getText();
 
         // ===== 객체생성
         MemberDto playerDto = new MemberDto(mid, mpw);
 
-        // ===== 객체 넘기기
-        MemberDao.getInstance().signUp(playerDto);
+        // 회원가입 실패
+        if(mid.equals("") && mpw.equals("")){
+            Msg("아이디와 비밀번호를 입력해주세요.");
+        } else if (!mid.equals("") && mpw.equals("")) {
+            Msg("비밀번호를 입력해주세요.");
+        } else if(mid.equals("") && !mpw.equals("")){
+            Msg("아이디를 입력해주세요.");
+        } else if(MemberDao.getInstance().idCheck(playerDto.getMid())){
+            Msg("현재 사용중인 아이디입니다.");
+        } else{
+            btn = true; // true이면 성공
+        }
 
-        System.out.println(playerDto.toString());
-        System.out.println(this.mid.getText());
-        System.out.println(this.mpw.getText());
+        // 회원가입 성공
+        if(btn){
+            // ===== 객체 넘기기
+            MemberDao.getInstance().signUp(playerDto);
 
-        Msg("회원가입에 성공하였습니다.");
-        loginScreen();
+            System.out.println(playerDto.toString());
+            System.out.println(this.mid.getText());
+            System.out.println(this.mpw.getText());
 
+            Msg("회원가입에 성공하였습니다.");
+            loginScreen();
+        }
     }
 
     // ===== 회원가입 알림창

@@ -51,6 +51,7 @@ public class BattleController implements Initializable {
     @FXML private Button exitstatbtn;
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
+    @FXML private Button villageBtn;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -119,8 +120,14 @@ public class BattleController implements Initializable {
         monsterHp.setStyle("-fx-accent: purple;");
 
         // 초보 모험가(job = 0)캐릭터 출력
+
         if(player.getJob() == 0){
-            character.setImage(new Image("C:\\Users\\504\\Desktop\\epicflow\\src\\main\\resources\\img\\character.png"));
+            try {
+                character.setImage(new Image("C:\\Users\\504\\Desktop\\epicflow\\src\\main\\resources\\img\\character.png"));
+            }catch (Exception e){
+                System.out.println("너가 문제였구나 " + e);
+            }
+
         }
 
         // 실행 시 기본 버튼 보이기

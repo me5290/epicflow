@@ -78,33 +78,17 @@
       <Label layoutX="154.0" layoutY="181.0" text="50/50" textFill="WHITE" />
       <AnchorPane fx:id="exitalert" layoutX="234.0" layoutY="129.0" prefHeight="200.0" prefWidth="311.0" style="-fx-background-color: #5F4C0B;" visible="false">
          <children>
-            <Button layoutX="61.0" layoutY="156.0" mnemonicParsing="false" text="예" />
-            <Button layoutX="196.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#exitBack" text="아니오" />
-            <TextArea layoutX="13.0" layoutY="30.0" prefHeight="112.0" prefWidth="283.0" style="-fx-background-color: #fff; -fx-border-style: none;" text="정말로 도망가시겠습니까?&#10;&#10;도망가면 경험치와 돈은 획득 하지 못하고&#10;&#10;상태는 그대로 저장됩니다." />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="inventory" layoutX="130.0" layoutY="67.0" prefHeight="383.0" prefWidth="591.0" style="-fx-background-color: white;" visible="false">
-      <Label layoutX="153.0" layoutY="156.0" text="100/100" textFill="WHITE" />
-      <Text layoutX="146.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="플레이어 아이디" />
-      <Text layoutX="477.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="몬스터" />
-      <Label layoutX="481.0" layoutY="102.0" text="30/30" textFill="WHITE" />
-      <Label layoutX="154.0" layoutY="181.0" text="50/50" textFill="WHITE" />
-      <AnchorPane fx:id="exitalert" layoutX="234.0" layoutY="129.0" prefHeight="200.0" prefWidth="311.0" style="-fx-background-color: #5F4C0B;" visible="false">
-         <children>
-            <Button layoutX="25.0" layoutY="102.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="61.0" />
-            <ImageView fitHeight="61.0" fitWidth="105.0" layoutX="25.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
             <Button fx:id="villageBtn" layoutX="61.0" layoutY="156.0" mnemonicParsing="false" text="예" onMouseClicked="#villageBtn" />
             <Button layoutX="196.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#exitBack" text="아니오" />
             <TextArea layoutX="13.0" layoutY="30.0" prefHeight="112.0" prefWidth="283.0" style="-fx-background-color: #fff; -fx-border-style: none;" text="정말로 도망가시겠습니까?&#10;&#10;도망가면 경험치와 돈은 획득 하지 못하고&#10;&#10;상태는 그대로 저장됩니다." />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="inventory" layoutX="578.0" layoutY="238.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="inventory" layoutX="130.0" layoutY="67.0" prefHeight="383.0" prefWidth="591.0" style="-fx-background-color: white;" visible="false">
          <children>
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="52.0" />
-            <ImageView fitHeight="51.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="25.0" layoutY="102.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="61.0" />
+            <ImageView fitHeight="61.0" fitWidth="105.0" layoutX="25.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../img/565656.jpg" />
-                  <Image url="@../../../../img/Game_Login_Icon.jpg" />
                </image>
             </ImageView>
             <Text fill="#42cd55" layoutY="-13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="인벤토리" wrappingWidth="94.0" />
@@ -165,10 +149,6 @@
             <Text layoutX="492.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="지능" wrappingWidth="35.0" />
             <Text layoutX="489.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="남은 스킬 포인트" wrappingWidth="114.189453125" />
             <Text layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="인벤토리" />
-            <Button mnemonicParsing="false" onMouseClicked="#exitinvenbtn" prefHeight="17.0" prefWidth="28.0" text="X" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="74.8125" />
-            <Label text="돈" />
          </children>
       </AnchorPane>
    </children>

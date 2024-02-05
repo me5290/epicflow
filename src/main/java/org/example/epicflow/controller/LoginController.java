@@ -23,7 +23,7 @@ public class LoginController extends MainApplication {
     public Pane mainVuew;       // 첫 시작 뷰
     public TextField inputId = null;    // 로그인시 아이디 입력칸
     public TextField inputPw = null;    // 로그인시 비밀번호 입력칸
-    public ImageView LoginIcon;         // 로그인 뷰 이미지
+    // public ImageView LoginIcon;         // 로그인 뷰 이미지
     public Label loginLabel = null;     // 로그인 성공/실패시 텍스트 표시
     public Button loginSbtn;            // 로그인 성공/실패시 뷰
     public Button membership;           // 회원가입 클릭 버ㅓ튼
@@ -33,6 +33,7 @@ public class LoginController extends MainApplication {
     public Button generation;           // 캐릭터 생성 버튼
     public Button cancel;               // 캐릭터 생성 뷰 에서 취소버튼
     public boolean bolean = false;      // 불리언 선언 조건부
+    public Button ok;
 
     // 회원번호 get
     public static int getMemberNum() {
@@ -90,13 +91,15 @@ public class LoginController extends MainApplication {
         // 로그인 성공! 배틀신으로 이동
         try {
             Parent battle = FXMLLoader.load(getClass().getResource("village_test.fxml"));
-            Scene scene = new Scene(battle , 800 , 600);
-            Stage primaryStage = (Stage)membership.getScene().getWindow();
+            Scene scene = new Scene(battle, 800, 600);
+            Stage primaryStage = (Stage) membership.getScene().getWindow();
             primaryStage.setScene(scene);
             primaryStage.show();
             System.out.println("primaryStage = " + primaryStage);
             System.out.println("scene = " + scene);
-
+        }catch (Exception e){
+            System.out.println(e);
+        }
         // 배틀 씬 이동
         if (bolean){
             battleScen();

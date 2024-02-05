@@ -42,6 +42,28 @@ public class MemberDao extends Dao{
         return 1;
     }
 
+    // 아이디 중복검사
+    public boolean idCheck(String mid){
+        try{
+            // 1. SQL 작성한다.
+            String sql = "select mid from member where mid = ?";
+            // 2. SQL 기재한다.
+            ps = con.prepareStatement(sql);
+            // ? 매개변수 대입
+            ps.setString(1,mid);
+            // 3. SQL 실행한다.
+            rs = ps.executeQuery();
+            // 4. SQL 결과처리
+            if(rs.next()){
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        // 5. 함수종료
+        return false;   // 중복 없음
+    }
+
     
     // 로그인
     public int Onlogin(MemberDto memberDto){
