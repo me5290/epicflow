@@ -1,6 +1,7 @@
 package org.example.epicflow.controller;
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -164,9 +165,6 @@ public class BattleController implements Initializable {
 
     }
 
-    // 배틀 시작 메소드
-    public void battleStart(){}
-
     // 공격 버튼 클릭 이벤트
     public void attackBtnList(){
         attacklist.setVisible(true);
@@ -203,7 +201,14 @@ public class BattleController implements Initializable {
 
             System.out.println("플레이어 공격 성공");
 
-            // 몬스터 현재 체력 출력
+            // 시간차1
+//            try {
+//                TimeUnit.SECONDS.sleep(2);
+//            }catch (Exception e){
+//                System.out.println(e);
+//            }
+
+            // 몬스터 현재 체력 프로그레스 바 출력
             monsterNowHp.setText(Integer.toString(monsterDecrease));
 
             // 몬스터 체력 갱신 메소드 호출
@@ -243,7 +248,14 @@ public class BattleController implements Initializable {
 
         System.out.println("몬스터 공격 성공");
 
-        // 플레이어 체력 출력
+        // 시간차1
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+
+        // 플레이어 체력 프로그레스 바 출력
         playerHp.setText(Integer.toString(playerDecrease));
 
         // 플레이어 체력 갱신 메소드 호출
@@ -319,13 +331,40 @@ public class BattleController implements Initializable {
         // 백분율 만들기
         monsterRenewal = (double) monsterDecrease / (double)monsterDtos.getMonsterHp();
         monsterHp.setProgress(monsterRenewal);
-    }
+        // 시간차2 MatrixTime(2000);
+        // 시간차3
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(1500); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event ->  monsterHp.setProgress(monsterRenewal) );
+        new Thread(sleeper).start();
+
+
+}
 
     // 플레이어체력 갱신 메소드
     public void playerHpRenewal(){
         // 백분율 만들기
         playerRenewal = (double) playerDecrease / (double)player.getMhp();
         playerHpBar.setProgress(playerRenewal);
+        // 시간차2 MatrixTime(2000);
+        // 시간차3
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(2500); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> playerHpBar.setProgress(playerRenewal) );
+        new Thread(sleeper).start();
+
     }
 
     // 플레이어 체력 0일때 종료 메소드
@@ -341,8 +380,6 @@ public class BattleController implements Initializable {
             player.setExp(monsterDtos.getDropExp());
             player.setMoney(monsterDtos.getDropGold());
             System.out.println("승리");
-            System.out.println(player.getExp());
-            System.out.println(player.getMoney());
         }else{
             monsterAttack();
         }
@@ -448,7 +485,17 @@ public class BattleController implements Initializable {
         playerexp.setStyle("-fx-accent: yellow;");
     }
 
+    // 시간차2 메소드
+//    public void MatrixTime(int delayTime){
+//        long saveTime = System.currentTimeMillis();
+//        long currTime = 0;
+//
+//        while( currTime - saveTime < delayTime){
+//            currTime = System.currentTimeMillis();
+//        }
+//    }
 
+    // 마을로 이동 메소드
     public void villageBtn(){
         try {
         Parent root = FXMLLoader.load(getClass().getResource("village_test.fxml"));

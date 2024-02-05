@@ -12,7 +12,7 @@ public class PlayerDao extends Dao{
         return playerDao;
     }
 
-    // 플레이어 정보 저장
+    // DB에 있는 플레이어 정보 DTO에 저장
     public ArrayList<PlayerDto> playerInfor(){
         ArrayList<PlayerDto> playerDtos = new ArrayList<>();
         try {
@@ -49,5 +49,6 @@ public class PlayerDao extends Dao{
         }
         return playerDtos;
     }
+
 }
 
