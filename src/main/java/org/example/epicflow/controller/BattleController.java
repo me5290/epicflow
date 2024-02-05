@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -40,8 +41,8 @@ public class BattleController implements Initializable {
 
     @FXML private ProgressBar playerHpBar;
     @FXML private ProgressBar playerMpBar;
-    @FXML private ProgressBar monsterHp;
     @FXML private ProgressBar playerexp;
+    @FXML private ProgressBar monsterHp;
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
@@ -55,6 +56,9 @@ public class BattleController implements Initializable {
     @FXML private Button stabtnlist;
     @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp,playerExp,playerMaxExp;
     @FXML private Button villageBtn;
+    @FXML private Button statdownbtn;
+    @FXML private Button statupbtn;
+    @FXML private TextField statupdown;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -345,10 +349,16 @@ public class BattleController implements Initializable {
     }
 
     //캐릭터 스텟창 올리기 내리기 메소드ㅜ
-//    public void statupdown(ActionEvent actionEvent){
-//
-//        intCount++;
-//    }
+    public void statupdown(ActionEvent actionEvent){
+        int count = 0;
+        if(actionEvent.getSource()== statupbtn){
+            count++;
+
+        }else if ( actionEvent.getSource()== statdownbtn){
+            count--;
+        }
+
+   }
 
     // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
     public void levelUp(){
