@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class LoginController extends MainApplication {
 
-    public static int memberNum ; // 회원번호 저장
+    public static int memberNum; // 회원번호 저장
     public Pane mainVuew;       // 첫 시작 뷰
     public TextField inputId = null;    // 로그인시 아이디 입력칸
     public TextField inputPw = null;    // 로그인시 비밀번호 입력칸
@@ -93,17 +93,19 @@ public class LoginController extends MainApplication {
         } // w e
 
         try {
+            System.out.println("battle = " );
             //loader.setLocation(getClass().getResource("/application/testForms.fxml"));
             Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
+            System.out.println("battle = " + battle);
             Scene scene = new Scene(battle , 800 , 600);
-            Stage primaryStage = (Stage)ok.getScene().getWindow();
+            Stage primaryStage = (Stage)membership.getScene().getWindow();
             primaryStage.setScene(scene);
             primaryStage.show();
             System.out.println("primaryStage = " + primaryStage);
             System.out.println("scene = " + scene);
 
         }catch (IOException e){
-            System.out.println(e);
+            System.out.println("ddd"+e);
         }
 
     }
@@ -112,7 +114,6 @@ public class LoginController extends MainApplication {
     public void joinMembership(){
         try {
             Parent Join = FXMLLoader.load(getClass().getResource("EpicflowJoin.fxml"));
-
             Scene scene = new Scene(Join , 600 , 400);
             Stage primaryStage = (Stage)membership.getScene().getWindow();
             primaryStage.setScene(scene);
@@ -151,10 +152,8 @@ public class LoginController extends MainApplication {
 
     // 캐릭터 생성 뷰 에서 취소 클릭 시
     public void characterCancel(){
-        System.out.println("캐릭터생성 뷰 안보이기");
-        cNamePane.setVisible(false);
-
-
+//        System.out.println("캐릭터생성 뷰 안보이기");
+//        cNamePane.setVisible(false);
 
     }
 

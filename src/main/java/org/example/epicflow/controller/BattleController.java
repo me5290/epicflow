@@ -41,7 +41,6 @@ public class BattleController implements Initializable {
     @FXML private ProgressBar playerHpBar;
     @FXML private ProgressBar playerMpBar;
     @FXML private ProgressBar monsterHp;
-    @FXML private ProgressBar playerexp;
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
