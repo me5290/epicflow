@@ -513,6 +513,7 @@ public class BattleController implements Initializable {
         if(monsterDecrease <= 0){
             player.setExp(player.getExp()+monsterDtos.getDropExp());
             player.setMoney(player.getMoney()+monsterDtos.getDropGold());
+            BattleDao.getInstance().playerNowInfor(player);
             System.out.println("승리");
         }else{
             monsterAttack();
