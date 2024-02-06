@@ -106,8 +106,11 @@ public class BattleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            System.out.println(playerInfor);
             // 플레이어 정보 찾아오기 메소드 실행
             memberNum();
+
+            System.out.println(player);
 
             // 플레이어 최대체력 저장
             playerDecrease = player.getMhp();
@@ -161,8 +164,6 @@ public class BattleController implements Initializable {
         }catch (Exception e){
             System.out.println(e);
         }
-
-
     }
 
     // 공격 버튼 클릭 이벤트
@@ -202,6 +203,117 @@ public class BattleController implements Initializable {
             turnState = !turnState;
 
             System.out.println("플레이어 공격 성공");
+
+            // 몬스터 체력 갱신 메소드 호출
+            monsterHpRenewal();
+
+            // 몬스터 체력 0일때 종료
+            monsterRefresh();
+        }else{
+            // 본인 턴이 아닐때. 버튼 숨기기
+            btnlist.setVisible(false);
+        }
+    }
+
+    // 스킬1 이벤트
+    public void skill1(){
+
+        if( turnState ){
+            attacklist.setVisible(false);
+            btnlist.setVisible(true);
+
+            double minDamage = player.getSkillpower()-(player.getSkillpower()*0.1);
+            double maxDamage = player.getSkillpower()+(player.getSkillpower()*0.1);
+
+            int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
+
+            int lastDamage = damage - monsterDtos.getMonsterDefence();
+
+            monsterHeatBox.setText(Integer.toString(lastDamage));
+
+            if(monsterDtos.getMonsterHp() == monsterDecrease){
+                monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
+            }else{
+                monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
+            }
+
+            turnState = !turnState;
+
+            System.out.println("플레이어 스킬1 성공");
+
+            // 몬스터 체력 갱신 메소드 호출
+            monsterHpRenewal();
+
+            // 몬스터 체력 0일때 종료
+            monsterRefresh();
+        }else{
+            // 본인 턴이 아닐때. 버튼 숨기기
+            btnlist.setVisible(false);
+        }
+    }
+
+    // 스킬2 이벤트
+    public void skill2(){
+
+        if( turnState ){
+            attacklist.setVisible(false);
+            btnlist.setVisible(true);
+
+            double minDamage = player.getSkillpower()-(player.getSkillpower()*0.1);
+            double maxDamage = player.getSkillpower()+(player.getSkillpower()*0.1);
+
+            int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
+
+            int lastDamage = damage - monsterDtos.getMonsterDefence();
+
+            monsterHeatBox.setText(Integer.toString(lastDamage));
+
+            if(monsterDtos.getMonsterHp() == monsterDecrease){
+                monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
+            }else{
+                monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
+            }
+
+            turnState = !turnState;
+
+            System.out.println("플레이어 스킬2 성공");
+
+            // 몬스터 체력 갱신 메소드 호출
+            monsterHpRenewal();
+
+            // 몬스터 체력 0일때 종료
+            monsterRefresh();
+        }else{
+            // 본인 턴이 아닐때. 버튼 숨기기
+            btnlist.setVisible(false);
+        }
+    }
+
+    // 스킬3 이벤트
+    public void skill3(){
+
+        if( turnState ){
+            attacklist.setVisible(false);
+            btnlist.setVisible(true);
+
+            double minDamage = player.getSkillpower()-(player.getSkillpower()*0.1);
+            double maxDamage = player.getSkillpower()+(player.getSkillpower()*0.1);
+
+            int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
+
+            int lastDamage = damage - monsterDtos.getMonsterDefence();
+
+            monsterHeatBox.setText(Integer.toString(lastDamage));
+
+            if(monsterDtos.getMonsterHp() == monsterDecrease){
+                monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
+            }else{
+                monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
+            }
+
+            turnState = !turnState;
+
+            System.out.println("플레이어 스킬3 성공");
 
             // 몬스터 체력 갱신 메소드 호출
             monsterHpRenewal();
@@ -288,8 +400,6 @@ public class BattleController implements Initializable {
     public void exitstatbtn(){
         statPaneview.setVisible(false);
     }
-
-
 
     // 몬스터 공격 메소드
     public void monsterAttack(){
