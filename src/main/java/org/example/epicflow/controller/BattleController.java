@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.example.epicflow.MainController;
+import org.example.epicflow.model.dao.MemberDao;
 import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
@@ -89,12 +90,15 @@ public class BattleController implements Initializable {
 
     // 몬스터 현재 체력 변수
     double monsterRenewal;
+    // ================= test 플레이어 실시간 체력 ================= //
+
 
     // 플레이어 정보 player 변수에 저장
     public void memberNum(){
         for (int i = 0; i < playerInfor.size(); i++){
             if(playerInfor.get(i).getMno() == memberNum){
                 player = playerInfor.get(i);
+                System.out.println("플레이어" + player);
             }
         }
     }
@@ -211,6 +215,7 @@ public class BattleController implements Initializable {
 
             // 몬스터 체력 0일때 종료
             monsterRefresh();
+
         }else{
             // 본인 턴이 아닐때. 버튼 숨기기
             btnlist.setVisible(false);
@@ -325,6 +330,8 @@ public class BattleController implements Initializable {
     public void playerHpRenewal(){
         // 백분율 만들기
         playerRenewal = (double) playerDecrease / (double)player.getMhp();
+        // 플레이어 현재 체력상태 저장
+        player.setHp(playerDecrease);
         playerHpBar.setProgress(playerRenewal);
     }
 
@@ -332,17 +339,22 @@ public class BattleController implements Initializable {
     public void playerRefresh(){
         if(playerDecrease <= 0){
             System.out.println("패배");
+            BattleDao.getInstance().playerNowInfor(player);
+            // villageBtn();
         }
     }
 
     // 몬스터 체력 0일때 종료 메소드
     public void monsterRefresh(){
         if(monsterDecrease <= 0){
-            player.setExp(monsterDtos.getDropExp());
-            player.setMoney(monsterDtos.getDropGold());
+            player.setExp(player.getExp()+monsterDtos.getDropExp());
+            player.setMoney(player.getMoney()+monsterDtos.getDropGold());
             System.out.println("승리");
+            // 플레이어 현재 데이터 저장
+            BattleDao.getInstance().playerNowInfor(player);
             System.out.println(player.getExp());
             System.out.println(player.getMoney());
+            // villageBtn();
         }else{
             monsterAttack();
         }
