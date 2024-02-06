@@ -30,6 +30,7 @@ create table player(
     statpoint int default 0,				-- 포인트
     power int default 10,					-- 공격력
     defence int default 0,					-- 방어력
+    skillpower int default 10,				-- 스킬데미지
     str int default 0,						-- 힘
     dex int default 0,						-- 민첩
     wis int default 0,						-- 지능
@@ -43,6 +44,9 @@ insert into player(pname) values('zl존민형');
 insert into player(pname) values('아기준영');
 
 update player set mno = 1 where pno = 1;
+update player set str = 5 where pno = 1;
+update player set dex = 2 where pno = 1;
+update player set wis = 3 where pno = 1;
 update player set mno = 2 where pno = 2;
 
 select * from member;

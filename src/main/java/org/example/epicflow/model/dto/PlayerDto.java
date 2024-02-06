@@ -14,6 +14,7 @@ public class PlayerDto {
     private int statpoint;  // 스텟 포인트
     private int power;      // 공격력
     private int defence;    // 방어력
+    private int skillpower; // 스킬 데미지
     private int str;        // 힘
     private int dex;        // 민첩
     private int wis;        // 지능
@@ -125,6 +126,14 @@ public class PlayerDto {
         this.defence = defence;
     }
 
+    public int getSkillpower() {
+        return skillpower;
+    }
+
+    public void setSkillpower(int skillpower) {
+        this.skillpower = skillpower;
+    }
+
     public int getStr() {
         return str;
     }
@@ -189,6 +198,7 @@ public class PlayerDto {
                 ", statpoint=" + statpoint +
                 ", power=" + power +
                 ", defence=" + defence +
+                ", skillpower=" + skillpower +
                 ", str=" + str +
                 ", dex=" + dex +
                 ", wis=" + wis +

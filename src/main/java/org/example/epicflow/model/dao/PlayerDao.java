@@ -2,6 +2,7 @@ package org.example.epicflow.model.dao;
 
 import org.example.epicflow.model.dto.PlayerDto;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlayerDao extends Dao{
@@ -12,7 +13,7 @@ public class PlayerDao extends Dao{
         return playerDao;
     }
 
-    // 플레이어 정보 저장
+    // DB에 있는 플레이어 정보 DTO에 저장
     public ArrayList<PlayerDto> playerInfor(){
         ArrayList<PlayerDto> playerDtos = new ArrayList<>();
         try {
@@ -33,8 +34,11 @@ public class PlayerDao extends Dao{
                 playerDto.setJob( rs.getInt("job") );
                 playerDto.setLevel( rs.getInt("level") );
                 playerDto.setExp( rs.getInt("exp") );
+                playerDto.setMoney( rs.getInt("money") );
+                playerDto.setStatpoint( rs.getInt("statpoint") );
                 playerDto.setPower( rs.getInt("power") );
                 playerDto.setDefence( rs.getInt("defence") );
+                playerDto.setSkillpower( rs.getInt("skillpower") );
                 playerDto.setStr( rs.getInt("str") );
                 playerDto.setDex( rs.getInt("dex") );
                 playerDto.setWis( rs.getInt("wis") );
@@ -42,12 +46,85 @@ public class PlayerDao extends Dao{
                 playerDto.setSpd( rs.getInt("spd") );
                 playerDto.setMno( rs.getInt("mno") );
 
+                // str에 따른 스텟 변경
+                for(int i = 1; i <= playerDto.getStr(); i++){
+                    if(playerDto.getStr() != 0){
+                        playerDto.setMhp(playerDto.getMhp()+5);
+                        playerDto.setPower(playerDto.getPower()+2);
+                        playerDto.setDefence(playerDto.getDefence()+1);
+                    }
+                }
+                // dex에 따른 스텟 변경
+                for(int i = 1; i <= playerDto.getDex(); i++){
+                    if(playerDto.getDex() != 0){
+                        playerDto.setEva(playerDto.getEva()+2);
+                        playerDto.setSpd(playerDto.getSpd()+2);
+                        playerDto.setPower(playerDto.getPower()+1);
+                    }
+                }
+                // wis에 따른 스텟 변경
+                for(int i = 1; i <= playerDto.getWis(); i++){
+                    if(playerDto.getWis() != 0){
+                        playerDto.setMmp(playerDto.getMmp()+5);
+                        playerDto.setEva(playerDto.getEva()+1);
+                        playerDto.setSkillpower(playerDto.getSkillpower()+3);
+                    }
+                }
+
                 playerDtos.add(playerDto);
             }
         }catch (Exception e){
             System.out.println(e);
         }
         return playerDtos;
+    }
+
+    // 캐릭터 유무 확인 메서드
+    public boolean characterFind(int memberNum){
+        try {
+            // 1. sql 작성
+            String sql = "select * from player where mno = ?";
+            // 2. sql 기재
+            ps = con.prepareStatement(sql);
+            // ? 매개변수 대입
+            ps.setInt(1,memberNum);
+            // sql 실행
+            rs = ps.executeQuery();
+            // System.out.println("rs = " + rs);
+
+            // 캐릭터를 찾으면 true 반환
+            if(rs.next()){
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println("characterFind : " + e);
+        }
+        // Player DB 에서 회원 번호 없으면 (캐릭터 없는것) false 반환
+        return false;
+
+    }
+
+    //회원 가입 후 캐릭터 생성 버튼 클릭시 메서드
+    public boolean characterGeneration(PlayerDto playerDto){
+        try {
+            // sql 작성
+            String sql = "insert into player(pname,mno)values( ?, ? )";
+            // sql 기재
+            ps = con.prepareStatement(sql);
+            // ? 매개변수 대입
+            ps.setString(1,playerDto.getPname());
+            ps.setInt(2,playerDto.getMno());
+            // sql 실행
+            int count = ps.executeUpdate();
+            System.out.println("캐릭터 생성 count = " + count);
+
+            // DB에 INSERT 처리된 레코드가 1개이면 성공 0 이면 실패
+            if (count == 1){ return true; }
+        }catch (Exception e){
+            System.out.println("characterGeneration : " + e );
+        }
+        // 0 이면 실패
+        return false;
     }
 }
 
