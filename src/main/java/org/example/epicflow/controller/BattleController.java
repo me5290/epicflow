@@ -50,7 +50,7 @@ public class BattleController implements Initializable {
     @FXML private Pane exitalert;
     @FXML private Button invenBtn;
     @FXML private AnchorPane inventory;
-    @FXML private ImageView character;
+    @FXML private ImageView character,normalEffect,skill1Effect,skill2Effect,skill3Effect,monsterEffect1,monsterEffect2;
     @FXML private Button statbtn;
     @FXML private AnchorPane statPane;
     @FXML private Button exitstatbtn;
@@ -203,6 +203,12 @@ public class BattleController implements Initializable {
 
             turnState = !turnState;
 
+            // 이펙트 효과 보이기
+            normalEffect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
+
             System.out.println("플레이어 공격 성공");
 
             // 몬스터 체력 갱신 메소드 호출
@@ -239,6 +245,12 @@ public class BattleController implements Initializable {
             }
 
             turnState = !turnState;
+
+            // 이펙트 효과 보이기
+            skill1Effect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
 
             System.out.println("플레이어 스킬1 성공");
 
@@ -277,6 +289,12 @@ public class BattleController implements Initializable {
 
             turnState = !turnState;
 
+            // 이펙트 효과 보이기
+            skill2Effect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
+
             System.out.println("플레이어 스킬2 성공");
 
             // 몬스터 체력 갱신 메소드 호출
@@ -313,6 +331,12 @@ public class BattleController implements Initializable {
             }
 
             turnState = !turnState;
+
+            // 이펙트 효과 보이기
+            skill3Effect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
 
             System.out.println("플레이어 스킬3 성공");
 
@@ -351,6 +375,9 @@ public class BattleController implements Initializable {
         }
 
         turnState = !turnState;
+
+        // 버튼 숨기기
+        btnlist.setVisible(false);
 
         System.out.println("몬스터 공격 성공");
 
@@ -454,6 +481,10 @@ public class BattleController implements Initializable {
             monsterHeatBox.setVisible(true);
             monsterHp.setProgress(monsterRenewal);
             monsterNowHp.setText(Integer.toString(monsterDecrease));
+            normalEffect.setVisible(false);
+            skill1Effect.setVisible(false);
+            skill2Effect.setVisible(false);
+            skill3Effect.setVisible(false);
         }  );
         new Thread(sleeper).start();
 }
@@ -479,6 +510,7 @@ public class BattleController implements Initializable {
             playerHpBar.setProgress(playerRenewal);
             playerHp.setText(Integer.toString(playerDecrease));
             monsterHeatBox.setVisible(false);
+            monsterEffect1.setVisible(true);
         }  );
 
         new Thread(sleeper).start();
@@ -502,6 +534,8 @@ public class BattleController implements Initializable {
             };
             sleeper.setOnSucceeded( event -> {
                 playerHeatBox.setVisible(false);
+                monsterEffect1.setVisible(false);
+                btnlist.setVisible(true);
             }  );
 
             new Thread(sleeper).start();
@@ -524,6 +558,7 @@ public class BattleController implements Initializable {
 
     // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
     public void levelUp(){
+        playerexp.setStyle("-fx-accent: yellow;");
         if(player.getExp() >= 51400){
             playerexp.setProgress(1);
             if(player.getLevel() != 11){
@@ -531,7 +566,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 25800 && player.getExp() < 51400){
-            playerexp.setProgress(player.getExp()/51400);
+            playerexp.setProgress((double)player.getExp()/51400);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("51400");
             if(player.getLevel() != 10){
@@ -539,7 +574,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 13000 && player.getExp() < 25800){
-            playerexp.setProgress(player.getExp()/25800);
+            playerexp.setProgress((double)player.getExp()/25800);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("25800");
             if(player.getLevel() != 9){
@@ -547,7 +582,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 6600 && player.getExp() < 13000){
-            playerexp.setProgress(player.getExp()/13000);
+            playerexp.setProgress((double)player.getExp()/13000);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("13000");
             if(player.getLevel() != 8){
@@ -555,7 +590,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 3400 && player.getExp() < 6600){
-            playerexp.setProgress(player.getExp()/6600);
+            playerexp.setProgress((double)player.getExp()/6600);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("6600");
             if(player.getLevel() != 7){
@@ -563,7 +598,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 1800 && player.getExp() < 3400){
-            playerexp.setProgress(player.getExp()/3400);
+            playerexp.setProgress((double)player.getExp()/3400);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("3400");
             if(player.getLevel() != 6){
@@ -571,7 +606,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 1000 && player.getExp() < 1800){
-            playerexp.setProgress(player.getExp()/1800);
+            playerexp.setProgress((double)player.getExp()/1800);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("1800");
             if(player.getLevel() != 5){
@@ -579,7 +614,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 600 && player.getExp() < 1000){
-            playerexp.setProgress(player.getExp()/1000);
+            playerexp.setProgress((double)player.getExp()/1000);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("1000");
             if(player.getLevel() != 4){
@@ -587,7 +622,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 400 && player.getExp() < 600){
-            playerexp.setProgress(player.getExp()/600);
+            playerexp.setProgress((double)player.getExp()/600);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("600");
             if(player.getLevel() != 3){
@@ -595,19 +630,18 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 100 && player.getExp() < 400){
-            playerexp.setProgress(player.getExp()/400);
+            playerexp.setProgress((double)player.getExp() /400);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("400");
             if(player.getLevel() != 2){
                 player.setLevel(2);
                 player.setStatpoint(player.getStatpoint()+5);
             }
-        }else{
-            playerexp.setProgress(player.getExp()/100);
+        }else if(player.getExp() < 100){
+            playerexp.setProgress((double)player.getExp()/100);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("100");
         }
-        playerexp.setStyle("-fx-accent: yellow;");
     }
 
     // 마을로 이동 메소드

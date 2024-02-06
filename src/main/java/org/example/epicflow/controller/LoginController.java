@@ -111,7 +111,7 @@ public class LoginController extends MainApplication {
     public void villageScene(){
         try {
             Parent battle = FXMLLoader.load(getClass().getResource("village_test.fxml"));
-            Scene scene = new Scene(battle, 800, 600);
+            Scene scene = new Scene(battle, 1300, 498);
             Stage primaryStage = (Stage) membership.getScene().getWindow();
             primaryStage.setScene(scene);
             primaryStage.show();

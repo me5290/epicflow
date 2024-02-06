@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" onMouseClicked="#store" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="../../../img/village_test.jpg" />
+            <Image url="../../../img/village.png" />
          </image>
       </ImageView>
       <Button fx:id="field" layoutX="88.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#field" text="사냥" />
