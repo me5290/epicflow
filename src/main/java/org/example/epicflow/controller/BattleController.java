@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.example.epicflow.MainController;
+import org.example.epicflow.model.dao.MemberDao;
 import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
@@ -62,6 +63,9 @@ public class BattleController implements Initializable {
     @FXML private TextField statupdown;
     @FXML private Text test123; // 스텟 포인트 표시 텍스트
     @FXML private Button powertext;
+    @FXML private Pane win;     // 플레이어 승리 시 화면 출력
+    @FXML private Pane lose;    // 플레이어 패배 시 화면 출력
+
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
 
@@ -458,6 +462,8 @@ public class BattleController implements Initializable {
     public void playerHpRenewal(){
         // 백분율 만들기
         playerRenewal = (double) playerDecrease / (double)player.getMhp();
+        // 플레이어 현재 체력상태 저장
+        player.setHp(playerDecrease);
 
         // 시간차
         Task<Void> sleeper = new Task<Void>() {
@@ -482,6 +488,8 @@ public class BattleController implements Initializable {
     public void playerRefresh(){
         if(playerDecrease <= 0){
             System.out.println("패배");
+            BattleDao.getInstance().playerNowInfor(player);
+            // villageBtn();
         }else{
             // 시간차
             Task<Void> sleeper = new Task<Void>() {
@@ -503,8 +511,8 @@ public class BattleController implements Initializable {
     // 몬스터 체력 0일때 종료 메소드
     public void monsterRefresh(){
         if(monsterDecrease <= 0){
-            player.setExp(monsterDtos.getDropExp());
-            player.setMoney(monsterDtos.getDropGold());
+            player.setExp(player.getExp()+monsterDtos.getDropExp());
+            player.setMoney(player.getMoney()+monsterDtos.getDropGold());
             System.out.println("승리");
         }else{
             monsterAttack();
