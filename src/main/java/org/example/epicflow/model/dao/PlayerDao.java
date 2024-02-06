@@ -2,6 +2,7 @@ package org.example.epicflow.model.dao;
 
 import org.example.epicflow.model.dto.PlayerDto;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlayerDao extends Dao{
@@ -33,6 +34,8 @@ public class PlayerDao extends Dao{
                 playerDto.setJob( rs.getInt("job") );
                 playerDto.setLevel( rs.getInt("level") );
                 playerDto.setExp( rs.getInt("exp") );
+                playerDto.setMoney(rs.getInt("money"));
+                playerDto.setStatpoint(rs.getInt("statpoint"));
                 playerDto.setPower( rs.getInt("power") );
                 playerDto.setDefence( rs.getInt("defence") );
                 playerDto.setStr( rs.getInt("str") );
@@ -49,5 +52,6 @@ public class PlayerDao extends Dao{
         }
         return playerDtos;
     }
+
 }
 

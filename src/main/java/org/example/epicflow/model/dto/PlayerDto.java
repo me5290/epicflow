@@ -185,6 +185,8 @@ public class PlayerDto {
                 ", job=" + job +
                 ", level=" + level +
                 ", exp=" + exp +
+                ", money=" + money +
+                ", statpoint=" + statpoint +
                 ", power=" + power +
                 ", defence=" + defence +
                 ", str=" + str +
