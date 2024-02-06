@@ -40,5 +40,23 @@ public class BattleDao extends Dao{
         return false;
     }
 
+    public boolean playerMaxInfor(PlayerDto playerDto){
+        try {
+            String sql = "update player set mhp = ?, mmp = ? where mno = ?";
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, playerDto.getMhp());
+            ps.setInt(2, playerDto.getMmp());
+            ps.setInt(3, playerDto.getMno());
+            int count = ps.executeUpdate();
+            if(count == 1){
+                System.out.println("!!!!!!!!!!!!!!!!!DB에 업데이트 성공입니다!!!!!!!!!!!!!!!!!!");
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println("오류납니다 : " + e);
+        }
+        return false;
+    }
 
 }

@@ -488,8 +488,9 @@ public class BattleController implements Initializable {
     public void playerRefresh(){
         if(playerDecrease <= 0){
             System.out.println("패배");
-            lose.setVisible(true);
+            loseView();
             BattleDao.getInstance().playerNowInfor(player);
+            BattleDao.getInstance().playerMaxInfor(player);
             // villageBtn();
         }else{
             // 시간차
@@ -516,9 +517,10 @@ public class BattleController implements Initializable {
             player.setMoney(player.getMoney()+monsterDtos.getDropGold());
             BattleDao.getInstance().playerNowInfor(player);
             System.out.println("승리");
-            win.setVisible(true);
+            winView();
             // 플레이어 현재 데이터 저장
             BattleDao.getInstance().playerNowInfor(player);
+            BattleDao.getInstance().playerMaxInfor(player);
             System.out.println(player.getExp());
             System.out.println(player.getMoney());
             // villageBtn();
@@ -629,6 +631,17 @@ public class BattleController implements Initializable {
             System.out.println(e);
         }
     }
+
+    // 플레이어 승리시 화면표시
+    public void winView(){
+        System.out.println("함수가 실행됩니다.");
+        win.setVisible(true);
+    }
+    public void loseView(){
+        System.out.println("함수가 실행됩니다.");
+        lose.setVisible(true);
+    }
+
 
 
     // 차준영 캐릭터 스텟창 db에서 정보 가져오기
