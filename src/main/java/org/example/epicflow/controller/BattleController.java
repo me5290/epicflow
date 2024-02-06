@@ -60,6 +60,8 @@ public class BattleController implements Initializable {
     @FXML private Button statdownbtn;
     @FXML private Button statupbtn;
     @FXML private TextField statupdown;
+    @FXML private Pane win;     // 플레이어 승리 시 화면 출력
+    @FXML private Pane lose;    // 플레이어 패배 시 화면 출력
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -472,4 +474,5 @@ public class BattleController implements Initializable {
             System.out.println(e);
         }
     }
+
 }
