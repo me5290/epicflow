@@ -341,6 +341,7 @@ public class BattleController implements Initializable {
     public void playerRefresh(){
         if(playerDecrease <= 0){
             System.out.println("패배");
+            lose.setVisible(true);
             BattleDao.getInstance().playerNowInfor(player);
             // villageBtn();
         }
@@ -352,6 +353,7 @@ public class BattleController implements Initializable {
             player.setExp(player.getExp()+monsterDtos.getDropExp());
             player.setMoney(player.getMoney()+monsterDtos.getDropGold());
             System.out.println("승리");
+            win.setVisible(true);
             // 플레이어 현재 데이터 저장
             BattleDao.getInstance().playerNowInfor(player);
             System.out.println(player.getExp());
