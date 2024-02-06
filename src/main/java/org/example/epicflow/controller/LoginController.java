@@ -5,10 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -25,7 +22,7 @@ public class LoginController extends MainApplication {
     public static int memberNum; // 회원번호 저장
     public Pane mainVuew;       // 첫 시작 뷰
     public TextField inputId = null;    // 로그인시 아이디 입력칸
-    public TextField inputPw = null;    // 로그인시 비밀번호 입력칸
+    public PasswordField inputPw = null;    // 로그인시 비밀번호 입력칸
     public ImageView LoginIcon;         // 로그인 뷰 이미지
     public Label loginLabel = null;     // 로그인 성공/실패시 텍스트 표시
     public Button loginSbtn;            // 로그인 성공/실패시 뷰

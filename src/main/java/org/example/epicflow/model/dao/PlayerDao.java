@@ -126,5 +126,65 @@ public class PlayerDao extends Dao{
         // 0 이면 실패
         return false;
     }
-}
+
+    // 현재 로그인 캐릭터 돈 조회 메서드
+    public PlayerDto playerMoneySc(int memberNum){
+        // 회원번호 , 객체 생성
+        PlayerDto playerDto = new PlayerDto();
+        try {
+            // 1. sql 작성
+            String sql = "select * from player where mno = ?";
+            // 2. sql 기재
+            ps = con.prepareStatement(sql);
+            // ? 매개변수 대입
+            ps.setInt(1,memberNum);
+            // sql 실행
+            rs = ps.executeQuery();
+            // System.out.println("rs = " + rs);
+
+            // 캐릭터를 찾으면 계정의 돈을 반환
+            if(rs.next()){
+                playerDto.setMoney(rs.getInt("money"));
+                playerDto.setMhp(rs.getInt("mhp"));
+                playerDto.setMmp(rs.getInt("mmp"));
+                return playerDto;
+            }
+        }catch (Exception e){
+            System.out.println("playerMoneySc DAO" + e);
+        }
+        // 캐릭터를 못찾았을 경우 오류 코드 발생 시키기
+        return null;
+    }
+
+    // 여관 에서 숙박 버튼 클릭시 이벤트
+    public void useMtBtnOn(int memberNum , int pMoney ,int Mhp , int Mmp){
+        System.out.println("숙박 버튼 클릭 DAO");
+        System.out.println(memberNum);
+        System.out.println(pMoney);
+        System.out.println(Mhp);
+        System.out.println(Mmp);
+        try {
+            // sql 작성
+            String sql = "update player set money = ? , hp = ? , mp = ? where mno = ?";
+            // sql 기재
+            ps = con.prepareStatement(sql);
+            // ? 매개변수 대입
+            ps.setInt(1,pMoney);
+            ps.setInt(2,Mhp);
+            ps.setInt(3,Mmp);
+            ps.setInt(4,memberNum);
+            // sql 실행
+            int count = ps.executeUpdate();
+            if (count == 1){
+                System.out.println("여관 회복 성공!");
+                return;
+            }
+        }catch (Exception e){
+            System.out.println("useMtBtnOn DAO" + e);
+        }
+        System.out.println("여관 회복 실패");
+
+    } // m e
+
+} // c e
 

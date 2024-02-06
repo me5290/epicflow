@@ -3,6 +3,7 @@
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,7 +18,7 @@
    <children>
       <Button fx:id="ok" layoutX="322.0" layoutY="260.0" mnemonicParsing="false" onAction="#Onlogin" prefHeight="30.0" prefWidth="112.0" text="로그인" />
       <TextField fx:id="inputId" layoutX="388.0" layoutY="137.0" />
-      <TextField fx:id="inputPw" layoutX="388.0" layoutY="200.0" />
+      <PasswordField fx:id="inputPw" layoutX="388.0" layoutY="201.0" />
       <Text layoutX="316.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="아이디" />
       <Text layoutX="316.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호" />
       <ImageView fx:id="LoginIcon" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
