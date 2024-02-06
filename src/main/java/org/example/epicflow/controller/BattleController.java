@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,7 +26,6 @@ import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
 import org.example.epicflow.model.dao.BattleDao;
-import org.w3c.dom.Text;
 import org.w3c.dom.events.MouseEvent;
 
 import java.io.File;
@@ -60,7 +60,8 @@ public class BattleController implements Initializable {
     @FXML private Button statdownbtn;
     @FXML private Button statupbtn;
     @FXML private TextField statupdown;
-
+    @FXML private Text test123; // 스텟 포인트 표시 텍스트
+    @FXML private Button powertext;
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
 
@@ -99,18 +100,14 @@ public class BattleController implements Initializable {
             }
         }
     }
-
     // ============================== 메소드 ============================== //
 
     // 초기값 세팅
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            System.out.println(playerInfor);
             // 플레이어 정보 찾아오기 메소드 실행
             memberNum();
-
-            System.out.println(player);
 
             // 플레이어 최대체력 저장
             playerDecrease = player.getMhp();
@@ -396,6 +393,8 @@ public class BattleController implements Initializable {
     //캐릭터 스탯창 버튼
     public void stabtnlist(){
         statPaneview.setVisible(true);
+        // 준영 스텟포인트 불러오기 테스트
+        Statchang();
     }
     public void exitstatbtn(){
         statPaneview.setVisible(false);
@@ -428,7 +427,6 @@ public class BattleController implements Initializable {
 
                 // 플레이어 체력 0일때 종료
                 playerRefresh();
-
             }else{
                 btnlist.setVisible(true);
             }
@@ -513,16 +511,7 @@ public class BattleController implements Initializable {
         }
     }
 
-    //캐릭터 스텟창 올리기 내리기 메소드ㅜ
-    public void statupdown(ActionEvent actionEvent){
-        int count = 0;
-        if(actionEvent.getSource()== statupbtn){
-            count++;
 
-        }else if ( actionEvent.getSource()== statdownbtn){
-            count--;
-        }
-   }
 
     // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
     public void levelUp(){
@@ -624,4 +613,48 @@ public class BattleController implements Initializable {
             System.out.println(e);
         }
     }
+
+
+    // 차준영 캐릭터 스텟창 db에서 정보 가져오기
+    public void Statchang(){
+        System.out.println(player);
+        int statpoint = player.getStatpoint();
+
+        System.out.println("statpoint = " + statpoint);
+        try {
+            if (statpoint == 0) {
+                System.out.println("스텟이 없습니다");
+            } else if (statpoint != 0) {
+                // 변수명 바꿔야함
+                test123.setText(Integer.toString(statpoint));
+
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+    //힘 메소드
+    int count = player.getStatpoint();
+    public void str(){
+            count++;
+            System.out.println(count);
+
+    }
+    //민첩 메소드
+    public void dex(){
+
+    }
+    //지능 메소드
+    public void wis(){
+
+    }
+    /*
+        1. if문으로 포인트가 0일때 버튼 활성화/비활성화
+        2. 포인트가 0이 아니면 힘,민첩,지능 증가 버튼 클릭
+        3. 클릭 시 포인트 1 감소하고 해당 스텟 1 증가
+        4. 증가한 스텟 dto에 set으로 저장
+    */
 }

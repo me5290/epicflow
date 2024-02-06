@@ -2,6 +2,7 @@ package org.example.epicflow.model.dao;
 
 import org.example.epicflow.model.dto.PlayerDto;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlayerDao extends Dao{
