@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import org.example.epicflow.MainApplication;
+import org.example.epicflow.model.dao.MonsterDao;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,32 +39,14 @@ Button invenBtn;
     });
 
 
-//    public void runBtn(ActionEvent event) {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("후퇴");
-//        alert.setHeaderText("후퇴하시겠습니까?");
-//        alert.setContentText("정말로 후퇴하시겠습니까?");
-//
-//        if(alert.showAndWait().get() == ButtonType.OK){
-//            Scene = (Stage) runBtn.getScene().getWindow();
-//            System.out.println("후퇴하셨습니다");
-//            Scene.close();
-//        }
-//    }
-
-
-
-
-
-//@Override
-//    public void attackbtn(ActionEvent event){
-//    if(event.getSource() == attackbtn){
-//        System.out.println("몬스터 공격 완료");
-//    }
-//}
-
-
-
     }
+
+
+
+
+
+
+
+
 
 }

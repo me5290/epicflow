@@ -11,6 +11,9 @@ public class MonsterDto {
         private int dropGold = 10;
         private int dropExp = 30;
 
+        //=================필드===============================
+
+
         public MonsterDto(){}
 
         public MonsterDto(int monsterNo, String monsterName, int monsterMhp, int monsterHp, int monsterPower, int monsterDefence, int dropGold, int dropExp) {
@@ -23,6 +26,7 @@ public class MonsterDto {
                 this.dropGold = dropGold;
                 this.dropExp = dropExp;
         }
+
 
         // get/set 시작
         public int getMonsterNo() {
@@ -88,4 +92,7 @@ public class MonsterDto {
         public void setDropExp(int dropExp) {
                 this.dropExp = dropExp;
         }
+
+
+
 }

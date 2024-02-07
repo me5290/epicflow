@@ -12,8 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.example.epicflow.model.dao.MonsterDao;
 import org.example.epicflow.model.dao.PlayerDao;
+import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
+
+import java.util.ArrayList;
 
 public class VillageController {
     @FXML private Pane opcitybackground;
@@ -32,6 +36,7 @@ public class VillageController {
     @FXML public Label motelLabel2; // 여관 주인 텍스트1
     @FXML public Button useMtBtn;   // 여관을 사용 한다 버튼
     @FXML public Button outMtBtn;   // 여관에서 나간다 버튼
+
 
     // 로그인한 회원 데이터 로그인 컨트롤러에서 가져오기
     int memberNum = LoginController.getMemberNum();
@@ -108,4 +113,18 @@ public class VillageController {
         motelPane.setVisible(false);
         bg.setVisible(true);
     }
-} // c e
+
+
+    ArrayList<MonsterDto> monsterDtos = MonsterDao.getInstance().monsterinfor();
+
+
+
+    //슬라임 버튼 클릭시 실행이벤트
+    public void slimeclick(){
+        System.out.println("슬라임 버튼 클릭 실행 컨트롤러");
+    }
+
+
+
+
+} // c
