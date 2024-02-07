@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -36,7 +37,7 @@
             <Font name="Arial Bold Italic" size="16.0" />
          </font>
       </Label>
-      <ImageView fitHeight="87.0" fitWidth="67.0" layoutX="1214.0" layoutY="184.0" onMouseClicked="#field" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="87.0" fitWidth="67.0" layoutX="1214.0" layoutY="184.0" onMouseClicked="#huntingGround" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../img/portal.png" />
          </image>
@@ -46,10 +47,10 @@
             <Font name="Arial Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Pane opacity="0.39" prefHeight="498.0" prefWidth="1300.0" style="-fx-background-color: #000;" visible="false" />
-      <HBox prefHeight="498.0" prefWidth="1300.0" visible="false">
+      <Pane fx:id="opcitybackground" opacity="0.39" prefHeight="498.0" prefWidth="1300.0" style="-fx-background-color: #000;" visible="false" />
+      <HBox fx:id="huntingchoice" prefHeight="498.0" prefWidth="1300.0" visible="false">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+            <Pane onMouseClicked="#field" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                <children>
                   <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="슬라임 사냥터">
                      <font>
@@ -99,5 +100,10 @@
             <Insets bottom="150.0" left="100.0" right="100.0" top="150.0" />
          </padding>
       </HBox>
+      <Button fx:id="backBtn" layoutX="1252.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#back" style="-fx-background-color: null;" text="X" textFill="WHITE" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

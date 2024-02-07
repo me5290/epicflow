@@ -5,11 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class VillageController {
-
-    @FXML
+    @FXML private Pane opcitybackground;
+    @FXML private HBox huntingchoice;
+    @FXML private Button backBtn;
     public Button field;
     // === 로그인 성공하면 빌리지
     // === 상점 클릭하면 상점 fxml
@@ -31,5 +34,17 @@ public class VillageController {
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    public void huntingGround(){
+        opcitybackground.setVisible(true);
+        huntingchoice.setVisible(true);
+        backBtn.setVisible(true);
+    }
+
+    public void back(){
+        opcitybackground.setVisible(false);
+        huntingchoice.setVisible(false);
+        backBtn.setVisible(false);
     }
 }

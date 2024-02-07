@@ -76,6 +76,7 @@ public class PlayerDao extends Dao{
         }
         // Player DB 에서 회원 번호 없으면 (캐릭터 없는것) false 반환
         return false;
+
     }
 
     //회원 가입 후 캐릭터 생성 버튼 클릭시 메서드
