@@ -13,10 +13,4 @@ public class MonsterDao extends Dao{
     private static MonsterDao monsterDao = new MonsterDao();
     public static MonsterDao getInstance(){ return monsterDao; }
 
-@FXML
-    private TextArea textArea;
-
-
-
-
 }
