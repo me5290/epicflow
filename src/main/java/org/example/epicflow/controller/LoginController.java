@@ -107,8 +107,8 @@ public class LoginController extends MainApplication {
     // 로그인 성공! 및 캐릭터 생성 완료 시 마을씬 이동
     public void villageScene(){
         try {
-            Parent battle = FXMLLoader.load(getClass().getResource("village_test.fxml"));
-            Scene scene = new Scene(battle, 800, 600);
+            Parent battle = FXMLLoader.load(getClass().getResource("village.fxml"));
+            Scene scene = new Scene(battle, 1300, 498);
             Stage primaryStage = (Stage) membership.getScene().getWindow();
             primaryStage.setScene(scene);
             primaryStage.show();

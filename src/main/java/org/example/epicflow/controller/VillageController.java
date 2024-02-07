@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.epicflow.model.dao.PlayerDao;
@@ -16,7 +17,7 @@ public class VillageController {
 
     @FXML public Pane mainPane; // 메인 화면
     @FXML public Pane bg;       // 마을 이미지 및 화면 씬
-    @FXML public Button field;  // 사냥터 버튼
+    @FXML public Pane field;  // 사냥터 버튼
     @FXML public Button store;  // 상점 버튼
     @FXML public Button motelBtn; // 여관 버튼
 
@@ -31,6 +32,13 @@ public class VillageController {
     int memberNum = LoginController.getMemberNum();
 
 
+//    // 테스트 한거 없애도됨
+//    @FXML public ImageView bFild;
+//    @FXML public HBox huntingchoice;
+//    @FXML public Button backBtn;
+//    @FXML public Pane field;
+
+
     // === 로그인 성공하면 빌리지
     // === 상점 클릭하면 상점 fxml
     public void store(){
@@ -43,7 +51,7 @@ public class VillageController {
         try {
         Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
         Scene scene = new Scene(battle , 800 , 600);
-        Stage primaryStage = (Stage)field.getScene().getWindow();
+        Stage primaryStage = (Stage)field.getScene().getWindow(); // 여기 오류
         primaryStage.setScene(scene);
         primaryStage.show();
         System.out.println("primaryStage = " + primaryStage);
@@ -95,4 +103,16 @@ public class VillageController {
         motelPane.setVisible(false);
         bg.setVisible(true);
     }
+
+//    // 테스트 없애도됨
+//    public void huntingGround(){
+//        huntingchoice.setVisible(true);
+//        backBtn.setVisible(true);
+//
+//    }
+//    public void back(){
+//        huntingchoice.setVisible(false);
+//        backBtn.setVisible(false);
+//    }
+
 } // c e
