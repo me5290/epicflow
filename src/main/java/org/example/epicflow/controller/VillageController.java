@@ -13,7 +13,7 @@ public class VillageController {
     @FXML private Pane opcitybackground;
     @FXML private HBox huntingchoice;
     @FXML private Button backBtn;
-    public Button field;
+    @FXML private Pane field;
     // === 로그인 성공하면 빌리지
     // === 상점 클릭하면 상점 fxml
     public void store(){
