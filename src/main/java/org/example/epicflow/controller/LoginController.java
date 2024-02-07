@@ -123,7 +123,7 @@ public class LoginController extends MainApplication {
     // 회원가입 클릭시 회원가입 페이지로 이동
     public void joinMembership(){
         try {
-            Parent Join = FXMLLoader.load(getClass().getResource("EpicflowJoin.fxml"));
+            Parent Join = FXMLLoader.load(getClass().getResource("join.fxml"));
             Scene scene = new Scene(Join , 600 , 400);
             Stage primaryStage = (Stage)membership.getScene().getWindow();
             primaryStage.setScene(scene);

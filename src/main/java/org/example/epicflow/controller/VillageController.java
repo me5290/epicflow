@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -14,10 +16,13 @@ import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.PlayerDto;
 
 public class VillageController {
+    @FXML private Pane opcitybackground;
+    @FXML private HBox huntingchoice;
+    @FXML private Button backBtn;
+    @FXML private Pane field;
 
     @FXML public Pane mainPane; // 메인 화면
-    @FXML public Pane bg;       // 마을 이미지 및 화면 씬
-    @FXML public Pane field;  // 사냥터 버튼
+    @FXML public Pane bg;
     @FXML public Button store;  // 상점 버튼
     @FXML public Button motelBtn; // 여관 버튼
 
@@ -30,7 +35,6 @@ public class VillageController {
 
     // 로그인한 회원 데이터 로그인 컨트롤러에서 가져오기
     int memberNum = LoginController.getMemberNum();
-
 
     // === 로그인 성공하면 빌리지
     // === 상점 클릭하면 상점 fxml
@@ -52,6 +56,18 @@ public class VillageController {
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    public void huntingGround(){
+        opcitybackground.setVisible(true);
+        huntingchoice.setVisible(true);
+        backBtn.setVisible(true);
+    }
+
+    public void back(){
+        opcitybackground.setVisible(false);
+        huntingchoice.setVisible(false);
+        backBtn.setVisible(false);
     }
 
     // 여관 버튼 클릭 이벤트 실행
@@ -81,13 +97,9 @@ public class VillageController {
             System.out.println("돈 있음");
             pMoney -= 10;
             PlayerDao.getInstance().useMtBtnOn(memberNum , pMoney , Mhp , Mmp);
-            // 박시현 여기까지 작업 완료 
+            // 박시현 여기까지 작업 완료
             // 후에 할일은 회복후 마을로 이동할 것인지 어떻게할것인지 선택
         }
-        
-
-
-
     }
 
     // 여관 에서 나가기 버튼 클릭시 이벤트
@@ -96,5 +108,4 @@ public class VillageController {
         motelPane.setVisible(false);
         bg.setVisible(true);
     }
-
 } // c e

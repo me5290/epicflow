@@ -50,7 +50,7 @@ public class BattleController implements Initializable {
     @FXML private Pane exitalert;
     @FXML private Button invenBtn;
     @FXML private AnchorPane inventory;
-    @FXML private ImageView character;
+    @FXML private ImageView character,normalEffect,skill1Effect,skill2Effect,skill3Effect,monsterEffect1,monsterEffect2;
     @FXML private Button statbtn;
     @FXML private AnchorPane statPane;
     @FXML private Button exitstatbtn;
@@ -65,6 +65,7 @@ public class BattleController implements Initializable {
     @FXML private Button powertext;
     @FXML private Pane win;     // 플레이어 승리 시 화면 출력
     @FXML private Pane lose;    // 플레이어 패배 시 화면 출력
+    @FXML private Text strtest,dextest,wistest;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -203,6 +204,12 @@ public class BattleController implements Initializable {
 
             turnState = !turnState;
 
+            // 이펙트 효과 보이기
+            normalEffect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
+
             System.out.println("플레이어 공격 성공");
 
             // 몬스터 체력 갱신 메소드 호출
@@ -238,7 +245,16 @@ public class BattleController implements Initializable {
                 monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
             }
 
+            // 마나 감소
+            player.setMp(player.getMp()-10);
+
             turnState = !turnState;
+
+            // 이펙트 효과 보이기
+            skill1Effect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
 
             System.out.println("플레이어 스킬1 성공");
 
@@ -265,7 +281,7 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = damage - monsterDtos.getMonsterDefence();
+            int lastDamage = (int)(damage*1.2) - monsterDtos.getMonsterDefence();
 
             monsterHeatBox.setText(Integer.toString(lastDamage));
 
@@ -275,7 +291,16 @@ public class BattleController implements Initializable {
                 monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
             }
 
+            // 마나 감소
+            player.setMp(player.getMp()-20);
+
             turnState = !turnState;
+
+            // 이펙트 효과 보이기
+            skill2Effect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
 
             System.out.println("플레이어 스킬2 성공");
 
@@ -302,7 +327,7 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = damage - monsterDtos.getMonsterDefence();
+            int lastDamage = (int)(damage*1.5) - monsterDtos.getMonsterDefence();
 
             monsterHeatBox.setText(Integer.toString(lastDamage));
 
@@ -312,7 +337,16 @@ public class BattleController implements Initializable {
                 monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
             }
 
+            // 마나 감소
+            player.setMp(player.getMp()-40);
+
             turnState = !turnState;
+
+            // 이펙트 효과 보이기
+            skill3Effect.setVisible(true);
+
+            // 버튼 숨기기
+            btnlist.setVisible(false);
 
             System.out.println("플레이어 스킬3 성공");
 
@@ -351,6 +385,9 @@ public class BattleController implements Initializable {
         }
 
         turnState = !turnState;
+
+        // 버튼 숨기기
+        btnlist.setVisible(false);
 
         System.out.println("몬스터 공격 성공");
 
@@ -402,6 +439,7 @@ public class BattleController implements Initializable {
     }
     public void exitstatbtn(){
         statPaneview.setVisible(false);
+        playerstatpoint();
     }
 
     // 몬스터 공격 메소드
@@ -454,6 +492,10 @@ public class BattleController implements Initializable {
             monsterHeatBox.setVisible(true);
             monsterHp.setProgress(monsterRenewal);
             monsterNowHp.setText(Integer.toString(monsterDecrease));
+            normalEffect.setVisible(false);
+            skill1Effect.setVisible(false);
+            skill2Effect.setVisible(false);
+            skill3Effect.setVisible(false);
         }  );
         new Thread(sleeper).start();
 }
@@ -479,6 +521,7 @@ public class BattleController implements Initializable {
             playerHpBar.setProgress(playerRenewal);
             playerHp.setText(Integer.toString(playerDecrease));
             monsterHeatBox.setVisible(false);
+            monsterEffect1.setVisible(true);
         }  );
 
         new Thread(sleeper).start();
@@ -488,7 +531,9 @@ public class BattleController implements Initializable {
     public void playerRefresh(){
         if(playerDecrease <= 0){
             System.out.println("패배");
+            loseView();
             BattleDao.getInstance().playerNowInfor(player);
+            BattleDao.getInstance().playerMaxInfor(player);
             // villageBtn();
         }else{
             // 시간차
@@ -502,6 +547,8 @@ public class BattleController implements Initializable {
             };
             sleeper.setOnSucceeded( event -> {
                 playerHeatBox.setVisible(false);
+                monsterEffect1.setVisible(false);
+                btnlist.setVisible(true);
             }  );
 
             new Thread(sleeper).start();
@@ -515,6 +562,13 @@ public class BattleController implements Initializable {
             player.setMoney(player.getMoney()+monsterDtos.getDropGold());
             BattleDao.getInstance().playerNowInfor(player);
             System.out.println("승리");
+            winView();
+            // 플레이어 현재 데이터 저장
+            BattleDao.getInstance().playerNowInfor(player);
+            BattleDao.getInstance().playerMaxInfor(player);
+            System.out.println(player.getExp());
+            System.out.println(player.getMoney());
+            // villageBtn();
         }else{
             monsterAttack();
         }
@@ -524,6 +578,7 @@ public class BattleController implements Initializable {
 
     // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
     public void levelUp(){
+        playerexp.setStyle("-fx-accent: yellow;");
         if(player.getExp() >= 51400){
             playerexp.setProgress(1);
             if(player.getLevel() != 11){
@@ -531,7 +586,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 25800 && player.getExp() < 51400){
-            playerexp.setProgress(player.getExp()/51400);
+            playerexp.setProgress((double)player.getExp()/51400);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("51400");
             if(player.getLevel() != 10){
@@ -539,7 +594,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 13000 && player.getExp() < 25800){
-            playerexp.setProgress(player.getExp()/25800);
+            playerexp.setProgress((double)player.getExp()/25800);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("25800");
             if(player.getLevel() != 9){
@@ -547,7 +602,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 6600 && player.getExp() < 13000){
-            playerexp.setProgress(player.getExp()/13000);
+            playerexp.setProgress((double)player.getExp()/13000);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("13000");
             if(player.getLevel() != 8){
@@ -555,7 +610,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 3400 && player.getExp() < 6600){
-            playerexp.setProgress(player.getExp()/6600);
+            playerexp.setProgress((double)player.getExp()/6600);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("6600");
             if(player.getLevel() != 7){
@@ -563,7 +618,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 1800 && player.getExp() < 3400){
-            playerexp.setProgress(player.getExp()/3400);
+            playerexp.setProgress((double)player.getExp()/3400);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("3400");
             if(player.getLevel() != 6){
@@ -571,7 +626,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 1000 && player.getExp() < 1800){
-            playerexp.setProgress(player.getExp()/1800);
+            playerexp.setProgress((double)player.getExp()/1800);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("1800");
             if(player.getLevel() != 5){
@@ -579,7 +634,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+10);
             }
         }else if(player.getExp() >= 600 && player.getExp() < 1000){
-            playerexp.setProgress(player.getExp()/1000);
+            playerexp.setProgress((double)player.getExp()/1000);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("1000");
             if(player.getLevel() != 4){
@@ -587,7 +642,7 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 400 && player.getExp() < 600){
-            playerexp.setProgress(player.getExp()/600);
+            playerexp.setProgress((double)player.getExp()/600);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("600");
             if(player.getLevel() != 3){
@@ -595,25 +650,24 @@ public class BattleController implements Initializable {
                 player.setStatpoint(player.getStatpoint()+5);
             }
         }else if(player.getExp() >= 100 && player.getExp() < 400){
-            playerexp.setProgress(player.getExp()/400);
+            playerexp.setProgress((double)player.getExp() /400);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("400");
             if(player.getLevel() != 2){
                 player.setLevel(2);
                 player.setStatpoint(player.getStatpoint()+5);
             }
-        }else{
-            playerexp.setProgress(player.getExp()/100);
+        }else if(player.getExp() < 100){
+            playerexp.setProgress((double)player.getExp()/100);
             playerExp.setText(Integer.toString(player.getExp()));
             playerMaxExp.setText("100");
         }
-        playerexp.setStyle("-fx-accent: yellow;");
     }
 
     // 마을로 이동 메소드
     public void villageBtn(){
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("village_test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("village.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
         primaryStage.setScene(scene);
@@ -622,6 +676,17 @@ public class BattleController implements Initializable {
             System.out.println(e);
         }
     }
+
+    // 플레이어 승리시 화면표시
+    public void winView(){
+        System.out.println("함수가 실행됩니다.");
+        win.setVisible(true);
+    }
+    public void loseView(){
+        System.out.println("함수가 실행됩니다.");
+        lose.setVisible(true);
+    }
+
 
 
     // 차준영 캐릭터 스텟창 db에서 정보 가져오기
@@ -648,22 +713,85 @@ public class BattleController implements Initializable {
     //힘 메소드
     int count = player.getStatpoint();
     public void str(){
-            count++;
-            System.out.println(count);
+        if(player.getStatpoint() != 0){
+            player.setStatpoint(player.getStatpoint()-1);
+            test123.setText(Integer.toString(player.getStatpoint()));
+            player.setStr(player.getStr()+1);
+            strtest.setText(Integer.toString(player.getStr()));
 
+        }
     }
     //민첩 메소드
     public void dex(){
-
+        if(player.getStatpoint() != 0){
+            player.setStatpoint(player.getStatpoint()-1);
+            test123.setText(Integer.toString(player.getStatpoint()));
+            player.setDex(player.getDex()+1);
+            dextest.setText(Integer.toString(player.getDex()));
+        }
     }
     //지능 메소드
-    public void wis(){
+    public void wis() {
+        if (player.getStatpoint() != 0) {
+            player.setStatpoint(player.getStatpoint() - 1);
+            test123.setText(Integer.toString(player.getStatpoint()));
+            player.setWis(player.getWis() + 1);
+            wistest.setText(Integer.toString(player.getWis()));
+
+        }
 
     }
+    // 스탯 찍고 x 버튼 눌렀을때 실행되는 메소드
+    public void playerstatpoint(){
+        //스텟 다 찍으면 db에 저장 메서드
+        PlayerDto playerDto = new PlayerDto();
+
+        playerDto.setStatpoint(player.getStatpoint());
+        playerDto.setStr(player.getStr());
+        playerDto.setDex(player.getDex());
+        playerDto.setWis(player.getWis());
+        playerDto.setMno(player.getMno());
+        System.out.println(playerDto);
+
+        boolean result = PlayerDao.getInstance().playerstatpoint(playerDto);
+
+        if (result) {
+            System.out.println("캐릭터 스탯 저장 성공");
+        } else {
+            System.out.println("캐릭터 스탯 저장 실패");
+        }
+    }
+
+
     /*
         1. if문으로 포인트가 0일때 버튼 활성화/비활성화
         2. 포인트가 0이 아니면 힘,민첩,지능 증가 버튼 클릭
         3. 클릭 시 포인트 1 감소하고 해당 스텟 1 증가
         4. 증가한 스텟 dto에 set으로 저장
     */
+
+//    // str에 따른 스텟 변경
+//                for(int i = 1; i <= playerDto.getStr(); i++){
+//        if(playerDto.getStr() != 0){
+//            playerDto.setMhp(playerDto.getMhp()+5);
+//            playerDto.setPower(playerDto.getPower()+2);
+//            playerDto.setDefence(playerDto.getDefence()+1);
+//        }
+//    }
+//    // dex에 따른 스텟 변경
+//                for(int i = 1; i <= playerDto.getDex(); i++){
+//        if(playerDto.getDex() != 0){
+//            playerDto.setEva(playerDto.getEva()+2);
+//            playerDto.setSpd(playerDto.getSpd()+2);
+//            playerDto.setPower(playerDto.getPower()+1);
+//        }
+//    }
+//    // wis에 따른 스텟 변경
+//                for(int i = 1; i <= playerDto.getWis(); i++){
+//        if(playerDto.getWis() != 0){
+//            playerDto.setMmp(playerDto.getMmp()+5);
+//            playerDto.setEva(playerDto.getEva()+1);
+//            playerDto.setSkillpower(playerDto.getSkillpower()+3);
+//        }
+//    }
 }

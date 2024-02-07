@@ -46,31 +46,6 @@ public class PlayerDao extends Dao{
                 playerDto.setSpd( rs.getInt("spd") );
                 playerDto.setMno( rs.getInt("mno") );
 
-                // str에 따른 스텟 변경
-                for(int i = 1; i <= playerDto.getStr(); i++){
-                    if(playerDto.getStr() != 0){
-                        playerDto.setMhp(playerDto.getMhp()+5);
-                        playerDto.setPower(playerDto.getPower()+2);
-                        playerDto.setDefence(playerDto.getDefence()+1);
-                    }
-                }
-                // dex에 따른 스텟 변경
-                for(int i = 1; i <= playerDto.getDex(); i++){
-                    if(playerDto.getDex() != 0){
-                        playerDto.setEva(playerDto.getEva()+2);
-                        playerDto.setSpd(playerDto.getSpd()+2);
-                        playerDto.setPower(playerDto.getPower()+1);
-                    }
-                }
-                // wis에 따른 스텟 변경
-                for(int i = 1; i <= playerDto.getWis(); i++){
-                    if(playerDto.getWis() != 0){
-                        playerDto.setMmp(playerDto.getMmp()+5);
-                        playerDto.setEva(playerDto.getEva()+1);
-                        playerDto.setSkillpower(playerDto.getSkillpower()+3);
-                    }
-                }
-
                 playerDtos.add(playerDto);
             }
         }catch (Exception e){
@@ -124,6 +99,27 @@ public class PlayerDao extends Dao{
             System.out.println("characterGeneration : " + e );
         }
         // 0 이면 실패
+        return false;
+    }
+    //스탯 찍으면 db 저장 메서드
+    public boolean playerstatpoint(PlayerDto playerDto){
+        try {
+            String sql = "update player set statpoint = ?, str = ?, dex = ?, wis = ? where mno = ?";
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,playerDto.getStatpoint());
+            ps.setInt(2,playerDto.getStr());
+            ps.setInt(3,playerDto.getDex());
+            ps.setInt(4,playerDto.getWis());
+            ps.setInt(5,playerDto.getMno());
+            int counts = ps.executeUpdate();
+            if(counts == 1){
+                System.out.println("DB업데이트 성공");
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("DB업데이트 실패"+e);
+        }
         return false;
     }
 

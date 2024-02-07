@@ -8,8 +8,8 @@ public class MonsterDto {
         private int monsterHp = 30;
         private int monsterPower = 7;
         private int monsterDefence = 2;
-        private int dropGold = 5;
-        private int dropExp = 10;
+        private int dropGold = 10;
+        private int dropExp = 30;
 
         public MonsterDto(){}
 
