@@ -46,31 +46,6 @@ public class PlayerDao extends Dao{
                 playerDto.setSpd( rs.getInt("spd") );
                 playerDto.setMno( rs.getInt("mno") );
 
-                // str에 따른 스텟 변경
-                for(int i = 1; i <= playerDto.getStr(); i++){
-                    if(playerDto.getStr() != 0){
-                        playerDto.setMhp(playerDto.getMhp()+5);
-                        playerDto.setPower(playerDto.getPower()+2);
-                        playerDto.setDefence(playerDto.getDefence()+1);
-                    }
-                }
-                // dex에 따른 스텟 변경
-                for(int i = 1; i <= playerDto.getDex(); i++){
-                    if(playerDto.getDex() != 0){
-                        playerDto.setEva(playerDto.getEva()+2);
-                        playerDto.setSpd(playerDto.getSpd()+2);
-                        playerDto.setPower(playerDto.getPower()+1);
-                    }
-                }
-                // wis에 따른 스텟 변경
-                for(int i = 1; i <= playerDto.getWis(); i++){
-                    if(playerDto.getWis() != 0){
-                        playerDto.setMmp(playerDto.getMmp()+5);
-                        playerDto.setEva(playerDto.getEva()+1);
-                        playerDto.setSkillpower(playerDto.getSkillpower()+3);
-                    }
-                }
-
                 playerDtos.add(playerDto);
             }
         }catch (Exception e){
@@ -101,7 +76,6 @@ public class PlayerDao extends Dao{
         }
         // Player DB 에서 회원 번호 없으면 (캐릭터 없는것) false 반환
         return false;
-
     }
 
     //회원 가입 후 캐릭터 생성 버튼 클릭시 메서드

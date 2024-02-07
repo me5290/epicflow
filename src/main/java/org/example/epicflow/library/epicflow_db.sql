@@ -11,9 +11,6 @@ create table member(
     mpw varchar(13) not null				-- 회원비밀번호
 );
 
-insert into member(mid , mpw) values('aaa' , 'aaa123');
-insert into member(mid , mpw) values('bbb' , 'bbb123');
-
 # 캐릭터테이블
 drop table if exists player;
 create table player(
@@ -40,14 +37,22 @@ create table player(
     foreign key(mno) references member(mno)
 );
 
-insert into player(pname) values('zl존민형');
-insert into player(pname) values('아기준영');
+# 몬스터테이블
+drop table if exists monster;
+create table monster(
+	monsterno int auto_increment primary key,	-- 몬스터 번호
+    monstername varchar(10),					-- 몬스터 이름
+    monstermhp int,								-- 몬스터 최대체력
+    monsterhp int,								-- 몬스터 체력
+    monsterpower int,							-- 몬스터 공격력
+    monsterdefence int,							-- 몬스터 방어력
+    dropgold int,								-- 드랍 골드
+    dropexp int									-- 드랍 경험치
+);
 
-update player set mno = 1 where pno = 1;
-update player set str = 5 where pno = 1;
-update player set dex = 2 where pno = 1;
-update player set wis = 3 where pno = 1;
-update player set mno = 2 where pno = 2;
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('슬라임',30,30,7,2,10,10);
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('고블린',100,100,12,5,50,50);
 
 select * from member;
 select * from player;
+select * from monster;

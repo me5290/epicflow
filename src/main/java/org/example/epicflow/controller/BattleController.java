@@ -244,6 +244,9 @@ public class BattleController implements Initializable {
                 monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
             }
 
+            // 마나 감소
+            player.setMp(player.getMp()-10);
+
             turnState = !turnState;
 
             // 이펙트 효과 보이기
@@ -277,7 +280,7 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = damage - monsterDtos.getMonsterDefence();
+            int lastDamage = (int)(damage*1.2) - monsterDtos.getMonsterDefence();
 
             monsterHeatBox.setText(Integer.toString(lastDamage));
 
@@ -286,6 +289,9 @@ public class BattleController implements Initializable {
             }else{
                 monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
             }
+
+            // 마나 감소
+            player.setMp(player.getMp()-20);
 
             turnState = !turnState;
 
@@ -320,7 +326,7 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = damage - monsterDtos.getMonsterDefence();
+            int lastDamage = (int)(damage*1.5) - monsterDtos.getMonsterDefence();
 
             monsterHeatBox.setText(Integer.toString(lastDamage));
 
@@ -329,6 +335,9 @@ public class BattleController implements Initializable {
             }else{
                 monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
             }
+
+            // 마나 감소
+            player.setMp(player.getMp()-40);
 
             turnState = !turnState;
 
@@ -684,7 +693,6 @@ public class BattleController implements Initializable {
     public void str(){
             count++;
             System.out.println(count);
-
     }
     //민첩 메소드
     public void dex(){
@@ -700,4 +708,29 @@ public class BattleController implements Initializable {
         3. 클릭 시 포인트 1 감소하고 해당 스텟 1 증가
         4. 증가한 스텟 dto에 set으로 저장
     */
+
+//    // str에 따른 스텟 변경
+//                for(int i = 1; i <= playerDto.getStr(); i++){
+//        if(playerDto.getStr() != 0){
+//            playerDto.setMhp(playerDto.getMhp()+5);
+//            playerDto.setPower(playerDto.getPower()+2);
+//            playerDto.setDefence(playerDto.getDefence()+1);
+//        }
+//    }
+//    // dex에 따른 스텟 변경
+//                for(int i = 1; i <= playerDto.getDex(); i++){
+//        if(playerDto.getDex() != 0){
+//            playerDto.setEva(playerDto.getEva()+2);
+//            playerDto.setSpd(playerDto.getSpd()+2);
+//            playerDto.setPower(playerDto.getPower()+1);
+//        }
+//    }
+//    // wis에 따른 스텟 변경
+//                for(int i = 1; i <= playerDto.getWis(); i++){
+//        if(playerDto.getWis() != 0){
+//            playerDto.setMmp(playerDto.getMmp()+5);
+//            playerDto.setEva(playerDto.getEva()+1);
+//            playerDto.setSkillpower(playerDto.getSkillpower()+3);
+//        }
+//    }
 }
