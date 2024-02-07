@@ -87,6 +87,7 @@ public class BattleController implements Initializable {
 
     // 플레이어 최대 체력 변수
     int playerDecrease;
+    int Php;
 
     // 플레이어 현재 체력 변수
     double playerRenewal;
@@ -116,6 +117,7 @@ public class BattleController implements Initializable {
 
             // 플레이어 최대체력 저장
             playerDecrease = player.getMhp();
+            Php = player.getHp();
 
             // 경험치와 레벨과 포인트 갱신
             levelUp();
@@ -163,6 +165,8 @@ public class BattleController implements Initializable {
 
             // 몬스터 최대체력 출력
             monsterMaxHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
+            System.out.println("초기값");
+            System.out.println(player);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -385,9 +389,9 @@ public class BattleController implements Initializable {
         playerHeatBox.setText(Integer.toString((int)defenceDamage));
 
         if(player.getMhp() == playerDecrease){
-            playerDecrease = player.getMhp()-(int)defenceDamage;
+            Php = player.getMhp()-(int)defenceDamage; //
         }else{
-            playerDecrease = (int)(playerRenewal*player.getMhp())-(int)defenceDamage;
+            Php = (int)(playerRenewal*player.getMhp())-(int)defenceDamage; //
         }
 
         turnState = !turnState;
@@ -408,7 +412,7 @@ public class BattleController implements Initializable {
         };
         sleeper.setOnSucceeded( event -> {
             playerHeatBox.setVisible(true);
-            playerHp.setText(Integer.toString(playerDecrease));
+            playerHp.setText(Integer.toString(Php)); //
         }  );
         new Thread(sleeper).start();
 
@@ -461,9 +465,9 @@ public class BattleController implements Initializable {
                 playerHeatBox.setText(Integer.toString(lastDamage));
 
                 if(player.getMhp() == playerDecrease){
-                    playerDecrease = player.getMhp()-lastDamage;
+                    Php = player.getMhp()-lastDamage; //
                 }else{
-                    playerDecrease = (int)(playerRenewal*player.getMhp())-lastDamage;
+                    Php = (int)(playerRenewal*player.getMhp())-lastDamage; //
                 }
 
                 turnState = !turnState;
@@ -511,7 +515,7 @@ public class BattleController implements Initializable {
         // 백분율 만들기
         playerRenewal = (double) playerDecrease / (double)player.getMhp();
         // 플레이어 현재 체력상태 저장
-        player.setHp(playerDecrease);
+        player.setHp(Php); //
 
         // 시간차
         Task<Void> sleeper = new Task<Void>() {
@@ -525,7 +529,7 @@ public class BattleController implements Initializable {
         sleeper.setOnSucceeded( event -> {
             playerHeatBox.setVisible(true);
             playerHpBar.setProgress(playerRenewal);
-            playerHp.setText(Integer.toString(playerDecrease));
+            playerHp.setText(Integer.toString(Php)); //
             monsterHeatBox.setVisible(false);
             monsterEffect1.setVisible(true);
         }  );
@@ -535,7 +539,7 @@ public class BattleController implements Initializable {
 
     // 플레이어 체력 0일때 종료 메소드
     public void playerRefresh(){
-        if(playerDecrease <= 0){
+        if(Php <= 0){ //
             System.out.println("패배");
             loseView();
             BattleDao.getInstance().playerNowInfor(player);
@@ -772,7 +776,6 @@ public class BattleController implements Initializable {
         player.setEva(player.getEva());
         player.setSpd(player.getSpd());
         player.setMno(player.getMno());
-        // 테스트 출력 나중에 삭제
-        System.out.println(player.toString());
+
     }
 }
