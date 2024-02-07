@@ -82,7 +82,7 @@ public class VillageController {
     public void useMtBtnOn(){
         System.out.println("숙박 버튼 클릭 CONTROLLER");
         System.out.println("숙박버튼 이용 사용자 넘버" + memberNum);
-        PlayerDto playerDto = new PlayerDto();
+        PlayerDto playerDto;
         playerDto =  PlayerDao.getInstance().playerMoneySc(memberNum);
         int pMoney = playerDto.getMoney();
         int Mhp = playerDto.getMhp();
