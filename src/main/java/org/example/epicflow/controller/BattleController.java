@@ -226,7 +226,7 @@ public class BattleController implements Initializable {
     // 스킬1 이벤트
     public void skill1(){
 
-        if( turnState ){
+        if( turnState && player.getMp() >= 10){
             attacklist.setVisible(false);
             btnlist.setVisible(true);
 
@@ -247,6 +247,8 @@ public class BattleController implements Initializable {
 
             // 마나 감소
             player.setMp(player.getMp()-10);
+            playerMp.setText(Integer.toString(player.getMp()));
+            playerMpBar.setProgress((double) player.getMp()/player.getMmp());
 
             turnState = !turnState;
 
@@ -272,7 +274,7 @@ public class BattleController implements Initializable {
     // 스킬2 이벤트
     public void skill2(){
 
-        if( turnState ){
+        if( turnState && player.getMp() >= 20){
             attacklist.setVisible(false);
             btnlist.setVisible(true);
 
@@ -293,6 +295,8 @@ public class BattleController implements Initializable {
 
             // 마나 감소
             player.setMp(player.getMp()-20);
+            playerMp.setText(Integer.toString(player.getMp()));
+            playerMpBar.setProgress((double) player.getMp()/player.getMmp());
 
             turnState = !turnState;
 
@@ -318,7 +322,7 @@ public class BattleController implements Initializable {
     // 스킬3 이벤트
     public void skill3(){
 
-        if( turnState ){
+        if( turnState && player.getMp() >= 30){
             attacklist.setVisible(false);
             btnlist.setVisible(true);
 
@@ -338,7 +342,9 @@ public class BattleController implements Initializable {
             }
 
             // 마나 감소
-            player.setMp(player.getMp()-40);
+            player.setMp(player.getMp()-30);
+            playerMp.setText(Integer.toString(player.getMp()));
+            playerMpBar.setProgress((double) player.getMp()/player.getMmp());
 
             turnState = !turnState;
 
@@ -439,7 +445,7 @@ public class BattleController implements Initializable {
     }
     public void exitstatbtn(){
         statPaneview.setVisible(false);
-        playerstatpoint();
+        playerSave();
     }
 
     // 몬스터 공격 메소드
@@ -533,7 +539,6 @@ public class BattleController implements Initializable {
             System.out.println("패배");
             loseView();
             BattleDao.getInstance().playerNowInfor(player);
-            BattleDao.getInstance().playerMaxInfor(player);
             // villageBtn();
         }else{
             // 시간차
@@ -565,7 +570,6 @@ public class BattleController implements Initializable {
             winView();
             // 플레이어 현재 데이터 저장
             BattleDao.getInstance().playerNowInfor(player);
-            BattleDao.getInstance().playerMaxInfor(player);
             System.out.println(player.getExp());
             System.out.println(player.getMoney());
             // villageBtn();
@@ -667,11 +671,11 @@ public class BattleController implements Initializable {
     // 마을로 이동 메소드
     public void villageBtn(){
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("village.fxml"));
-        Scene scene = new Scene(root);
-        Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("village.fxml"));
+            Scene scene = new Scene(root);
+            Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.show();
         }catch (Exception e){
             System.out.println(e);
         }
@@ -687,8 +691,6 @@ public class BattleController implements Initializable {
         lose.setVisible(true);
     }
 
-
-
     // 차준영 캐릭터 스텟창 db에서 정보 가져오기
     public void Statchang(){
         System.out.println(player);
@@ -701,8 +703,6 @@ public class BattleController implements Initializable {
             } else if (statpoint != 0) {
                 // 변수명 바꿔야함
                 test123.setText(Integer.toString(statpoint));
-
-
             }
         }catch (Exception e){
             System.out.println(e);
@@ -711,14 +711,16 @@ public class BattleController implements Initializable {
     }
 
     //힘 메소드
-    int count = player.getStatpoint();
     public void str(){
         if(player.getStatpoint() != 0){
             player.setStatpoint(player.getStatpoint()-1);
             test123.setText(Integer.toString(player.getStatpoint()));
             player.setStr(player.getStr()+1);
             strtest.setText(Integer.toString(player.getStr()));
-
+            // str에 따른 스텟 변경
+            player.setMhp(player.getMhp()+5);
+            player.setPower(player.getPower()+2);
+            player.setDefence(player.getDefence()+1);
         }
     }
     //민첩 메소드
@@ -728,70 +730,43 @@ public class BattleController implements Initializable {
             test123.setText(Integer.toString(player.getStatpoint()));
             player.setDex(player.getDex()+1);
             dextest.setText(Integer.toString(player.getDex()));
+            // dex에 따른 스텟 변경
+            player.setEva(player.getEva()+2);
+            player.setSpd(player.getSpd()+2);
+            player.setPower(player.getPower()+1);
         }
     }
     //지능 메소드
     public void wis() {
         if (player.getStatpoint() != 0) {
-            player.setStatpoint(player.getStatpoint() - 1);
+            player.setStatpoint(player.getStatpoint()-1);
             test123.setText(Integer.toString(player.getStatpoint()));
             player.setWis(player.getWis() + 1);
             wistest.setText(Integer.toString(player.getWis()));
-
-        }
-
-    }
-    // 스탯 찍고 x 버튼 눌렀을때 실행되는 메소드
-    public void playerstatpoint(){
-        //스텟 다 찍으면 db에 저장 메서드
-        PlayerDto playerDto = new PlayerDto();
-
-        playerDto.setStatpoint(player.getStatpoint());
-        playerDto.setStr(player.getStr());
-        playerDto.setDex(player.getDex());
-        playerDto.setWis(player.getWis());
-        playerDto.setMno(player.getMno());
-        System.out.println(playerDto);
-
-        boolean result = PlayerDao.getInstance().playerstatpoint(playerDto);
-
-        if (result) {
-            System.out.println("캐릭터 스탯 저장 성공");
-        } else {
-            System.out.println("캐릭터 스탯 저장 실패");
+            // wis에 따른 스텟 변경
+            player.setMmp(player.getMmp()+5);
+            player.setEva(player.getEva()+1);
+            player.setSkillpower(player.getSkillpower()+3);
         }
     }
-
-
-    /*
-        1. if문으로 포인트가 0일때 버튼 활성화/비활성화
-        2. 포인트가 0이 아니면 힘,민첩,지능 증가 버튼 클릭
-        3. 클릭 시 포인트 1 감소하고 해당 스텟 1 증가
-        4. 증가한 스텟 dto에 set으로 저장
-    */
-
-//    // str에 따른 스텟 변경
-//                for(int i = 1; i <= playerDto.getStr(); i++){
-//        if(playerDto.getStr() != 0){
-//            playerDto.setMhp(playerDto.getMhp()+5);
-//            playerDto.setPower(playerDto.getPower()+2);
-//            playerDto.setDefence(playerDto.getDefence()+1);
-//        }
-//    }
-//    // dex에 따른 스텟 변경
-//                for(int i = 1; i <= playerDto.getDex(); i++){
-//        if(playerDto.getDex() != 0){
-//            playerDto.setEva(playerDto.getEva()+2);
-//            playerDto.setSpd(playerDto.getSpd()+2);
-//            playerDto.setPower(playerDto.getPower()+1);
-//        }
-//    }
-//    // wis에 따른 스텟 변경
-//                for(int i = 1; i <= playerDto.getWis(); i++){
-//        if(playerDto.getWis() != 0){
-//            playerDto.setMmp(playerDto.getMmp()+5);
-//            playerDto.setEva(playerDto.getEva()+1);
-//            playerDto.setSkillpower(playerDto.getSkillpower()+3);
-//        }
-//    }
+    // 스탯 찍고 x 버튼 눌렀을때 DTO에 저장 메소드
+    public void playerSave(){
+        player.setMhp(player.getMhp());
+        player.setHp(player.getHp());
+        player.setMmp(player.getMmp());
+        player.setMp(player.getMp());
+        player.setLevel(player.getLevel());
+        player.setExp(player.getExp());
+        player.setMoney(player.getMoney());
+        player.setStatpoint(player.getStatpoint());
+        player.setPower(player.getPower());
+        player.setDefence(player.getDefence());
+        player.setSkillpower(player.getSkillpower());
+        player.setStr(player.getStr());
+        player.setDex(player.getDex());
+        player.setWis(player.getWis());
+        player.setEva(player.getEva());
+        player.setSpd(player.getSpd());
+        player.setMno(player.getMno());
+    }
 }
