@@ -14,6 +14,7 @@ import org.example.epicflow.model.dao.MemberDao;
 import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MemberDto;
 import org.example.epicflow.model.dto.PlayerDto;
+import javax.xml.stream.Location;
 import java.io.IOException;
 
 
@@ -108,9 +109,13 @@ public class LoginController extends MainApplication {
     public void villageScene(){
         try {
             Parent battle = FXMLLoader.load(getClass().getResource("village.fxml"));
-            Scene scene = new Scene(battle, 1300, 498);
+            Scene scene = new Scene(battle, 1300, 498 );
             Stage primaryStage = (Stage) membership.getScene().getWindow();
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false); // 화면 조정 막기
+            // 마을 위치 시작 지점
+            primaryStage.setX(400);
+            primaryStage.setY(250);
             primaryStage.show();
             System.out.println("primaryStage = " + primaryStage);
             System.out.println("scene = " + scene);

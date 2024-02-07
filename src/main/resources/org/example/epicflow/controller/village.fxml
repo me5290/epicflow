@@ -10,100 +10,130 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.VillageController">
+
+<Pane fx:id="mainPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.VillageController">
    <children>
-      <ImageView fitHeight="680.0" fitWidth="1300.0" onMouseClicked="#store" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../img/village.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="107.0" fitWidth="74.0" layoutX="473.0" layoutY="314.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../img/portal.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="490.0" layoutY="418.0" prefHeight="24.0" prefWidth="41.0" style="-fx-background-color: #fff; -fx-background-radius: 11; -fx-border-color: #00BFFF; -fx-border-width: 2; -fx-border-radius: 10;" text="상점">
-         <font>
-            <Font name="Arial Bold Italic" size="16.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="107.0" fitWidth="74.0" layoutX="157.0" layoutY="262.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../img/portal.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="174.0" layoutY="366.0" prefHeight="24.0" prefWidth="41.0" style="-fx-background-color: #fff; -fx-background-radius: 11; -fx-border-color: #00BFFF; -fx-border-width: 2; -fx-border-radius: 10;" text="여관">
-         <font>
-            <Font name="Arial Bold Italic" size="16.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="87.0" fitWidth="67.0" layoutX="1214.0" layoutY="184.0" onMouseClicked="#huntingGround" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../img/portal.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="1214.0" layoutY="271.0" prefHeight="24.0" prefWidth="62.0" style="-fx-background-color: #fff; -fx-background-radius: 11; -fx-border-color: #00BFFF; -fx-border-width: 2; -fx-border-radius: 10;" text="사냥터">
-         <font>
-            <Font name="Arial Bold Italic" size="16.0" />
-         </font>
-      </Label>
-      <Pane fx:id="opcitybackground" opacity="0.39" prefHeight="498.0" prefWidth="1300.0" style="-fx-background-color: #000;" visible="false" />
-      <HBox fx:id="huntingchoice" prefHeight="498.0" prefWidth="1300.0" visible="false">
+      <Pane fx:id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="1300.0">
          <children>
-            <Pane fx:id="field" onMouseClicked="#field" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+            <ImageView fitHeight="680.0" fitWidth="1300.0" onMouseClicked="#store" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/village.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="107.0" fitWidth="74.0" layoutX="473.0" layoutY="314.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/portal.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="490.0" layoutY="418.0" prefHeight="24.0" prefWidth="41.0" style="-fx-background-color: #fff; -fx-background-radius: 11; -fx-border-color: #00BFFF; -fx-border-width: 2; -fx-border-radius: 10;" text="상점">
+               <font>
+                  <Font name="Arial Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="motelImg" fitHeight="107.0" fitWidth="74.0" layoutX="157.0" layoutY="262.0" onMouseClicked="#motelBtnOn" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/portal.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="174.0" layoutY="366.0" prefHeight="24.0" prefWidth="41.0" style="-fx-background-color: #fff; -fx-background-radius: 11; -fx-border-color: #00BFFF; -fx-border-width: 2; -fx-border-radius: 10;" text="여관">
+               <font>
+                  <Font name="Arial Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="87.0" fitWidth="67.0" layoutX="1214.0" layoutY="184.0" onMouseClicked="#huntingGround" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/portal.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="1214.0" layoutY="271.0" prefHeight="24.0" prefWidth="62.0" style="-fx-background-color: #fff; -fx-background-radius: 11; -fx-border-color: #00BFFF; -fx-border-width: 2; -fx-border-radius: 10;" text="사냥터">
+               <font>
+                  <Font name="Arial Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <Pane fx:id="opcitybackground" opacity="0.39" prefHeight="498.0" prefWidth="1300.0" style="-fx-background-color: #000;" visible="false" />
+            <HBox fx:id="huntingchoice" prefHeight="498.0" prefWidth="1300.0" visible="false">
                <children>
-                  <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="슬라임 사냥터">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
+                  <Pane fx:id="field" onMouseClicked="#field" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="슬라임 사냥터">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="고블린 사냥터">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="고블린 사냥터">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="고블린 사냥터">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
                </children>
-               <HBox.margin>
-                  <Insets right="100.0" />
-               </HBox.margin>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+               <padding>
+                  <Insets bottom="150.0" left="100.0" right="100.0" top="150.0" />
+               </padding>
+            </HBox>
+            <Button fx:id="backBtn" layoutX="1252.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#back" style="-fx-background-color: null;" text="X" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="motelPane" prefHeight="498.0" prefWidth="1300.0" visible="false">
+         <children>
+            <ImageView fx:id="motelBg" fitHeight="498.0" fitWidth="1300.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../img/gameMotel.jpg" />
+               </image>
+            </ImageView>
+            <Pane layoutY="401.0" opacity="0.8" prefHeight="97.0" prefWidth="516.0" style="-fx-background-color: #e4e4e4;">
                <children>
-                  <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="고블린 사냥터">
+                  <Text layoutX="17.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="여관에 오신걸 환영 합니다." wrappingWidth="482.8125">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Text>
-               </children>
-               <HBox.margin>
-                  <Insets right="100.0" />
-               </HBox.margin>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="고블린 사냥터">
+                  <Text layoutX="17.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="하루 숙박에 10골드 입니다.  숙박 하시겠습니까?" wrappingWidth="482.8125">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Text>
-               </children>
-               <HBox.margin>
-                  <Insets right="100.0" />
-               </HBox.margin>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Text layoutX="25.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="고블린 사냥터">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="outMtBtn" layoutX="95.0" layoutY="58.0" mnemonicParsing="false" onAction="#outMtBtnOn" text="나간다" />
+                  <Button fx:id="useMtBtn" layoutX="17.0" layoutY="58.0" mnemonicParsing="false" onAction="#useMtBtnOn" text="숙박한다" />
                </children>
             </Pane>
          </children>
-         <padding>
-            <Insets bottom="150.0" left="100.0" right="100.0" top="150.0" />
-         </padding>
-      </HBox>
-      <Button fx:id="backBtn" layoutX="1252.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#back" style="-fx-background-color: null;" text="X" textFill="WHITE" visible="false">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
+      </Pane>
    </children>
 </Pane>
