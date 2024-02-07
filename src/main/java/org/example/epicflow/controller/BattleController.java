@@ -670,16 +670,20 @@ public class BattleController implements Initializable {
 
     // 마을로 이동 메소드
     public void villageBtn(){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("village.fxml"));
-            Scene scene = new Scene(root);
-            Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
+        // 도망시 플레이어 정보 저장
+        boolean result = BattleDao.getInstance().playerNowInfor(player);
+        if (result){
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("village.fxml"));
+                Scene scene = new Scene(root);
+                Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
+                primaryStage.setScene(scene);
+                primaryStage.show();
+            }catch (Exception e){
+                System.out.println(e);
+            } // try e
+        } // if e
+    } // villageBtn m e
 
     // 플레이어 승리시 화면표시
     public void winView(){
@@ -768,5 +772,7 @@ public class BattleController implements Initializable {
         player.setEva(player.getEva());
         player.setSpd(player.getSpd());
         player.setMno(player.getMno());
+        // 테스트 출력 나중에 삭제
+        System.out.println(player.toString());
     }
 }
