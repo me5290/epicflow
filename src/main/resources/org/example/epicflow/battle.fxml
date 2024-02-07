@@ -154,6 +154,20 @@
             <TextField fx:id="statupdown1" layoutX="524.0" layoutY="149.0" prefHeight="10.0" prefWidth="22.0" text="0" />
             <TextField fx:id="statupdown2" layoutX="524.0" layoutY="190.0" prefHeight="10.0" prefWidth="22.0" text="0" />
          </children>
+         <Pane fx:id="win" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.7" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" visible="false">
+            <children>
+               <Label layoutX="309.0" layoutY="181.0" nodeOrientation="LEFT_TO_RIGHT" text="승리!" textFill="#0400ff">
+                  <font>
+                     <Font name="System Bold" size="80.0" />
+                  </font>
+               </Label>
+               <Button layoutX="334.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#villageBtn" text="마을로 이동">
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </Button>
+            </children>
+         </Pane>
       </AnchorPane>
    </children>
 </AnchorPane>
