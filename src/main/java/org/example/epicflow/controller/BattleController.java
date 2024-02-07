@@ -39,6 +39,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import static org.example.epicflow.controller.LoginController.memberNum;
 
+
 public class BattleController implements Initializable {
 
     @FXML private ProgressBar playerHpBar;
@@ -65,6 +66,7 @@ public class BattleController implements Initializable {
     @FXML private Button powertext;
     @FXML private Pane win;     // 플레이어 승리 시 화면 출력
     @FXML private Pane lose;    // 플레이어 패배 시 화면 출력
+    @FXML private Text strtest,dextest,wistest;
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -392,6 +394,7 @@ public class BattleController implements Initializable {
     //인벤 버튼 종료 버튼 이벤트
     public void exitinvenbtn() {
         inventory.setVisible(false);
+
     }
 
     //캐릭터 스탯창 버튼
@@ -402,6 +405,7 @@ public class BattleController implements Initializable {
     }
     public void exitstatbtn(){
         statPaneview.setVisible(false);
+        playerstatpoint();
     }
 
     // 몬스터 공격 메소드
@@ -648,18 +652,56 @@ public class BattleController implements Initializable {
     //힘 메소드
     int count = player.getStatpoint();
     public void str(){
-            count++;
-            System.out.println(count);
+        if(player.getStatpoint() != 0){
+            player.setStatpoint(player.getStatpoint()-1);
+            test123.setText(Integer.toString(player.getStatpoint()));
+            player.setStr(player.getStr()+1);
+            strtest.setText(Integer.toString(player.getStr()));
 
+        }
     }
     //민첩 메소드
     public void dex(){
-
+        if(player.getStatpoint() != 0){
+            player.setStatpoint(player.getStatpoint()-1);
+            test123.setText(Integer.toString(player.getStatpoint()));
+            player.setDex(player.getDex()+1);
+            dextest.setText(Integer.toString(player.getDex()));
+        }
     }
     //지능 메소드
-    public void wis(){
+    public void wis() {
+        if (player.getStatpoint() != 0) {
+            player.setStatpoint(player.getStatpoint() - 1);
+            test123.setText(Integer.toString(player.getStatpoint()));
+            player.setWis(player.getWis() + 1);
+            wistest.setText(Integer.toString(player.getWis()));
+
+        }
 
     }
+    // 스탯 찍고 x 버튼 눌렀을때 실행되는 메소드
+    public void playerstatpoint(){
+        //스텟 다 찍으면 db에 저장 메서드
+        PlayerDto playerDto = new PlayerDto();
+
+        playerDto.setStatpoint(player.getStatpoint());
+        playerDto.setStr(player.getStr());
+        playerDto.setDex(player.getDex());
+        playerDto.setWis(player.getWis());
+        playerDto.setMno(player.getMno());
+        System.out.println(playerDto);
+
+        boolean result = PlayerDao.getInstance().playerstatpoint(playerDto);
+
+        if (result) {
+            System.out.println("캐릭터 스탯 저장 성공");
+        } else {
+            System.out.println("캐릭터 스탯 저장 실패");
+        }
+    }
+
+
     /*
         1. if문으로 포인트가 0일때 버튼 활성화/비활성화
         2. 포인트가 0이 아니면 힘,민첩,지능 증가 버튼 클릭

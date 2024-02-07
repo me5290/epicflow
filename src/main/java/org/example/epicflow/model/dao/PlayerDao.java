@@ -126,5 +126,26 @@ public class PlayerDao extends Dao{
         // 0 이면 실패
         return false;
     }
+    //스탯 찍으면 db 저장 메서드
+    public boolean playerstatpoint(PlayerDto playerDto){
+        try {
+            String sql = "update player set statpoint = ?, str = ?, dex = ?, wis = ? where mno = ?";
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,playerDto.getStatpoint());
+            ps.setInt(2,playerDto.getStr());
+            ps.setInt(3,playerDto.getDex());
+            ps.setInt(4,playerDto.getWis());
+            ps.setInt(5,playerDto.getMno());
+            int counts = ps.executeUpdate();
+            if(counts == 1){
+                System.out.println("DB업데이트 성공");
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("DB업데이트 실패"+e);
+        }
+        return false;
+    }
 }
 
