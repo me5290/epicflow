@@ -85,17 +85,19 @@ public class BattleController implements Initializable {
     // 턴 상태
     boolean turnState = true;
 
-    // 플레이어 최대 체력 변수
-    int playerDecrease;
-
-    // 플레이어 현재 체력 변수
-    double playerRenewal;
-
     // 몬스터 최대 체력 변수
     int monsterDecrease = monsterDtos.getMonsterHp();
 
     // 몬스터 현재 체력 변수
     double monsterRenewal;
+
+    double playerPercent;
+
+    // 플레이어 최대 체력 변수
+    int playerDecrease;
+
+    // 플레이어 현재 체력 변수
+    int playerRenewal;
 
     // 플레이어 정보 player 변수에 저장
     public void memberNum(){
@@ -114,14 +116,14 @@ public class BattleController implements Initializable {
             // 플레이어 정보 찾아오기 메소드 실행
             memberNum();
 
-            // 플레이어 최대체력 저장
             playerDecrease = player.getMhp();
+            playerRenewal = player.getHp();
 
             // 경험치와 레벨과 포인트 갱신
             levelUp();
 
             // 플레이어 hp
-            playerHpBar.setProgress(player.getMhp()*0.01);
+            playerHpBar.setProgress((double)player.getHp()/player.getMhp());
             playerHpBar.setStyle("-fx-accent: red;");
 
             // 플레이어 mp
@@ -459,11 +461,12 @@ public class BattleController implements Initializable {
 
                 playerHeatBox.setText(Integer.toString(lastDamage));
 
-                if(player.getMhp() == playerDecrease){
-                    playerDecrease = player.getMhp()-lastDamage;
-                }else{
-                    playerDecrease = (int)(playerRenewal*player.getMhp())-lastDamage;
-                }
+                playerRenewal = playerRenewal-lastDamage;
+
+                System.out.println(playerRenewal);
+
+                // 플레이어 현재 체력상태 저장
+                player.setHp(playerRenewal);
 
                 turnState = !turnState;
 
@@ -508,9 +511,7 @@ public class BattleController implements Initializable {
     // 플레이어체력 갱신 메소드
     public void playerHpRenewal(){
         // 백분율 만들기
-        playerRenewal = (double) playerDecrease / (double)player.getMhp();
-        // 플레이어 현재 체력상태 저장
-        player.setHp(playerDecrease);
+        playerPercent = (double) playerRenewal / player.getMhp();
 
         // 시간차
         Task<Void> sleeper = new Task<Void>() {
@@ -523,8 +524,8 @@ public class BattleController implements Initializable {
         };
         sleeper.setOnSucceeded( event -> {
             playerHeatBox.setVisible(true);
-            playerHpBar.setProgress(playerRenewal);
-            playerHp.setText(Integer.toString(playerDecrease));
+            playerHpBar.setProgress(playerPercent);
+            playerHp.setText(Integer.toString(playerRenewal));
             monsterHeatBox.setVisible(false);
             monsterEffect1.setVisible(true);
         }  );
