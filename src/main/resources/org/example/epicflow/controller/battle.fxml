@@ -238,15 +238,12 @@
          <children>
             <Button layoutX="607.0" mnemonicParsing="false" onMouseClicked="#exitstatbtn" prefHeight="45.0" prefWidth="40.0" text="x" />
             <Text layoutX="61.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원 아이디 정보" />
-            <Button layoutX="594.0" layoutY="101.0" mnemonicParsing="false" text="▼" />
-            <Button layoutX="566.0" layoutY="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="▲" />
-            <Button layoutX="566.0" layoutY="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="▲" />
-            <Button layoutX="594.0" layoutY="149.0" mnemonicParsing="false" text="▼" />
-            <Button layoutX="566.0" layoutY="192.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="▲" />
-            <Button layoutX="594.0" layoutY="192.0" mnemonicParsing="false" text="▼" />
-            <Text layoutX="531.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
-            <Text layoutX="531.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" wrappingWidth="15.189453125" />
-            <Text layoutX="531.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
+            <Button layoutX="566.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#str" prefHeight="25.0" prefWidth="28.0" text="▲" />
+            <Button layoutX="566.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#dex" prefHeight="25.0" prefWidth="28.0" text="▲" />
+            <Button layoutX="566.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#wis" prefHeight="25.0" prefWidth="28.0" text="▲" />
+            <Text fx:id="strtest" layoutX="531.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
+            <Text fx:id="dextest" layoutX="531.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
+            <Text fx:id="wistest" layoutX="531.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
             <ImageView fitHeight="200.0" fitWidth="146.0" layoutX="39.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../img/character.png" />
@@ -259,7 +256,7 @@
             <Text layoutX="492.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="민첩" wrappingWidth="35.0" />
             <Text layoutX="492.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="지능" wrappingWidth="35.0" />
             <Text layoutX="489.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="남은 스킬 포인트" wrappingWidth="114.189453125" />
-            <Text layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
+            <Text fx:id="test123" layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
          </children>
       </AnchorPane>
       <Label fx:id="monsterHeatBox" alignment="CENTER" layoutX="519.0" layoutY="29.0" prefHeight="25.0" prefWidth="91.0" text="0" textAlignment="CENTER" textFill="RED" visible="false">

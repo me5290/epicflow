@@ -4,6 +4,7 @@ import org.example.epicflow.controller.BattleController;
 import org.example.epicflow.controller.PlayerController;
 import org.example.epicflow.model.dto.PlayerDto;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BattleDao extends Dao{
@@ -39,6 +40,4 @@ public class BattleDao extends Dao{
         }
         return false;
     }
-
-
 }
