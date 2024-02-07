@@ -441,8 +441,6 @@ public class BattleController implements Initializable {
     //캐릭터 스탯창 버튼
     public void stabtnlist(){
         statPaneview.setVisible(true);
-        // 준영 스텟포인트 불러오기 테스트
-        Statchang();
     }
     public void exitstatbtn(){
         statPaneview.setVisible(false);
@@ -693,25 +691,6 @@ public class BattleController implements Initializable {
     public void loseView(){
         System.out.println("함수가 실행됩니다.");
         lose.setVisible(true);
-    }
-
-    // 차준영 캐릭터 스텟창 db에서 정보 가져오기
-    public void Statchang(){
-        System.out.println(player);
-        int statpoint = player.getStatpoint();
-
-        System.out.println("statpoint = " + statpoint);
-        try {
-            if (statpoint == 0) {
-                System.out.println("스텟이 없습니다");
-            } else if (statpoint != 0) {
-                // 변수명 바꿔야함
-                test123.setText(Integer.toString(statpoint));
-            }
-        }catch (Exception e){
-            System.out.println(e);
-        }
-
     }
 
     //힘 메소드
