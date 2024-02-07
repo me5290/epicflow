@@ -50,7 +50,7 @@ public class BattleController implements Initializable {
     @FXML private Pane exitalert;
     @FXML private Button invenBtn;
     @FXML private AnchorPane inventory;
-    @FXML private ImageView character,normalEffect,skill1Effect,skill2Effect,skill3Effect,monsterEffect1,monsterEffect2;
+    @FXML private ImageView character,normalEffect,skill1Effect,skill2Effect,skill3Effect,monsterEffect1,monsterEffect2,defenceEffect;
     @FXML private Button statbtn;
     @FXML private AnchorPane statPane;
     @FXML private Button exitstatbtn;
@@ -408,6 +408,7 @@ public class BattleController implements Initializable {
         };
         sleeper.setOnSucceeded( event -> {
             playerHeatBox.setVisible(true);
+            defenceEffect.setVisible(true);
             playerHp.setText(Integer.toString(playerDecrease));
         }  );
         new Thread(sleeper).start();
@@ -552,6 +553,7 @@ public class BattleController implements Initializable {
             };
             sleeper.setOnSucceeded( event -> {
                 playerHeatBox.setVisible(false);
+                defenceEffect.setVisible(false);
                 monsterEffect1.setVisible(false);
                 btnlist.setVisible(true);
             }  );
@@ -577,8 +579,6 @@ public class BattleController implements Initializable {
             monsterAttack();
         }
     }
-
-
 
     // 레벨업,경험치 출력 메소드(마을,배틀에서 필수)
     public void levelUp(){
