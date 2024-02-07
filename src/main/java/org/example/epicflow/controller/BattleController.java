@@ -752,7 +752,5 @@ public class BattleController implements Initializable {
         player.setEva(player.getEva());
         player.setSpd(player.getSpd());
         player.setMno(player.getMno());
-        // 테스트 출력 나중에 삭제
-        System.out.println(player.toString());
     }
 }
