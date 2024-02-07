@@ -32,13 +32,6 @@ public class VillageController {
     int memberNum = LoginController.getMemberNum();
 
 
-//    // 테스트 한거 없애도됨
-//    @FXML public ImageView bFild;
-//    @FXML public HBox huntingchoice;
-//    @FXML public Button backBtn;
-//    @FXML public Pane field;
-
-
     // === 로그인 성공하면 빌리지
     // === 상점 클릭하면 상점 fxml
     public void store(){
@@ -103,16 +96,5 @@ public class VillageController {
         motelPane.setVisible(false);
         bg.setVisible(true);
     }
-
-//    // 테스트 없애도됨
-//    public void huntingGround(){
-//        huntingchoice.setVisible(true);
-//        backBtn.setVisible(true);
-//
-//    }
-//    public void back(){
-//        huntingchoice.setVisible(false);
-//        backBtn.setVisible(false);
-//    }
 
 } // c e
