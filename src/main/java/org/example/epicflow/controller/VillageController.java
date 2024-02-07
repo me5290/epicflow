@@ -22,9 +22,10 @@ public class VillageController {
     @FXML private Pane field;
 
     @FXML public Pane mainPane; // 메인 화면
-    @FXML public Pane bg;
+    @FXML public Pane bg;       // 마을 Pane
     @FXML public Button store;  // 상점 버튼
     @FXML public Button motelBtn; // 여관 버튼
+    @FXML public ImageView motelImg; // 여관 포탈 이미지
 
     @FXML public Pane motelPane; // 여관 버튼 클릭시 변경할 화면
     @FXML public ImageView motelBg; // 여관 백그라운드 이미지
