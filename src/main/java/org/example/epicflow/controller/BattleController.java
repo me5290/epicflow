@@ -667,7 +667,7 @@ public class BattleController implements Initializable {
     // 마을로 이동 메소드
     public void villageBtn(){
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("village_test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("village.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = (Stage)villageBtn.getScene().getWindow();
         primaryStage.setScene(scene);

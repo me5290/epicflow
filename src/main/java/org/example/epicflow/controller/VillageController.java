@@ -20,6 +20,7 @@ public class VillageController {
     @FXML private HBox huntingchoice;
     @FXML private Button backBtn;
     @FXML private Pane field;
+
     @FXML public Pane mainPane; // 메인 화면
     @FXML public Pane bg;
     @FXML public Button store;  // 상점 버튼
@@ -68,7 +69,6 @@ public class VillageController {
         huntingchoice.setVisible(false);
         backBtn.setVisible(false);
     }
-}
 
     // 여관 버튼 클릭 이벤트 실행
     public void motelBtnOn(){
@@ -100,10 +100,6 @@ public class VillageController {
             // 박시현 여기까지 작업 완료
             // 후에 할일은 회복후 마을로 이동할 것인지 어떻게할것인지 선택
         }
-
-
-
-
     }
 
     // 여관 에서 나가기 버튼 클릭시 이벤트
@@ -112,16 +108,4 @@ public class VillageController {
         motelPane.setVisible(false);
         bg.setVisible(true);
     }
-
-//    // 테스트 없애도됨
-//    public void huntingGround(){
-//        huntingchoice.setVisible(true);
-//        backBtn.setVisible(true);
-//
-//    }
-//    public void back(){
-//        huntingchoice.setVisible(false);
-//        backBtn.setVisible(false);
-//    }
-
 } // c e
