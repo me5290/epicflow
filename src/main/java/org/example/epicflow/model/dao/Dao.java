@@ -21,9 +21,9 @@ public class Dao {
                     "jdbc:mysql://localhost:3306/epicflow",
                     "root" , "1234"
             );
-            System.out.println("<DB연동 성공>");
+            System.out.println("[ ● 안내 : DB 연동 성공 ● ]");
         }catch (Exception e){
-            System.out.println("<DB연동 실패>"+e);
+            System.out.println("[ ※ 안내 : DB 연동 실패 ※ ]"+e);
         }
     }
 }

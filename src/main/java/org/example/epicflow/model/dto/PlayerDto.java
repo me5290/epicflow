@@ -22,6 +22,8 @@ public class PlayerDto {
     private int spd;        // 속도
     private int mno;        // 회원 번호
 
+// ================================ 메소드 ================================ //
+    // ===== GETTER / SETTER
     public int getPno() {
         return pno;
     }
@@ -182,6 +184,7 @@ public class PlayerDto {
         this.mno = mno;
     }
 
+// ===== TOSTRING
     @Override
     public String toString() {
         return "PlayerDto{" +
