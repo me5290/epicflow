@@ -16,7 +16,7 @@
 
 <Pane fx:id="mainVuew" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.epicflow.controller.LoginController">
    <children>
-      <Button fx:id="ok" layoutX="322.0" layoutY="260.0" mnemonicParsing="false" onAction="#Onlogin" prefHeight="30.0" prefWidth="112.0" text="로그인" />
+      <Button layoutX="322.0" layoutY="260.0" mnemonicParsing="false" onAction="#Onlogin" prefHeight="30.0" prefWidth="112.0" text="로그인" />
       <TextField fx:id="inputId" layoutX="388.0" layoutY="137.0" />
       <PasswordField fx:id="inputPw" layoutX="388.0" layoutY="201.0" />
       <Text layoutX="316.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="아이디" />

@@ -2,9 +2,9 @@ package org.example.epicflow.model.dto;
 
 public class MemberDto {
 // ================================ 필드 ================================ //
-    int mno;
-    String mid;
-    String mpw;
+    int mno;        // 회원번호
+    String mid;     // 아이디
+    String mpw;     // 비밀번호
 
 // ================================ 생성자 ================================ //
     // ===== 기본 생성자
@@ -46,6 +46,7 @@ public class MemberDto {
     public void setMpw(String mpw) {
         this.mpw = mpw;
     }
+
     // ===== TOSTRING
     @Override
     public String toString() {
