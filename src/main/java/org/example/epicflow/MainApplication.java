@@ -20,6 +20,6 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        // 2024-02-08 오후 01:41 취합
+        // 2024-02-08 오후 01:44 취합
     }
 }
