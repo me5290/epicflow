@@ -23,7 +23,7 @@ create table player(
     job int default 0,						-- 직업
     level int default 1,					-- 레벨
     exp int default 0,						-- 경험치
-    money int default 0,					-- 돈
+    money int default 10,					-- 돈
     statpoint int default 0,				-- 포인트
     power int default 10,					-- 공격력
     defence int default 0,					-- 방어력
@@ -50,8 +50,10 @@ create table monster(
     dropexp int									-- 드랍 경험치
 );
 
-insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('슬라임',30,30,7,2,10,10);
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('슬라임',30,30,7,2,60,60);
 insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('고블린',100,100,12,5,50,50);
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('미노타우르스',500,500,40,15,650,650);
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('드래곤',1000,1000,100,50,1200,1200);
 
 select * from member;
 select * from player;
