@@ -18,7 +18,7 @@ public class Dao {
 
             // 2. 연동된 결과의 (구현체)객체를 Connection 인터페이스에 대입한다
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/epicflow",
+                    "jdbc:mysql://192.168.17.94:3306/epicflow",
                     "root" , "1234"
             );
             System.out.println("<DB연동 성공>");
