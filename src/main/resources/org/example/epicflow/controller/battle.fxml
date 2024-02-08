@@ -346,14 +346,133 @@
       <AnchorPane fx:id="statPaneview" layoutX="111.0" layoutY="49.0" prefHeight="401.0" prefWidth="634.0" style="-fx-background-color: white;" visible="false">
          <children>
             <Button layoutX="607.0" mnemonicParsing="false" onMouseClicked="#exitstatbtn" prefHeight="45.0" prefWidth="40.0" text="x" />
-            <Text layoutX="61.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원 아이디 정보" />
+            <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="343.0" prefHeight="25.0" prefWidth="124.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 5;" text="소지 골드" />
+                  <Text fx:id="stPMoney" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 5;" text="0" textAlignment="CENTER" wrappingWidth="76.189453125">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="48.0" layoutY="265.0" prefHeight="25.0" prefWidth="124.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 10;" text="LV">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stPLovel" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 25;" text="0" textAlignment="CENTER" wrappingWidth="61.189453125">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="223.0" layoutY="130.0" prefHeight="25.0" prefWidth="217.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 0;" text="공격력" wrappingWidth="63.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stPPower" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 20;" text="0" textAlignment="CENTER" wrappingWidth="102.189453125">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="223.0" layoutY="160.0" prefHeight="25.0" prefWidth="217.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 0;" text="방어력" wrappingWidth="63.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stPDef" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 20;" text="0" textAlignment="CENTER" wrappingWidth="102.189453125">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="223.0" layoutY="190.0" prefHeight="25.0" prefWidth="217.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 0;" text="스킬데미지" wrappingWidth="80.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stPSkillPower" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 0;" text="0" textAlignment="CENTER" wrappingWidth="108.189453125">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="223.0" layoutY="220.0" prefHeight="25.0" prefWidth="217.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 0;" text="회피" wrappingWidth="63.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stPEva" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 20;" text="0" textAlignment="CENTER" wrappingWidth="102.189453125">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="223.0" layoutY="250.0" prefHeight="25.0" prefWidth="217.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 0;" text="속도" wrappingWidth="63.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stPSpd" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-translate-x: 20;" text="0" textAlignment="CENTER" wrappingWidth="102.189453125">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <Label layoutX="287.0" layoutY="9.0" text="Status" textFill="#00ccff">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <Text fx:id="stPName" layoutX="62.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원 아이디 정보" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Text>
+            <Text fx:id="stPName1" fill="#30ab00" layoutX="93.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="초보모험가" textAlignment="CENTER" />
+            <Text fx:id="stPName2" layoutX="61.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="직업" />
             <Button layoutX="566.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#str" prefHeight="25.0" prefWidth="28.0" text="▲" />
             <Button layoutX="566.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#dex" prefHeight="25.0" prefWidth="28.0" text="▲" />
             <Button layoutX="566.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#wis" prefHeight="25.0" prefWidth="28.0" text="▲" />
             <Text fx:id="strtest" layoutX="531.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
             <Text fx:id="dextest" layoutX="531.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
             <Text fx:id="wistest" layoutX="531.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
-            <ImageView fitHeight="200.0" fitWidth="146.0" layoutX="39.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="200.0" fitWidth="146.0" layoutX="38.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../img/character.png" />
                </image>
@@ -365,7 +484,47 @@
             <Text layoutX="492.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="민첩" wrappingWidth="35.0" />
             <Text layoutX="492.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="지능" wrappingWidth="35.0" />
             <Text layoutX="489.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="남은 스킬 포인트" wrappingWidth="114.189453125" />
-            <Text fx:id="test123" layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
+            <Text fx:id="stPoint" layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
+            <HBox alignment="TOP_CENTER" layoutX="276.0" layoutY="77.0" prefHeight="17.0" prefWidth="161.0">
+               <children>
+                  <Label fx:id="playerMp1" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" style="-fx-stroke-width: 5;-fx-stroke: black;" text="0" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="/">
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="playerMaxMp1" prefHeight="17.0" prefWidth="70.0" text="0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="276.0" layoutY="46.0" prefHeight="17.0" prefWidth="161.0">
+               <children>
+                  <Label fx:id="playerHp1" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="/">
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="playerMaxHp1" prefHeight="17.0" prefWidth="70.0" text="0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Text fill="RED" layoutX="206.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP" textAlignment="CENTER" wrappingWidth="70.0" />
+            <Text fill="#1500ff" layoutX="206.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MP" textAlignment="CENTER" wrappingWidth="70.0" />
          </children>
       </AnchorPane>
       <Label fx:id="playerHeatBox" alignment="CENTER" layoutX="188.0" layoutY="101.0" prefHeight="25.0" prefWidth="91.0" text="0" textAlignment="CENTER" textFill="#ff5be6" visible="false">

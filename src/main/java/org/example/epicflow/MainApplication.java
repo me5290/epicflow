@@ -21,5 +21,6 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         launch(args);
         // 2024-02-07 오후 06:51 취합
+        // 2024-02-07 18:54 박시현 커밋
     }
 }
