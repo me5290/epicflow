@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="epicFlow">
+    <output-path>$PROJECT_DIR$/out/artifacts/epicFlow</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="org.example.epicflow.MainApplication" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="17" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="epicFlow.jar">
+        <element id="module-output" name="epicFlow" />
+      </element>
+    </root>
+  </artifact>
+</component>

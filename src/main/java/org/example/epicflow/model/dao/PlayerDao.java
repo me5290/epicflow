@@ -91,6 +91,7 @@ public class PlayerDao extends Dao{
         PlayerDto playerDto = new PlayerDto();
         try {
             String sql = "select * from player where mno = ?";
+            ps = con.prepareStatement(sql);
             ps.setInt(1,memberNum);
             rs = ps.executeQuery();
             if(rs.next()){
