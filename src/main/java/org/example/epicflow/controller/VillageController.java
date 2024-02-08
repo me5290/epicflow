@@ -24,51 +24,47 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class VillageController {
-    @FXML private Pane opcitybackground;
-    @FXML private HBox huntingchoice;
-    @FXML private Button backBtn;
-    @FXML private ImageView field;
+// ================================ 필드 ================================ //
+    @FXML private Pane opcitybackground;    // 사냥터 정보 배경
+    @FXML private HBox huntingchoice;       // 사냥터 정보 화면
+    @FXML private Button backBtn;           // 사냥터 이동
+    @FXML private ImageView field;          // 사냥터 이동
 
-    @FXML private static Pane slime;
-    @FXML private Pane goblin;
-    @FXML private Pane mino;
-    @FXML private Pane dragon;
+    @FXML private Pane slime;               // 몬스터 slime 화면
+    @FXML private Pane goblin;              // 몬스터 goblin 화면
+    @FXML private Pane mino;                // 몬스터 mino 화면
+    @FXML private Pane dragon;              // 몬스터 dragon 화면
 
-    @FXML public Pane mainPane; // 메인 화면
-    @FXML public Pane bg;       // 마을 Pane
-    @FXML public Button store;  // 상점 버튼
-    @FXML public Button motelBtn; // 여관 버튼
-    @FXML public ImageView motelImg; // 여관 포탈 이미지
+    @FXML public Pane mainPane;             // 메인 화면
+    @FXML public Pane bg;                   // 마을 화면
+    @FXML public Button store;              // 상점 버튼
+    @FXML public Button motelBtn;           // 여관 버튼
+    @FXML public ImageView motelImg;        // 여관 포탈 이미지
 
-    @FXML public Pane motelPane; // 여관 버튼 클릭시 변경할 화면
-    @FXML public ImageView motelBg; // 여관 백그라운드 이미지
-    @FXML public Label motelLabel1; // 여관 주인 텍스트1
-    @FXML public Label motelLabel2; // 여관 주인 텍스트1
-    @FXML public Button useMtBtn;   // 여관을 사용 한다 버튼
-    @FXML public Button outMtBtn;   // 여관에서 나간다 버튼
+    @FXML public Pane motelPane;            // 여관 버튼 클릭시 변경할 화면
+    @FXML public ImageView motelBg;         // 여관 배경 이미지
+    @FXML public Label motelLabel1;         // 여관 주인 텍스트1
+    @FXML public Label motelLabel2;         // 여관 주인 텍스트2
+    @FXML public Button useMtBtn;           // 여관을 사용 버튼
+    @FXML public Button outMtBtn;           // 여관 나감 버튼
 
-    // 로그인한 회원 데이터 로그인 컨트롤러에서 가져오기
-    int memberNum = LoginController.getMemberNum();
+    int memberNum = LoginController.getMemberNum();     // 로그인 된 회원 번호
 
-    public static int monsterNum; // 몬스터번호 저장
+    public static int monsterNum;                       // 몬스터번호 저장
 
-    // 회원번호 get
-    public static int getMonsterNum() {
-        return monsterNum;
-    }
+// ================================ 메소드 ================================ //
 
-    // === 로그인 성공하면 빌리지
-    // === 상점 클릭하면 상점 fxml
+    // === 상점 미구현
     public void store(){
         System.out.println("여기는 상점입니다.");
     }
 
-    // === 사냥 클릭하면 사냥 fxmml
+    // === 몬스터 사냥터에 맞는 몬스터 출력 및 배틀 화면 전환
     @FXML
     public void field( MouseEvent event ) {
-        // 몬스터 id 식별 후 몬스터 번호 저장
-        Pane pane = (Pane)event.getSource();
 
+        // ==== 몬스터 출력
+        Pane pane = (Pane)event.getSource();
         if( pane.getId().equals("slime") ){
             monsterNum = 1;
         }else if(pane.getId().equals("goblin")) {
@@ -79,66 +75,61 @@ public class VillageController {
             monsterNum = 4;
         }
 
+        // ==== 배틀 화면 전환
         try {
             Parent battle = FXMLLoader.load(getClass().getResource("battle.fxml"));
             Scene scene = new Scene(battle , 800 , 600);
             Stage primaryStage = (Stage)field.getScene().getWindow(); // 여기 오류
             primaryStage.setScene(scene);
             primaryStage.show();
-            System.out.println("primaryStage = " + primaryStage);
-            System.out.println("scene = " + scene);
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("[ ※ 안내 : field  오류 입니다. ※ ]" +e);
         }
 
     }
+
+    // ==== 사냥터 클릭시 보이기 메소드
     public void huntingGround(){
         opcitybackground.setVisible(true);
         huntingchoice.setVisible(true);
         backBtn.setVisible(true);
     }
 
+    // ==== 사냥터 클릭시 숨기기 메소드
     public void back(){
         opcitybackground.setVisible(false);
         huntingchoice.setVisible(false);
         backBtn.setVisible(false);
     }
 
-    // 여관 버튼 클릭 이벤트 실행
+    // ==== 여관 클릭 시 화면 보이기 메소드
     public void motelBtnOn(){
-        System.out.println("여관 버튼 실행 ");
         bg.setVisible(false);
         motelPane.setVisible(true);
-    } // motelBtnOn m e
+    }
 
-    // 여관 에서 숙박 버튼 클릭시 이벤트
+    // ==== 여관에서 버튼 작동 시 메소드
     public void useMtBtnOn(){
-        System.out.println("숙박 버튼 클릭 CONTROLLER");
-        System.out.println("숙박버튼 이용 사용자 넘버" + memberNum);
         PlayerDto playerDto;
         playerDto =  PlayerDao.getInstance().playerMoneySc(memberNum);
         int pMoney = playerDto.getMoney();
         int Mhp = playerDto.getMhp();
         int Mmp = playerDto.getMmp();
 
-        System.out.println("pMoney = " + pMoney);
         if (pMoney == -999){
             System.out.println("치명적인 오류 발생");
         }
         if (pMoney < 10){
-            System.out.println("돈 부족");
+            System.out.println("[ ● 안내 : 돈 부족 ● ]");
         }else{
-            System.out.println("돈 있음");
+            System.out.println("[ ● 안내 : 돈 있음 ● ]");
             pMoney -= 10;
             PlayerDao.getInstance().useMtBtnOn(memberNum , pMoney , Mhp , Mmp);
-            // 박시현 여기까지 작업 완료
-            // 후에 할일은 회복후 마을로 이동할 것인지 어떻게할것인지 선택
         }
     }
 
-    // 여관 에서 나가기 버튼 클릭시 이벤트
+    // ==== 여관 나가기 버튼 클릭시 화면 숨기기 메소드
     public void outMtBtnOn(){
-        System.out.println("여관 나가기 버튼 실행 CONTROLLER");
         motelPane.setVisible(false);
         bg.setVisible(true);
     }

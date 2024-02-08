@@ -14,7 +14,6 @@ public class BattleDao extends Dao{
     public boolean playerNowInfor(PlayerDto playerDto){
         try {
             String sql = "update player set mhp = ? , hp = ? , mmp = ? , mp = ? , level = ?, exp = ? , money = ? , statpoint = ? , power = ? , defence = ? , skillpower = ? , str = ? , dex = ? , wis = ? , eva = ? , spd = ? where mno = ?";
-
             ps = con.prepareStatement(sql);
             ps.setInt(1, playerDto.getMhp());
             ps.setInt(2, playerDto.getHp());

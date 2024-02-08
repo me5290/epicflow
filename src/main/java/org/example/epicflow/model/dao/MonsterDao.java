@@ -15,15 +15,13 @@ public class MonsterDao extends Dao{
     private static MonsterDao monsterDao = new MonsterDao();
     public static MonsterDao getInstance(){ return monsterDao; }
 
+    // ==== 몬스터 DB 불러오기 메소드 [ return = 몬스터 DTO ]
     public ArrayList<MonsterDto> monsterInfor(){
         ArrayList<MonsterDto> monsterDtos = new ArrayList<>();
         try {
             String sql = "select * from monster";
-
             ps = con.prepareStatement(sql);
-
             rs = ps.executeQuery();
-
             while (rs.next()){
                 MonsterDto monsterDto = new MonsterDto();
                 monsterDto.setMonsterNo( rs.getInt("monsterno") );
@@ -34,12 +32,11 @@ public class MonsterDao extends Dao{
                 monsterDto.setMonsterDefence( rs.getInt("monsterdefence") );
                 monsterDto.setDropGold( rs.getInt("dropgold") );
                 monsterDto.setDropExp( rs.getInt("dropexp") );
-
                 monsterDtos.add(monsterDto);
             }
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("[ ※ 안내 : monsterInfor 오류입니다 ※ ]" + e);
         }
         return monsterDtos;
-    }
-}
+    } // m e
+} // c e
