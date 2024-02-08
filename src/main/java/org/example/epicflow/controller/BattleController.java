@@ -57,15 +57,17 @@ public class BattleController implements Initializable {
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
     @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp,playerExp,playerMaxExp,playerHeatBox,monsterHeatBox;
+    @FXML private Label playerHp1 , playerMaxHp1 , playerMp1 , playerMaxMp1;    // 스텟창에서 HP MP 표시
+    @FXML private Text stPName , stPLovel , stPMoney , stPPower , stPDef , stPSkillPower , stPEva , stPSpd;
     @FXML private Button villageBtn;
     @FXML private Button statdownbtn;
     @FXML private Button statupbtn;
     @FXML private TextField statupdown;
-    @FXML private Text test123; // 스텟 포인트 표시 텍스트
+    @FXML private Text stPoint; // 스텟 포인트 표시 텍스트
     @FXML private Button powertext;
     @FXML private Pane win;     // 플레이어 승리 시 화면 출력
     @FXML private Pane lose;    // 플레이어 패배 시 화면 출력
-    @FXML private Text strtest,dextest,wistest;
+    @FXML private Text strtest,dextest,wistest; // 스텟창 현재 캐릭터 능력치 표시 
 
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
@@ -150,15 +152,19 @@ public class BattleController implements Initializable {
 
             // 플레이어 체력 출력
             playerHp.setText(Integer.toString(player.getHp()));
+            playerHp1.setText(Integer.toString(player.getHp()));    // 스텟창 표시
 
             // 플레이어 최대체력 출력
             playerMaxHp.setText(Integer.toString(player.getMhp()));
+            playerMaxHp1.setText(Integer.toString(player.getMhp()));    // 스텟창 표시
 
             // 플레이어 마나 출력
             playerMp.setText(Integer.toString(player.getMp()));
+            playerMp1.setText(Integer.toString(player.getMp()));    // 스텟창 표시
 
             // 플레이어 최대마나 출력
             playerMaxMp.setText(Integer.toString(player.getMmp()));
+            playerMaxMp1.setText(Integer.toString(player.getMmp())); // 스텟창 표시
 
             // 몬스터 현재 체력 출력
             monsterNowHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
@@ -440,9 +446,10 @@ public class BattleController implements Initializable {
         inventory.setVisible(false);
     }
 
-    //캐릭터 스탯창 버튼
+    //캐릭터 스탯창(스테이터스) 버튼
     public void stabtnlist(){
-        statPaneview.setVisible(true);
+        playerStatusUpdeate(); // 플레이어 스테이터스 표시 메서드
+        statPaneview.setVisible(true); // 숨겨진 스테이터스 판 보여주기
     }
     public void exitstatbtn(){
         statPaneview.setVisible(false);
@@ -698,39 +705,42 @@ public class BattleController implements Initializable {
     public void str(){
         if(player.getStatpoint() != 0){
             player.setStatpoint(player.getStatpoint()-1);
-            test123.setText(Integer.toString(player.getStatpoint()));
+            stPoint.setText(Integer.toString(player.getStatpoint()));
             player.setStr(player.getStr()+1);
             strtest.setText(Integer.toString(player.getStr()));
             // str에 따른 스텟 변경
             player.setMhp(player.getMhp()+5);
             player.setPower(player.getPower()+2);
             player.setDefence(player.getDefence()+1);
+            playerStatusUpdeate(); // 플레이어 스테이터스 표시 메서드
         }
     }
     //민첩 메소드
     public void dex(){
         if(player.getStatpoint() != 0){
             player.setStatpoint(player.getStatpoint()-1);
-            test123.setText(Integer.toString(player.getStatpoint()));
+            stPoint.setText(Integer.toString(player.getStatpoint()));
             player.setDex(player.getDex()+1);
             dextest.setText(Integer.toString(player.getDex()));
             // dex에 따른 스텟 변경
             player.setEva(player.getEva()+2);
             player.setSpd(player.getSpd()+2);
             player.setPower(player.getPower()+1);
+            playerStatusUpdeate(); // 플레이어 스테이터스 표시 메서드
         }
     }
     //지능 메소드
     public void wis() {
         if (player.getStatpoint() != 0) {
             player.setStatpoint(player.getStatpoint()-1);
-            test123.setText(Integer.toString(player.getStatpoint()));
+            stPoint.setText(Integer.toString(player.getStatpoint()));
             player.setWis(player.getWis() + 1);
             wistest.setText(Integer.toString(player.getWis()));
             // wis에 따른 스텟 변경
             player.setMmp(player.getMmp()+5);
             player.setEva(player.getEva()+1);
             player.setSkillpower(player.getSkillpower()+3);
+            playerStatusUpdeate(); // 플레이어 스테이터스 표시 메서드
         }
     }
     // 스탯 찍고 x 버튼 눌렀을때 DTO에 저장 메소드
@@ -753,4 +763,35 @@ public class BattleController implements Initializable {
         player.setSpd(player.getSpd());
         player.setMno(player.getMno());
     }
+
+    // 플레이어 스텟창 클릭 및 스텟 포인트 분배 시 캐릭터 상태 업데이트
+    public void playerStatusUpdeate(){
+        stPName.setText(player.getPname()); // 캐릭터 이름 표시
+        playerHp1.setText(Integer.toString(player.getHp()));    // 체력 스텟창 표시
+        playerMp1.setText(Integer.toString(player.getMp()));    // 마나 스텟창 표시
+        playerMaxHp1.setText(Integer.toString(player.getMhp())); // 체력 최대 표시 업데이트
+        playerMaxMp1.setText(Integer.toString(player.getMmp())); // 마나 최대 표시 업데이트
+        stPLovel.setText(Integer.toString(player.getLevel()));  // 캐릭터 레벨 표시
+        stPMoney.setText(Integer.toString(player.getMoney()));  // 플레이어 돈 표시
+        stPPower.setText(Integer.toString(player.getPower()));  // 플레이어 공격력 표시
+        stPDef.setText(Integer.toString(player.getDefence()));  // 플에이어 방어 표시
+        stPSkillPower.setText(Integer.toString(player.getSkillpower())); // 플레이어 스킬 데미지 표시
+        stPEva.setText(Integer.toString(player.getEva()));  // 플레이어 회피 표시
+        stPSpd.setText(Integer.toString(player.getSpd()));  // 플레이어 속도 표시
+        stPoint.setText(Integer.toString(player.getStatpoint()));   // 플레이어 포인트 표시
+        strtest.setText(Integer.toString(player.getStr())); // 플레이어 현재 힘 표시
+        dextest.setText(Integer.toString(player.getDex())); // 플레이어 현재 민첩 표시
+        wistest.setText(Integer.toString(player.getWis())); // 플레이어 현재 지능 표시
+
+    }
+
+
+
+
+
+
+
+
+
+
 }
