@@ -22,12 +22,12 @@ public class MonsterDao extends Dao {
     }
 
     //몬스터 메소드
-    public ArrayList<MonsterDto> monsterinfor() {
+    public  ArrayList<MonsterDto> monsterinfor() {
         ArrayList<MonsterDto> monsterDtos = new ArrayList<>();
         System.out.println("고블린 사냥터 테스트");
         System.out.println("monsterDtos"+monsterDtos);
         try {
-            String sql = "select * from monster";
+            String sql = "select * from monster where monsterno = ?";
 
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
