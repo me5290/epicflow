@@ -362,7 +362,7 @@ public class BattleController implements Initializable {
             if(damage < monster.getMonsterDefence()){
                 lastDamage = 1;
             }else {
-                lastDamage = (int)(damage*1.2) - monster.getMonsterDefence();
+                lastDamage = (int)(damage*1.1) - monster.getMonsterDefence();
             }
 
             slimeHeatBox.setText(Integer.toString(lastDamage));
@@ -414,7 +414,7 @@ public class BattleController implements Initializable {
             if(damage < monster.getMonsterDefence()){
                 lastDamage = 1;
             }else {
-                lastDamage = (int)(damage*1.5) - monster.getMonsterDefence();
+                lastDamage = (int)(damage*1.25) - monster.getMonsterDefence();
             }
 
             slimeHeatBox.setText(Integer.toString(lastDamage));
