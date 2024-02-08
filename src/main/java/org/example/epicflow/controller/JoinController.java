@@ -14,7 +14,7 @@ import org.example.epicflow.model.dto.MemberDto;
 
 public class JoinController {   // Class Start
 
-
+// ================================ 필드 ================================ //
     @FXML
     public TextField mid;   // 아이디
     @FXML
@@ -22,6 +22,7 @@ public class JoinController {   // Class Start
     @FXML
     public Button loginScreen;  // 로그인 화면 이동
 
+// ================================ 메소드 ================================ //
 // ================================ 회원가입 s ================================ //
     // ===== 회원가입 메소드
     public void signUp(){

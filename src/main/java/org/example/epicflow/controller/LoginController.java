@@ -20,6 +20,7 @@ import java.io.IOException;
 
 public class LoginController extends MainApplication {
 
+// ================================ 필드 ================================ //
     public static int memberNum;            // 회원번호 저장
     public Pane mainVuew;                   // 첫 시작 뷰
     public TextField inputId = null;        // 로그인시 아이디 입력칸
@@ -34,6 +35,7 @@ public class LoginController extends MainApplication {
     public Button generation;               // 캐릭터 생성 버튼
     public Button cancel;                   // 캐릭터 생성 취소버튼
 
+// ================================ 메소드 ================================ //
     // ==== 회원번호 [ return = 회원번호 ]
     public static int getMemberNum() {
         return memberNum;

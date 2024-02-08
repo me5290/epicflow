@@ -10,6 +10,7 @@ public class Dao {
     protected PreparedStatement ps;
     protected ResultSet rs;
 
+    // ==== DB 연동 메소드
     protected Dao(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
