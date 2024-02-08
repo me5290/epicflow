@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlayerDao extends Dao{
+
     // ==== 싱글톤
     private PlayerDao(){}
     private static PlayerDao playerDao = new PlayerDao();

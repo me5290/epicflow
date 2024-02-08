@@ -3,6 +3,7 @@ package org.example.epicflow.model.dao;
 import org.example.epicflow.model.dto.MemberDto;
 
 public class MemberDao extends Dao{
+
     // ==== 싱글톤
     private MemberDao(){}
     private static MemberDao memberDao = new MemberDao();

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class MonsterDao extends Dao{
 
+    // ==== 싱글톤
     private MonsterDao(){}
     private static MonsterDao monsterDao = new MonsterDao();
     public static MonsterDao getInstance(){ return monsterDao; }
