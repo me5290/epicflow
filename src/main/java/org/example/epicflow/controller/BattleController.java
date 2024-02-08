@@ -422,15 +422,15 @@ public class BattleController implements Initializable {
         int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
         int lastDamage;
-        if(damage <= player.getDefence()){
-            lastDamage = 1;
-        }else{
-            lastDamage = damage - player.getDefence();
-        }
+        lastDamage = damage - player.getDefence();
 
         double defenceDamage = lastDamage*0.2;
 
         playerHeatBox.setText(Integer.toString((int)defenceDamage));
+
+        if(damage <= player.getDefence()){
+            defenceDamage = 1;
+        }
 
         playerRenewal = playerRenewal-(int)defenceDamage;
 
