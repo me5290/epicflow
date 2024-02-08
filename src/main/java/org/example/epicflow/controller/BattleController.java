@@ -260,7 +260,7 @@ public class BattleController implements Initializable {
 
             int lastDamage;
 
-            if(damage < monster.getMonsterDefence()){
+            if(damage <= monster.getMonsterDefence()){
                 lastDamage = 1;
             }else {
                 lastDamage = damage - monster.getMonsterDefence();
@@ -307,7 +307,7 @@ public class BattleController implements Initializable {
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
             int lastDamage;
-            if(damage < monster.getMonsterDefence()){
+            if(damage <= monster.getMonsterDefence()){
                 lastDamage = 1;
             }else {
                 lastDamage = damage - monster.getMonsterDefence();
@@ -359,7 +359,7 @@ public class BattleController implements Initializable {
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
             int lastDamage;
-            if(damage < monster.getMonsterDefence()){
+            if(damage <= monster.getMonsterDefence()){
                 lastDamage = 1;
             }else {
                 lastDamage = (int)(damage*1.1) - monster.getMonsterDefence();
@@ -411,7 +411,7 @@ public class BattleController implements Initializable {
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
             int lastDamage;
-            if(damage < monster.getMonsterDefence()){
+            if(damage <= monster.getMonsterDefence()){
                 lastDamage = 1;
             }else {
                 lastDamage = (int)(damage*1.25) - monster.getMonsterDefence();
@@ -461,7 +461,12 @@ public class BattleController implements Initializable {
 
         int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-        int lastDamage = (damage - player.getDefence());
+        int lastDamage;
+        if(damage <= player.getDefence()){
+            lastDamage = 1;
+        }else{
+            lastDamage = damage - player.getDefence();
+        }
 
         double defenceDamage = lastDamage*0.2;
 
@@ -537,7 +542,12 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = damage - player.getDefence();
+            int lastDamage;
+            if(damage <= player.getDefence()){
+                lastDamage = 1;
+            }else{
+                lastDamage = damage - player.getDefence();
+            }
 
             playerHeatBox.setText(Integer.toString(lastDamage));
 

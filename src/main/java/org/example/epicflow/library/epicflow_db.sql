@@ -51,9 +51,9 @@ create table monster(
 );
 
 insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('슬라임',30,30,7,2,60,60);
-insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('고블린',100,100,12,5,50,50);
-insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('미노타우르스',500,500,40,15,650,650);
-insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('드래곤',1000,1000,100,50,1200,1200);
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('고블린',100,100,20,7,50,50);
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('미노타우르스',500,500,50,15,650,650);
+insert into monster (monstername,monstermhp,monsterhp,monsterpower,monsterdefence,dropgold,dropexp) values('드래곤',1500,1500,100,50,2000,2000);
 
 select * from member;
 select * from player;
