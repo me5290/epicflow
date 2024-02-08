@@ -25,16 +25,146 @@
          <image>
             <Image url="@../../../../img/character.png" />
          </image></ImageView>
-      <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="474.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="226.0" fitWidth="217.0" layoutX="419.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../img/goblin.png" />
-         </image>
-      </ImageView>
+      <Pane fx:id="slimeArea" layoutX="463.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <ImageView fitHeight="192.0" fitWidth="171.0" layoutX="6.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/pngtree-blue-cute-slime-png-image_7472075.png" />
+               </image>
+            </ImageView>
+            <ProgressBar fx:id="slimeHp" layoutX="13.0" layoutY="4.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
+            <Label fx:id="slimeName" alignment="CENTER" layoutX="51.0" layoutY="171.0" prefHeight="20.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-border-color: #000;" />
+            <Label fx:id="slimeHeatBox" alignment="CENTER" layoutX="58.0" layoutY="-35.0" prefHeight="25.0" prefWidth="91.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" layoutX="23.0" layoutY="5.0" prefHeight="17.0" prefWidth="161.0">
+               <children>
+                  <Label fx:id="slimeNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="/">
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="slimeMaxHp" prefHeight="17.0" prefWidth="70.0" text="0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="goblinArea" layoutX="435.0" layoutY="54.0" prefHeight="247.0" prefWidth="238.0" visible="false">
+         <children>
+            <ImageView fx:id="goblin" fitHeight="232.0" fitWidth="230.0" layoutX="-33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/goblin.png" />
+               </image>
+            </ImageView>
+            <ProgressBar fx:id="goblinHp" layoutX="31.0" layoutY="4.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
+            <Label fx:id="goblinName" alignment="CENTER" layoutX="69.0" layoutY="223.0" prefHeight="20.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-border-color: #000;" />
+            <Label fx:id="goblinHeatBox" alignment="CENTER" layoutX="75.0" layoutY="-35.0" prefHeight="25.0" prefWidth="91.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" layoutX="41.0" layoutY="5.0" prefHeight="17.0" prefWidth="161.0">
+               <children>
+                  <Label fx:id="goblinNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="/">
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="goblinMaxHp" prefHeight="17.0" prefWidth="70.0" text="0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="minoArea" layoutX="400.0" layoutY="39.0" prefHeight="325.0" prefWidth="290.0" visible="false">
+         <children>
+            <ImageView fx:id="mino" fitHeight="297.0" fitWidth="324.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/mino.png" />
+               </image>
+            </ImageView>
+            <ProgressBar fx:id="minoHp" layoutX="57.0" layoutY="-3.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
+            <Label fx:id="minoName" alignment="CENTER" layoutX="95.0" layoutY="287.0" prefHeight="20.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-border-color: #000;" />
+            <Label fx:id="minoHeatBox" alignment="CENTER" layoutX="101.0" layoutY="-40.0" prefHeight="25.0" prefWidth="91.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" layoutX="67.0" layoutY="-2.0" prefHeight="17.0" prefWidth="161.0">
+               <children>
+                  <Label fx:id="minoNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="/">
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="minoMaxHp" prefHeight="17.0" prefWidth="70.0" text="0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="dragonArea" layoutX="378.0" layoutY="15.0" prefHeight="375.0" prefWidth="360.0" visible="false">
+         <children>
+            <ImageView fx:id="mino1" fitHeight="344.0" fitWidth="494.0" layoutX="-83.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/dragon.png" />
+               </image>
+            </ImageView>
+            <ProgressBar fx:id="dragonHp" layoutX="91.0" layoutY="23.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
+            <Label fx:id="dragonHeatBox" alignment="CENTER" layoutX="135.0" layoutY="-17.0" prefHeight="25.0" prefWidth="91.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" layoutX="100.0" layoutY="24.0" prefHeight="17.0" prefWidth="161.0">
+               <children>
+                  <Label fx:id="dragonNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="/">
+                     <HBox.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="dragonMaxHp" prefHeight="17.0" prefWidth="70.0" text="0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Label fx:id="dragonName" alignment="CENTER" layoutX="129.0" layoutY="340.0" prefHeight="20.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-border-color: #000;" />
+         </children>
+      </Pane>
       <ImageView fx:id="normalEffect" fitHeight="150.0" fitWidth="200.0" layoutX="433.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" rotate="149.9" visible="false">
          <image>
             <Image url="@../../../../img/normalAttack.png" />
@@ -73,7 +203,6 @@
       <ProgressBar fx:id="playerMpBar" layoutX="146.0" layoutY="181.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
       <ProgressBar fx:id="playerHpBar" layoutX="146.0" layoutY="156.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" style="-fx-border-style: none;" />
       <ProgressBar fx:id="playerexp" layoutY="450.0" prefHeight="20.0" prefWidth="800.0" progress="1.0" />
-      <ProgressBar fx:id="monsterHp" layoutX="477.0" layoutY="73.0" prefHeight="20.0" prefWidth="176.0" progress="1.0" />
       <Pane layoutY="465.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" />
       <HBox fx:id="btnlist" layoutY="464.0" prefHeight="135.0" prefWidth="800.0" style="-fx-background-color: #fff;" visible="false">
          <children>
@@ -152,25 +281,6 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="TOP_CENTER" layoutX="484.0" layoutY="74.0" prefHeight="17.0" prefWidth="161.0">
-         <children>
-            <Label fx:id="monsterNowHp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label text="/">
-               <HBox.margin>
-                  <Insets left="2.0" right="2.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="monsterMaxHp" prefHeight="17.0" prefWidth="70.0" text="0">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
       <HBox alignment="TOP_CENTER" layoutX="294.0" layoutY="451.0" prefHeight="17.0" prefWidth="161.0">
          <children>
             <Label fx:id="playerExp" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="0" textAlignment="RIGHT">
@@ -190,8 +300,9 @@
             </Label>
          </children>
       </HBox>
-      <Label fx:id="playerName" layoutX="151.0" layoutY="136.0" />
-      <Label fx:id="monsterName" alignment="CENTER" layoutX="532.0" layoutY="292.0" prefHeight="20.0" prefWidth="61.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="고블린" />
+      <Label fx:id="playerName1" layoutX="151.0" layoutY="138.0" text="Lv" />
+      <Label fx:id="playerLevel" alignment="CENTER_RIGHT" layoutX="165.0" layoutY="138.0" prefHeight="17.0" prefWidth="15.0" />
+      <Label fx:id="playerName" alignment="CENTER_RIGHT" layoutX="195.0" layoutY="138.0" prefHeight="17.0" prefWidth="125.0" />
       <AnchorPane fx:id="exitalert" layoutX="234.0" layoutY="129.0" prefHeight="200.0" prefWidth="311.0" style="-fx-background-color: #5F4C0B;" visible="false">
          <children>
             <Button fx:id="villageBtn" layoutX="61.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#villageBtn" text="예" />
@@ -264,11 +375,6 @@
             <Text fx:id="test123" layoutX="595.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.189453125" />
          </children>
       </AnchorPane>
-      <Label fx:id="monsterHeatBox" alignment="CENTER" layoutX="519.0" layoutY="29.0" prefHeight="25.0" prefWidth="91.0" text="0" textAlignment="CENTER" textFill="RED" visible="false">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Label>
       <Label fx:id="playerHeatBox" alignment="CENTER" layoutX="188.0" layoutY="101.0" prefHeight="25.0" prefWidth="91.0" text="0" textAlignment="CENTER" textFill="#ff5be6" visible="false">
          <font>
             <Font size="28.0" />

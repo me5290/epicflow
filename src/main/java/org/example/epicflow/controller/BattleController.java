@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.example.epicflow.MainController;
 import org.example.epicflow.model.dao.MemberDao;
+import org.example.epicflow.model.dao.MonsterDao;
 import org.example.epicflow.model.dao.PlayerDao;
 import org.example.epicflow.model.dto.MonsterDto;
 import org.example.epicflow.model.dto.PlayerDto;
@@ -44,7 +45,7 @@ public class BattleController implements Initializable {
     @FXML private ProgressBar playerHpBar;
     @FXML private ProgressBar playerMpBar;
     @FXML private ProgressBar playerexp;
-    @FXML private ProgressBar monsterHp;
+    @FXML private ProgressBar slimeHp,goblinHp,minoHp,dragonHp;
     @FXML private AnchorPane attacklist;
     @FXML private HBox btnlist;
     @FXML private Pane exitalert;
@@ -56,7 +57,9 @@ public class BattleController implements Initializable {
     @FXML private Button exitstatbtn;
     @FXML private AnchorPane statPaneview;
     @FXML private Button stabtnlist;
-    @FXML private Label playerName,monsterName,playerHp,playerMaxHp,playerMp,playerMaxMp,monsterNowHp,monsterMaxHp,playerExp,playerMaxExp,playerHeatBox,monsterHeatBox;
+    @FXML private Label playerName,playerHp,playerMaxHp,playerMp,playerMaxMp,playerExp,playerMaxExp,playerHeatBox,playerLevel;
+    @FXML private Label slimeName,slimeHeatBox,slimeNowHp,slimeMaxHp,goblinName,goblinHeatBox,goblinNowHp,goblinMaxHp,minoName,minoHeatBox,minoNowHp,minoMaxHp,dragonName,dragonHeatBox,dragonNowHp,dragonMaxHp;
+    @FXML private Pane slimeArea,goblinArea,minoArea,dragonArea;
     @FXML private Button villageBtn;
     @FXML private Button statdownbtn;
     @FXML private Button statupbtn;
@@ -70,14 +73,20 @@ public class BattleController implements Initializable {
     // 플레이어 정보 배열 변수
     ArrayList<PlayerDto> playerInfor = PlayerDao.getInstance().playerInfor();
 
+    // 몬스터 정보 배열 변수
+    ArrayList<MonsterDto> monsterInfor = MonsterDao.getInstance().monsterInfor();
+
     // 로그인 한 회원 번호 가져오기
     int memberNum = LoginController.memberNum;
+
+    // 사냥터에 따른 몬스터 번호 가져오기
+    int monsterNum = VillageController.monsterNum;
 
     // 로그인 한 플레이어 정보 저장 변수
     PlayerDto player = new PlayerDto();
 
-    // 몬스터 정보 객체 생성
-    MonsterDto monsterDtos = new MonsterDto();
+    // 몬스터 정보 저장 변수
+    MonsterDto monster = new MonsterDto();
 
     // 랜덤 함수 호출
     Random random = new Random();
@@ -85,19 +94,23 @@ public class BattleController implements Initializable {
     // 턴 상태
     boolean turnState = true;
 
-    // 몬스터 최대 체력 변수
-    int monsterDecrease = monsterDtos.getMonsterHp();
-
-    // 몬스터 현재 체력 변수
-    double monsterRenewal;
-
+    // 플레이어 퍼센트
     double playerPercent;
+
+    // 몬스터 퍼센트
+    double monsterPercent;
 
     // 플레이어 최대 체력 변수
     int playerDecrease;
 
     // 플레이어 현재 체력 변수
     int playerRenewal;
+
+    // 몬스터 최대 체력 변수
+    int monsterDecrease;
+
+    // 몬스터 현재 체력 변수
+    int monsterRenewal;
 
     // 플레이어 정보 player 변수에 저장
     public void memberNum(){
@@ -107,6 +120,16 @@ public class BattleController implements Initializable {
             }
         }
     }
+
+    // 몬스터 정보 monster 변수에 저장
+    public void monsterNum(){
+        for (int i = 0; i < monsterInfor.size(); i++){
+            if(monsterInfor.get(i).getMonsterNo() == monsterNum){
+                monster = monsterInfor.get(i);
+            }
+        }
+    }
+
     // ============================== 메소드 ============================== //
 
     // 초기값 세팅
@@ -116,8 +139,15 @@ public class BattleController implements Initializable {
             // 플레이어 정보 찾아오기 메소드 실행
             memberNum();
 
+            // 몬스터 정보 찾아오기 메소드 실행
+            monsterNum();
+
+            System.out.println(monsterNum);
             playerDecrease = player.getMhp();
             playerRenewal = player.getHp();
+
+            monsterDecrease = monster.getMonsterMhp();
+            monsterRenewal = monster.getMonsterHp();
 
             // 경험치와 레벨과 포인트 갱신
             levelUp();
@@ -131,8 +161,14 @@ public class BattleController implements Initializable {
             playerMpBar.setStyle("-fx-accent: blue;");
 
             // 몬스터 hp
-            monsterHp.setProgress(monsterDtos.getMonsterHp()/monsterDtos.getMonsterHp());
-            monsterHp.setStyle("-fx-accent: purple;");
+            slimeHp.setProgress((double)monster.getMonsterHp()/monster.getMonsterHp());
+            slimeHp.setStyle("-fx-accent: #BE81F7;");
+            goblinHp.setProgress((double)monster.getMonsterHp()/monster.getMonsterHp());
+            goblinHp.setStyle("-fx-accent: #BE81F7;");
+            minoHp.setProgress((double)monster.getMonsterHp()/monster.getMonsterHp());
+            minoHp.setStyle("-fx-accent: #BE81F7;");
+            dragonHp.setProgress((double)monster.getMonsterHp()/monster.getMonsterHp());
+            dragonHp.setStyle("-fx-accent: #BE81F7;");
 
             // 초보 모험가(job = 0)캐릭터 출력
 //            if(player.getJob() == 0){
@@ -145,8 +181,14 @@ public class BattleController implements Initializable {
             // 실행 시 플레이어 닉네임 보이기
             playerName.setText(player.getPname());
 
+            // 실행 시 플레이어 레벨 보이기
+            playerLevel.setText(Integer.toString(player.getLevel()));
+
             // 실행 시 몬스터 닉네임 보이기
-            monsterName.setText(monsterDtos.getMonsterName());
+            slimeName.setText(monster.getMonsterName());
+            goblinName.setText(monster.getMonsterName());
+            minoName.setText(monster.getMonsterName());
+            dragonName.setText(monster.getMonsterName());
 
             // 플레이어 체력 출력
             playerHp.setText(Integer.toString(player.getHp()));
@@ -161,10 +203,26 @@ public class BattleController implements Initializable {
             playerMaxMp.setText(Integer.toString(player.getMmp()));
 
             // 몬스터 현재 체력 출력
-            monsterNowHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
+            slimeNowHp.setText(Integer.toString(monster.getMonsterHp()));
+            goblinNowHp.setText(Integer.toString(monster.getMonsterHp()));
+            minoNowHp.setText(Integer.toString(monster.getMonsterHp()));
+            dragonNowHp.setText(Integer.toString(monster.getMonsterHp()));
 
             // 몬스터 최대체력 출력
-            monsterMaxHp.setText(Integer.toString(monsterDtos.getMonsterHp()));
+            slimeMaxHp.setText(Integer.toString(monster.getMonsterHp()));
+            goblinMaxHp.setText(Integer.toString(monster.getMonsterHp()));
+            minoMaxHp.setText(Integer.toString(monster.getMonsterHp()));
+            dragonMaxHp.setText(Integer.toString(monster.getMonsterHp()));
+
+            if (monster.getMonsterNo() == 1){
+                slimeArea.setVisible(true);
+            }else if(monster.getMonsterNo() == 2){
+                goblinArea.setVisible(true);
+            }else if(monster.getMonsterNo() == 3){
+                minoArea.setVisible(true);
+            }else if(monster.getMonsterNo() == 4){
+                dragonArea.setVisible(true);
+            }
         }catch (Exception e){
             System.out.println(e);
         }
@@ -194,19 +252,24 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = damage - monsterDtos.getMonsterDefence();
+            int lastDamage;
 
-            monsterHeatBox.setText(Integer.toString(lastDamage));
-
-            if(monsterDtos.getMonsterHp() == monsterDecrease){
-                monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
-            }else{
-                monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
+            if(damage < monster.getMonsterDefence()){
+                lastDamage = 1;
+            }else {
+                lastDamage = damage - monster.getMonsterDefence();
             }
+
+            slimeHeatBox.setText(Integer.toString(lastDamage));
+            goblinHeatBox.setText(Integer.toString(lastDamage));
+            minoHeatBox.setText(Integer.toString(lastDamage));
+            dragonHeatBox.setText(Integer.toString(lastDamage));
+
+            monsterRenewal = monsterRenewal-lastDamage;
 
             turnState = !turnState;
 
-            // 이펙트 효과 보이기
+            // 기본공격 이펙트 효과 보이기
             normalEffect.setVisible(true);
 
             // 버튼 숨기기
@@ -237,15 +300,19 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = damage - monsterDtos.getMonsterDefence();
-
-            monsterHeatBox.setText(Integer.toString(lastDamage));
-
-            if(monsterDtos.getMonsterHp() == monsterDecrease){
-                monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
-            }else{
-                monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
+            int lastDamage;
+            if(damage < monster.getMonsterDefence()){
+                lastDamage = 1;
+            }else {
+                lastDamage = damage - monster.getMonsterDefence();
             }
+
+            slimeHeatBox.setText(Integer.toString(lastDamage));
+            goblinHeatBox.setText(Integer.toString(lastDamage));
+            minoHeatBox.setText(Integer.toString(lastDamage));
+            dragonHeatBox.setText(Integer.toString(lastDamage));
+
+            monsterRenewal = monsterRenewal-lastDamage;
 
             // 마나 감소
             player.setMp(player.getMp()-10);
@@ -254,7 +321,7 @@ public class BattleController implements Initializable {
 
             turnState = !turnState;
 
-            // 이펙트 효과 보이기
+            // 스킬1 이펙트 효과 보이기
             skill1Effect.setVisible(true);
 
             // 버튼 숨기기
@@ -285,15 +352,19 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = (int)(damage*1.2) - monsterDtos.getMonsterDefence();
-
-            monsterHeatBox.setText(Integer.toString(lastDamage));
-
-            if(monsterDtos.getMonsterHp() == monsterDecrease){
-                monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
-            }else{
-                monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
+            int lastDamage;
+            if(damage < monster.getMonsterDefence()){
+                lastDamage = 1;
+            }else {
+                lastDamage = (int)(damage*1.2) - monster.getMonsterDefence();
             }
+
+            slimeHeatBox.setText(Integer.toString(lastDamage));
+            goblinHeatBox.setText(Integer.toString(lastDamage));
+            minoHeatBox.setText(Integer.toString(lastDamage));
+            dragonHeatBox.setText(Integer.toString(lastDamage));
+
+            monsterRenewal = monsterRenewal-lastDamage;
 
             // 마나 감소
             player.setMp(player.getMp()-20);
@@ -302,7 +373,7 @@ public class BattleController implements Initializable {
 
             turnState = !turnState;
 
-            // 이펙트 효과 보이기
+            // 스킬2 이펙트 효과 보이기
             skill2Effect.setVisible(true);
 
             // 버튼 숨기기
@@ -333,15 +404,19 @@ public class BattleController implements Initializable {
 
             int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-            int lastDamage = (int)(damage*1.5) - monsterDtos.getMonsterDefence();
-
-            monsterHeatBox.setText(Integer.toString(lastDamage));
-
-            if(monsterDtos.getMonsterHp() == monsterDecrease){
-                monsterDecrease = monsterDtos.getMonsterHp()-lastDamage;
-            }else{
-                monsterDecrease = (int)(monsterRenewal*monsterDtos.getMonsterHp())-lastDamage;
+            int lastDamage;
+            if(damage < monster.getMonsterDefence()){
+                lastDamage = 1;
+            }else {
+                lastDamage = (int)(damage*1.5) - monster.getMonsterDefence();
             }
+
+            slimeHeatBox.setText(Integer.toString(lastDamage));
+            goblinHeatBox.setText(Integer.toString(lastDamage));
+            minoHeatBox.setText(Integer.toString(lastDamage));
+            dragonHeatBox.setText(Integer.toString(lastDamage));
+
+            monsterRenewal = monsterRenewal-lastDamage;
 
             // 마나 감소
             player.setMp(player.getMp()-30);
@@ -350,7 +425,7 @@ public class BattleController implements Initializable {
 
             turnState = !turnState;
 
-            // 이펙트 효과 보이기
+            // 스킬3 이펙트 효과 보이기
             skill3Effect.setVisible(true);
 
             // 버튼 숨기기
@@ -375,8 +450,8 @@ public class BattleController implements Initializable {
         attacklist.setVisible(false);
         btnlist.setVisible(true);
 
-        double minDamage = monsterDtos.getMonsterPower()-(monsterDtos.getMonsterPower()*0.1);
-        double maxDamage = monsterDtos.getMonsterPower()+(monsterDtos.getMonsterPower()*0.1);
+        double minDamage = monster.getMonsterPower()-(monster.getMonsterPower()*0.1);
+        double maxDamage = monster.getMonsterPower()+(monster.getMonsterPower()*0.1);
 
         int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
@@ -386,13 +461,12 @@ public class BattleController implements Initializable {
 
         playerHeatBox.setText(Integer.toString((int)defenceDamage));
 
-        if(player.getMhp() == playerDecrease){
-            playerDecrease = player.getMhp()-(int)defenceDamage;
-        }else{
-            playerDecrease = (int)(playerRenewal*player.getMhp())-(int)defenceDamage;
-        }
+        playerRenewal = playerRenewal-(int)defenceDamage;
 
         turnState = !turnState;
+
+        // 방어 이펙트 효과 보이기
+        defenceEffect.setVisible(true);
 
         // 버튼 숨기기
         btnlist.setVisible(false);
@@ -410,8 +484,7 @@ public class BattleController implements Initializable {
         };
         sleeper.setOnSucceeded( event -> {
             playerHeatBox.setVisible(true);
-            defenceEffect.setVisible(true);
-            playerHp.setText(Integer.toString(playerDecrease));
+            playerHp.setText(Integer.toString(playerRenewal));
         }  );
         new Thread(sleeper).start();
 
@@ -451,41 +524,41 @@ public class BattleController implements Initializable {
 
     // 몬스터 공격 메소드
     public void monsterAttack(){
-            if( !turnState ){
-                double minDamage = monsterDtos.getMonsterPower()-(monsterDtos.getMonsterPower()*0.1);
-                double maxDamage = monsterDtos.getMonsterPower()+(monsterDtos.getMonsterPower()*0.1);
+        if( !turnState ){
+            double minDamage = monster.getMonsterPower()-(monster.getMonsterPower()*0.1);
+            double maxDamage = monster.getMonsterPower()+(monster.getMonsterPower()*0.1);
 
-                int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
+            int damage = random.nextInt((int)minDamage ,(int)maxDamage+1);
 
-                int lastDamage = damage - player.getDefence();
+            int lastDamage = damage - player.getDefence();
 
-                playerHeatBox.setText(Integer.toString(lastDamage));
+            playerHeatBox.setText(Integer.toString(lastDamage));
 
-                playerRenewal = playerRenewal-lastDamage;
+            playerRenewal = playerRenewal-lastDamage;
 
-                System.out.println(playerRenewal);
+            System.out.println(playerRenewal);
 
-                // 플레이어 현재 체력상태 저장
-                player.setHp(playerRenewal);
+            // 플레이어 현재 체력상태 저장
+            player.setHp(playerRenewal);
 
-                turnState = !turnState;
+            turnState = !turnState;
 
-                System.out.println("몬스터 공격 성공");
+            System.out.println("몬스터 공격 성공");
 
-                // 플레이어 체력 갱신 메소드 호출
-                playerHpRenewal();
+            // 플레이어 체력 갱신 메소드 호출
+            playerHpRenewal();
 
-                // 플레이어 체력 0일때 종료
-                playerRefresh();
-            }else{
-                btnlist.setVisible(true);
-            }
+            // 플레이어 체력 0일때 종료
+            playerRefresh();
+        }else{
+            btnlist.setVisible(true);
+        }
     }
 
     // 몬스터체력 갱신 메소드
     public void monsterHpRenewal(){
         // 백분율 만들기
-        monsterRenewal = (double) monsterDecrease / (double)monsterDtos.getMonsterHp();
+        monsterPercent = (double) monsterRenewal / (double)monsterDecrease;
 
         // 시간차
         Task<Void> sleeper = new Task<Void>() {
@@ -497,9 +570,18 @@ public class BattleController implements Initializable {
             }
         };
         sleeper.setOnSucceeded( event -> {
-            monsterHeatBox.setVisible(true);
-            monsterHp.setProgress(monsterRenewal);
-            monsterNowHp.setText(Integer.toString(monsterDecrease));
+            slimeHeatBox.setVisible(true);
+            goblinHeatBox.setVisible(true);
+            minoHeatBox.setVisible(true);
+            dragonHeatBox.setVisible(true);
+            slimeHp.setProgress(monsterPercent);
+            goblinHp.setProgress(monsterPercent);
+            minoHp.setProgress(monsterPercent);
+            dragonHp.setProgress(monsterPercent);
+            slimeNowHp.setText(Integer.toString(monsterRenewal));
+            goblinNowHp.setText(Integer.toString(monsterRenewal));
+            minoNowHp.setText(Integer.toString(monsterRenewal));
+            dragonNowHp.setText(Integer.toString(monsterRenewal));
             normalEffect.setVisible(false);
             skill1Effect.setVisible(false);
             skill2Effect.setVisible(false);
@@ -526,7 +608,10 @@ public class BattleController implements Initializable {
             playerHeatBox.setVisible(true);
             playerHpBar.setProgress(playerPercent);
             playerHp.setText(Integer.toString(playerRenewal));
-            monsterHeatBox.setVisible(false);
+            slimeHeatBox.setVisible(false);
+            goblinHeatBox.setVisible(false);
+            minoHeatBox.setVisible(false);
+            dragonHeatBox.setVisible(false);
             monsterEffect1.setVisible(true);
         }  );
 
@@ -535,7 +620,7 @@ public class BattleController implements Initializable {
 
     // 플레이어 체력 0일때 종료 메소드
     public void playerRefresh(){
-        if(playerDecrease <= 0){
+        if(playerRenewal <= 0){
             System.out.println("패배");
             loseView();
             BattleDao.getInstance().playerNowInfor(player);
@@ -563,9 +648,9 @@ public class BattleController implements Initializable {
 
     // 몬스터 체력 0일때 종료 메소드
     public void monsterRefresh(){
-        if(monsterDecrease <= 0){
-            player.setExp(player.getExp()+monsterDtos.getDropExp());
-            player.setMoney(player.getMoney()+monsterDtos.getDropGold());
+        if(monsterRenewal <= 0){
+            player.setExp(player.getExp()+monster.getDropExp());
+            player.setMoney(player.getMoney()+monster.getDropGold());
             BattleDao.getInstance().playerNowInfor(player);
             System.out.println("승리");
             winView();
