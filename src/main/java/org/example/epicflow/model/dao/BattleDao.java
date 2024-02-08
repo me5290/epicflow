@@ -3,17 +3,14 @@ package org.example.epicflow.model.dao;
 import org.example.epicflow.model.dto.PlayerDto;
 
 public class BattleDao extends Dao{
-    // 싱글톤
+    // ==== 싱글톤
     private BattleDao(){}
     private static BattleDao battleDao = new BattleDao();
     public static BattleDao getInstance(){
         return battleDao;
     }
 
-    // 플레이어 현재 상태 저장
-    // update 테이블명 set 수정할필드명 = 수정할값, 수정할필드명 = 수정할값;
-    // 수정 해야할 필드
-    // 플레이어 현재 체력, 레벨, 경험치, 포인트, 마나
+    // ==== 전투 끝날 시 플레이어 현재 상태 저장 [ return = true 성공, return = true 실패 ]
     public boolean playerNowInfor(PlayerDto playerDto){
         try {
             String sql = "update player set mhp = ? , hp = ? , mmp = ? , mp = ? , level = ?, exp = ? , money = ? , statpoint = ? , power = ? , defence = ? , skillpower = ? , str = ? , dex = ? , wis = ? , eva = ? , spd = ? where mno = ?";
@@ -38,12 +35,11 @@ public class BattleDao extends Dao{
             ps.setInt(17, playerDto.getMno());
             int count = ps.executeUpdate();
             if(count == 1){
-                System.out.println("!!!!!!!!!!!!!!!!!DB에 업데이트 성공입니다!!!!!!!!!!!!!!!!!!");
-                System.out.println(playerDto);
+                System.out.println("[ ● 안내 : 캐릭터 현재상태 저장 성공 ● ]");
                 return true;
             }
         }catch (Exception e){
-            System.out.println("오류납니다 : " + e);
+            System.out.println("[ ※ 안내 : playerMaxInfor 오류 입니다. ※ ]" + e);
         }
         return false;
     }

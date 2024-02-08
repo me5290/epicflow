@@ -1,6 +1,7 @@
 package org.example.epicflow.model.dto;
 
 public class PlayerDto {
+// ================================ 필드 ================================ //
     private int pno;        // 캐릭터번호
     private String pname;   // 캐릭터이름
     private int mhp;        // 최대 체력
@@ -22,6 +23,8 @@ public class PlayerDto {
     private int spd;        // 속도
     private int mno;        // 회원 번호
 
+// ================================ 메소드 ================================ //
+    // ===== GETTER / SETTER
     public int getPno() {
         return pno;
     }
@@ -182,6 +185,7 @@ public class PlayerDto {
         this.mno = mno;
     }
 
+    // ===== TOSTRING
     @Override
     public String toString() {
         return "PlayerDto{" +
